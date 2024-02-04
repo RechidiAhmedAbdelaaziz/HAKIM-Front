@@ -14,11 +14,12 @@ class HakimApp extends StatelessWidget {
         designSize: const Size(300, 205),
         minTextAdapt: true,
         child: MaterialApp(
-            theme: ThemeData(
-              primaryColor: AppColors.blueFancy,
-              useMaterial3: true,
-            ),
-            onGenerateRoute: router.generateRoute,
-            initialRoute: Routes.onBoarding),
+          theme: ThemeData(
+            primaryColor: AppColors.blueFancy,
+            useMaterial3: true,
+          ),
+          onGenerateRoute: router.generateRoute,
+          initialRoute: Routes.onBoarding,
+        ),
       );
 }
