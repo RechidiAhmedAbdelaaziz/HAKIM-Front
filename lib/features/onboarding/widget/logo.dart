@@ -8,7 +8,6 @@ class Logo extends StatelessWidget {
     this.left = 14.78,
     this.height = 247.81,
     this.width = 322.46,
-    //rechidi
     super.key,
   });
   double top;
