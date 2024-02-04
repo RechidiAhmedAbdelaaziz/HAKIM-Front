@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Logo extends StatelessWidget {
   Logo({
     this.top = 242,
-    this.left = 14.78,
+    this.left = 14.78,//try
     this.height = 247.81,
     this.width = 322.46,
     super.key,
