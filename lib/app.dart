@@ -11,7 +11,7 @@ class HakimApp extends StatelessWidget {
   // This widget is the root of the application.
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
-        designSize: const Size(300, 205),
+        designSize: const Size(360, 800),
         minTextAdapt: true,
         child: MaterialApp(
           theme: ThemeData(
