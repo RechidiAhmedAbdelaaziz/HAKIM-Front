@@ -6,6 +6,11 @@ part of 'login.req.body.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+LoginRequestBody _$LoginRequestBodyFromJson(Map<String, dynamic> json) =>
+    LoginRequestBody(
+      login: json['login'] as String,
+      password: json['password'] as String,
+    );
 
 Map<String, dynamic> _$LoginRequestBodyToJson(LoginRequestBody instance) =>
     <String, dynamic>{
