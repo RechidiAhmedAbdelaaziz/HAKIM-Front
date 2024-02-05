@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:front/core/injection/dependency.dart';
 import 'package:front/core/routes/routes.dart';
-import 'package:front/features/login/logic/cubit/login_cubit.dart';
+import 'package:front/features/login/logic/login_cubit.dart';
 import 'package:front/features/login/view/login.screen.dart';
 import 'package:front/features/onboarding/onbording.screen.dart';
 
