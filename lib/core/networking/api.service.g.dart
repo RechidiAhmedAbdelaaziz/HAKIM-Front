@@ -75,7 +75,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<SignupResponse> signupDr(SignupRequestBody body) async {
+  Future<SignupResponse> signupDr(SignupRequestBodyDr body) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
