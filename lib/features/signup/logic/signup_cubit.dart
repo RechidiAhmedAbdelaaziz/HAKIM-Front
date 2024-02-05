@@ -35,7 +35,7 @@ class SignupCubit extends Cubit<SignupState> {
 
   void signupDr() async {
     emit(const SignupState.loading());
-    final response = await _repo.signup(SignupRequestBodyDr(
+    final response = await _repo.signupDr(SignupRequestBodyDr(
       email: email.text,
       password: password.text,
       name: name.text,

@@ -15,4 +15,12 @@ class SignupRepository {
       return ApiResult.failure(ErrorHandler.handle(e));
     }
   }
+
+  Future<ApiResult<SignupResponse>> signupDr(SignupRequestBodyDr info) async {
+    try {
+      return ApiResult.sucess(await _api.signupDr(info));
+    } catch (e) {
+      return ApiResult.failure(ErrorHandler.handle(e));
+    }
+  }
 }
