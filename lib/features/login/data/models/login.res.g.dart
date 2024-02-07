@@ -8,12 +8,10 @@ part of 'login.res.dart';
 
 LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) =>
     LoginResponse(
-      json['code'] as int?,
-      json['status'] as bool?,
-      json['message'] as String?,
-      json['data'] == null
-          ? null
-          : _Data.fromJson(json['data'] as Map<String, dynamic>),
+      status: json['status'] as bool,
+      message: json['message'] as String,
+      data: Data.fromJson(json['data'] as Map<String, dynamic>),
+      code: json['code'] as int,
     );
 
 Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
@@ -24,12 +22,10 @@ Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
       'code': instance.code,
     };
 
-_Data _$DataFromJson(Map<String, dynamic> json) => _Data(
-      token: json['token'] as String?,
-      userName: json['username'] as String?,
+Data _$DataFromJson(Map<String, dynamic> json) => Data(
+      token: json['token'] as String,
     );
 
-Map<String, dynamic> _$DataToJson(_Data instance) => <String, dynamic>{
+Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
       'token': instance.token,
-      'username': instance.userName,
     };

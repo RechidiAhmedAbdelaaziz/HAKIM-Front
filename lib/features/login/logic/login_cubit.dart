@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:front/features/login/data/models/login.req.body.dart';
+import 'package:front/features/login/data/models/login.req.dart';
 import 'package:front/features/login/data/repository/login.repo.dart';
 import 'package:front/features/login/logic/login_state.dart';
 
@@ -13,7 +13,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   void login() async {
     emit(const LoginState.loading());
-    final response = await _repo.login(LoginRequestBody(
+    final response = await _repo.login(LoginRequest(
       login: email.text,
       password: password.text,
     ));
