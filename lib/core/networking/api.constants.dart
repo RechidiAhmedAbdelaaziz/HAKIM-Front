@@ -4,6 +4,9 @@ class ApiConstants {
   static const String login = "auth/login";
   static const String signup = "auth/signup";
   static const String signupDr = "auth/signup-dr";
+
+  static const String posts = "posts";
+  static const String comments = "$posts/comment";
 }
 
 class ApiErrors {
