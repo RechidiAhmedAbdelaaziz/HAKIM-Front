@@ -15,22 +15,25 @@ class PostCubit extends Cubit<PostState> {
   Post get post => _post;
   set setPost(Post x) => _post = x;
 
-  void delete() {
+  void delete() async {
     _loading();
-    _repo.deletePost(_post.id).then(_loaded).catchError(_error);
+    final response = await _repo.deletePost(_post.id);
+    response.when(sucess: _loaded, failure: _error);
   }
 
-  void update() {
+  void update() async {
     _loading();
-    _repo.updatePost(_post).then(_loaded).catchError(_error);
+    final response = await _repo.updatePost(_post);
+    response.when(sucess: _loaded, failure: _error);
   }
 
   void create() async {
     _loading();
-    _repo.createPost(_post).then(_loaded).catchError(_error);
+    final response = await _repo.createPost(_post);
+    response.when(sucess: _loaded, failure: _error);
   }
 
   void _loading() => emit(const PostState.loading());
   void _loaded(_) => emit(PostState.loaded(_post));
-  void _error(e) => emit(PostState.error(ErrorHandler.handle(e)));
+  void _error(ErrorHandler e) => emit(PostState.error(e));
 }
