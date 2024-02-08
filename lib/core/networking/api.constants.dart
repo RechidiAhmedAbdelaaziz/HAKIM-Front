@@ -7,6 +7,9 @@ class ApiConstants {
 
   static const String posts = "posts";
   static const String comments = "$posts/comment";
+
+  static const String questions = "questions";
+  static const String answers = "answers";
 }
 
 class ApiErrors {
