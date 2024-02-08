@@ -13,7 +13,7 @@ class Question extends Equatable {
 
   final String id;
   final String question;
-  final User questioner;
+  final Patient questioner;
   final List<Answer> answers;
 
   Question copyWith({

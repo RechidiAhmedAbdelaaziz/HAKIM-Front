@@ -14,7 +14,7 @@ class Answer extends Equatable {
   final String id;
   final Question question;
   final String answer;
-  final User respondent;
+  final Patient respondent;
 
   Answer copyWith({
     String? answer,
