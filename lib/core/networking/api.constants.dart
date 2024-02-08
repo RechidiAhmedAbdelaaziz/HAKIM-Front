@@ -10,6 +10,8 @@ class ApiConstants {
 
   static const String questions = "questions";
   static const String answers = "answers";
+
+  static const String appointments = "appointments";
 }
 
 class ApiErrors {
