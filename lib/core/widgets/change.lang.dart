@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:front/core/Theme/colors.dart';
+import 'package:front/core/Theme/fonts.dart';
 
 class ChangeLangButton extends StatelessWidget {
   const ChangeLangButton({super.key});
@@ -18,11 +19,11 @@ class ChangeLangButton extends StatelessWidget {
           color: AppColor.blueDark,
           alignment: Alignment.center,
           child: Text(
-            "controller.language!.languageCode.toUpperCase(",
+            "EN",
             style: TextStyle(
                 color: AppColor.white,
                 fontSize: 18.sp,
-                fontWeight: FontWeight.bold),
+                fontWeight: AppFontWeight.extraBold),
           ),
         ),
       ),

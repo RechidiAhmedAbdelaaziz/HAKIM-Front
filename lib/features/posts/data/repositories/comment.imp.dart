@@ -9,18 +9,23 @@ import '../source/comment.local.dart';
 import '../source/comment.remote.dart';
 
 class CommentRepositoryImp implements CommentRepository {
-  final CommentRemoteDataSource remote;
-  final CommentLocalDataSource local;
-  final NetworkInfo networkInfo;
+  final CommentRemoteDataSource _remote;
+  final CommentLocalDataSource _local;
+  final NetworkInfo _networkInfo;
 
   CommentRepositoryImp(
-      {required this.remote, required this.local, required this.networkInfo});
+      {required CommentRemoteDataSource remote,
+      required CommentLocalDataSource local,
+      required NetworkInfo networkInfo})
+      : _networkInfo = networkInfo,
+        _local = local,
+        _remote = remote;
 
   @override
   Future<ApiResult<CommentResponse>> createComment(Comment comment) async {
     final comment_ = comment.toModel();
     callback() async {
-      final data = await remote.createComment(comment_, comment.id);
+      final data = await _remote.createComment(comment_, comment.id);
       return ApiResult.sucess(data);
     }
 
@@ -30,7 +35,7 @@ class CommentRepositoryImp implements CommentRepository {
   @override
   Future<ApiResult> deleteComment(String id) {
     callback() async {
-      await remote.deleteComment(id);
+      await _remote.deleteComment(id);
       return const ApiResult.sucess(null);
     }
 

@@ -15,7 +15,7 @@ class HakimApp extends StatelessWidget {
         minTextAdapt: true,
         child: MaterialApp(
           theme: ThemeData(
-            primaryColor: AppColors.blueFancy,
+            primaryColor: AppColor.blueFancy,
             useMaterial3: true,
           ),
           onGenerateRoute: router.generateRoute,

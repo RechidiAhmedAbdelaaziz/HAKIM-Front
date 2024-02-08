@@ -27,7 +27,7 @@ class ContinueButton extends StatelessWidget {
           width: width.w,
           height: height.h,
           decoration: ShapeDecoration(
-            color: AppColors.blueFancy,
+            color: AppColor.blueFancy,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.w),
             ),

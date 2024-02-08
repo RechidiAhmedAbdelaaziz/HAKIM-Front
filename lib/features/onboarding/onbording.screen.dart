@@ -27,7 +27,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   void dispose() {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: AppColors.blueFancy,
+      statusBarColor: AppColor.blueFancy,
     ));
     super.dispose();
   }
@@ -35,7 +35,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.blueBg,
+      backgroundColor: AppColor.blueBg,
       body: Stack(
         children: [
           const ChangeLangButton(),

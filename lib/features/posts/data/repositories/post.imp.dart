@@ -8,17 +8,22 @@ import '../source/post.local.dart';
 import '../source/post.remote.dart';
 
 class PostRepositoryImp implements PostRepository {
-  final PostRemoteDataSource remote;
-  final PostLocalDataSource local;
-  final NetworkInfo networkInfo;
+  final PostRemoteDataSource _remote;
+  final PostLocalDataSource _local;
+  final NetworkInfo _networkInfo;
 
   PostRepositoryImp(
-      {required this.remote, required this.local, required this.networkInfo});
+      {required PostRemoteDataSource remote,
+      required PostLocalDataSource local,
+      required NetworkInfo networkInfo})
+      : _networkInfo = networkInfo,
+        _local = local,
+        _remote = remote;
 
   @override
   Future<ApiResult> createPost(Post post) async {
     return TryCallApi(() async {
-      await remote.createPost(post.toModel());
+      await _remote.createPost(post.toModel());
       return const ApiResult.sucess(null);
     }).call();
   }
@@ -26,7 +31,7 @@ class PostRepositoryImp implements PostRepository {
   @override
   Future<ApiResult> deletePost(String id) {
     return TryCallApi(() async {
-      await remote.deletePost(id);
+      await _remote.deletePost(id);
       return const ApiResult.sucess(null);
     }).call();
   }
@@ -35,8 +40,8 @@ class PostRepositoryImp implements PostRepository {
   Future<ApiResult<List<Post>>> getAllPosts() async {
     return TryCallApi<List<Post>>(
       () async {
-        final response = await remote.getAllPosts();
-        local.cachePosts(
+        final response = await _remote.getAllPosts();
+        _local.cachePosts(
           response.where((e) => e.data != null).map((e) => e.data!).toList(),
         );
 
@@ -54,7 +59,7 @@ class PostRepositoryImp implements PostRepository {
   Future<ApiResult> updatePost(Post post) {
     final post0 = post.toModel();
     return TryCallApi(() async {
-      await remote.updatePost(post0.id, post0);
+      await _remote.updatePost(post0.id, post0);
       return const ApiResult.sucess(null);
     }).call();
   }
@@ -62,7 +67,7 @@ class PostRepositoryImp implements PostRepository {
   @override
   Future<ApiResult> like(String id) {
     callback() async {
-      await remote.like(id);
+      await _remote.like(id);
       return const ApiResult.sucess(null);
     }
 
@@ -72,7 +77,7 @@ class PostRepositoryImp implements PostRepository {
   @override
   Future<ApiResult> unLike(String id) {
     callback() async {
-      await remote.unLike(id);
+      await _remote.unLike(id);
       return const ApiResult.sucess(null);
     }
 

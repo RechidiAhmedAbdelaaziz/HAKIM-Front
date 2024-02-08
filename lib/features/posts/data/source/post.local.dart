@@ -8,7 +8,7 @@ abstract class PostLocalDataSource {
 
 class PostLocalDataSourceImpl implements PostLocalDataSource {
   final PostCache _local;
-  PostLocalDataSourceImpl({required PostCache localStorage}) : _local = localStorage;
+  PostLocalDataSourceImpl(this._local);
 
   @override
   Future cachePosts(List<PostModel> posts) async {
