@@ -1,43 +1,52 @@
 import 'package:equatable/equatable.dart';
 import 'package:front/features/auth/data/model/user.dart';
+import 'package:front/features/questions/data/models/question.dart';
+import 'package:front/features/questions/domain/entities/answer.dart';
 
 class Question extends Equatable {
-    const Question({
-        required this.id,
-        required this.question,
-        required this.questioner,
-        required this.answers,
-    });
+  const Question({
+    required this.id,
+    required this.question,
+    required this.questioner,
+    this.answers = const [],
+  });
 
-    final String? id;
-    final String? question;
-    final User questioner;
-    final List<String> answers;
+  final String id;
+  final String question;
+  final User questioner;
+  final List<Answer> answers;
 
-    Question copyWith({
-        String? id,
-        String? question,
-        String? questioner,
-        List<String>? answers,
-    }) {
-        return Question(
-            id: id ?? this.id,
-            question: question ?? this.question,
-            questioner: questioner ?? this.questioner,
-            answers: answers ?? this.answers,
-        );
-    }
+  Question copyWith({
+    String? question,
+    List<Answer>? answers,
+  }) {
+    return Question(
+      id: id,
+      question: question ?? this.question,
+      questioner: questioner,
+      answers: answers ?? this.answers,
+    );
+  }
 
-    factory Question.fromJson(Map<String, dynamic> json){ 
-        return Question(
-            id: json["_id"],
-            question: json["question"],
-            questioner: json["questioner"],
-            answers: json["answers"] == null ? [] : List<String>.from(json["answers"]!.map((x) => x)),
-        );
-    }
+  factory Question.fromModel(QuestionModel model) => Question(
+        id: model.id,
+        question: model.question,
+        questioner: getUserById(model.questioner),
+        //TODO: add answers
+      );
 
-    @override
-    List<Object?> get props => [
-    id, question, questioner, answers, ];
+  QuestionModel toModel() => QuestionModel(
+        id: id,
+        question: question,
+        questioner: questioner.id,
+        answers: answers.map((e) => e.id).toList(),
+      );
+
+  @override
+  List<Object?> get props => [
+        id,
+        question,
+        questioner,
+        answers,
+      ];
 }
