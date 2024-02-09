@@ -1,13 +1,14 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:equatable/equatable.dart';
-import 'package:front/features/auth/data/model/user.dart';
+import 'package:front/features/auth/domain/enitities/patient.dart';
+import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/posts/data/models/comment.dart';
 import 'package:front/features/posts/domain/entites/post.dart';
 
 class Comment extends Equatable {
   String comment;
-  final User commentator;
+  final Patient commentator;
   final Post post;
   List<Comment> replys;
   final String id;

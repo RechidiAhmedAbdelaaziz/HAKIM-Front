@@ -1,13 +1,14 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:front/features/auth/data/model/user.dart';
+import 'package:front/features/auth/domain/enitities/doctor.dart';
+import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/posts/data/models/post.dart';
 
 import '../../post.dart';
 import 'comment.dart';
 
 class Post extends IPost {
-  final User poster;
+  final Doctor poster;
   List<Comment> comments;
 
   Post({
@@ -21,7 +22,7 @@ class Post extends IPost {
 
   factory Post.fromModel(PostModel model) => Post(
         post: model.post,
-        poster: getUserById(model.poster!),
+        poster: getDrById(model.poster!),
         date: model.date,
         id: model.id,
         comments: [], //TODO: create getComments of Post function
@@ -39,9 +40,9 @@ class Post extends IPost {
   List<Object?> get props => [id];
 }
 
-getPostById(String id) => Post(
+Post getPostById(String id) => Post(
       id: "",
       post: "",
-      poster: getUserById(id),
+      poster: getDrById(id),
       date: DateTime.now(),
     );

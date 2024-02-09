@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:front/features/appointment/data/models/appointment.dart';
-import 'package:front/features/auth/data/model/user.dart';
+import 'package:front/features/auth/domain/enitities/doctor.dart';
+import 'package:front/features/auth/domain/enitities/patient.dart';
 
 class Appointment extends Equatable {
   const Appointment({
@@ -57,3 +58,11 @@ class Appointment extends Equatable {
         patient,
       ];
 }
+
+Appointment getAppointmentById(String id) => Appointment(
+      id: id,
+      type: "",
+      date: DateTime.now(),
+      doctor: getDrById(id),
+      patient: getUserById(id),
+    );

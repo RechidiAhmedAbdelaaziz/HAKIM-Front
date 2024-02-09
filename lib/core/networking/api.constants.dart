@@ -1,6 +1,8 @@
 class ApiConstants {
   static const String baseUrl = "";
 
+  static const String auth = "auth";
+
   static const String login = "auth/login";
   static const String signup = "auth/signup";
   static const String signupDr = "auth/signup-dr";
