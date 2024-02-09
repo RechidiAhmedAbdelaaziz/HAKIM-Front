@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:front/features/auth/data/model/user.dart';
+import 'package:front/features/auth/domain/enitities/patient.dart';
+import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/questions/data/models/question.dart';
 import 'package:front/features/questions/domain/entities/answer.dart';
 
@@ -13,7 +14,7 @@ class Question extends Equatable {
 
   final String id;
   final String question;
-  final Patient questioner;
+  final User questioner;
   final List<Answer> answers;
 
   Question copyWith({

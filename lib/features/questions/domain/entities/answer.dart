@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:front/features/auth/data/model/user.dart';
+import 'package:front/features/auth/domain/enitities/doctor.dart';
+import 'package:front/features/auth/domain/enitities/patient.dart';
+
 import 'package:front/features/questions/data/models/answer.dart';
 import 'package:front/features/questions/domain/entities/question.dart';
 
@@ -14,7 +16,7 @@ class Answer extends Equatable {
   final String id;
   final Question question;
   final String answer;
-  final Patient respondent;
+  final Doctor respondent;
 
   Answer copyWith({
     String? answer,
@@ -38,7 +40,7 @@ class Answer extends Equatable {
         id: model.id,
         question: getQuestionById(model.question),
         answer: model.answer,
-        respondent: getUserById(model.respondent),
+        respondent: getDrById(model.respondent),
       );
 
   @override
