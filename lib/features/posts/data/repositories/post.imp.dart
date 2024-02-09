@@ -41,14 +41,9 @@ class PostRepositoryImp implements PostRepository {
     return TryCallApi<List<Post>>(
       () async {
         final response = await _remote.getAllPosts();
-        _local.cachePosts(
-          response.where((e) => e.data != null).map((e) => e.data!).toList(),
-        );
 
-        List<Post> posts = response
-            .where((e) => e.data != null)
-            .map((e) => Post.fromModel(e.data!))
-            .toList();
+        List<Post> posts =
+            response.data!.map((e) => Post.fromModel(e)).toList();
 
         return ApiResult.sucess(posts);
       },

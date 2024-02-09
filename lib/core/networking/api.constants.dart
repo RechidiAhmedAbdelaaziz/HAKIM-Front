@@ -14,6 +14,8 @@ class ApiConstants {
   static const String answers = "answers";
 
   static const String appointments = "appointments";
+
+  static const String location = "location";
 }
 
 class ApiErrors {
