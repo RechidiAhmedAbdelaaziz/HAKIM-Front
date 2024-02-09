@@ -14,7 +14,7 @@ abstract class PostRemoteDataSource {
 
   //Get All
   @GET(ApiConstants.posts)
-  Future<List<PostResponse>> getAllPosts();
+  Future<PostListResponse> getAllPosts();
 
   //Create Post
   @POST(ApiConstants.posts)

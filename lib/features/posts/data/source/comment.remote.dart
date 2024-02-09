@@ -13,7 +13,7 @@ abstract class CommentRemoteDataSource {
 
   //Get All
   @GET(ApiConstants.comments)
-  Future<List<CommentResponse>> getAllComments();
+  Future<CommentListResponse> getAllComments();
 
   //Create Comment
   @POST("${ApiConstants.posts}/{id}/comment")

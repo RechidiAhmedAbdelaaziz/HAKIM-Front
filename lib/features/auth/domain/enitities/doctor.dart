@@ -1,6 +1,7 @@
 import 'package:front/features/appointment/domain/entities/appointment.dart';
 import 'package:front/features/auth/data/models/user.dart';
 import 'package:front/features/auth/domain/enitities/user.dart';
+import 'package:front/features/location/domain/entity/loaction.dart';
 import 'package:front/features/posts/domain/entites/post.dart';
 
 import 'ipatient.dart';
@@ -9,7 +10,7 @@ class Doctor extends User {
   final String phone;
   final String specialization;
   final List<Appointment> appointments;
-  final List<String> location;
+  final List<Location> location;
   final List<DateTime> worktime;
   final int points;
 
@@ -35,7 +36,7 @@ class Doctor extends User {
     String? phone,
     String? specialization,
     List<Appointment>? appointments,
-    List<String>? location,
+    List<Location>? location,
     List<DateTime>? worktime,
     int? points,
     String? name,
@@ -70,7 +71,7 @@ class Doctor extends User {
         phone: phone,
         specialization: specialization,
         appointments: appointments.map((e) => e.id).toList(),
-        location: location,
+        location: location.map((e) => e.id).toList(),
         worktime: worktime,
         points: points,
         name: name,
@@ -93,7 +94,7 @@ class Doctor extends User {
         specialization: model.specialization!,
         appointments:
             model.appointments!.map((e) => getAppointmentById(e)).toList(),
-        location: model.location!, // TODO: Create location model
+        location: model.location!.map((e) => getLocationByID(e)).toList(),
         worktime: model.worktime!,
       );
 }

@@ -16,3 +16,16 @@ class PostResponse extends ResponseModel<PostModel> {
       _$PostResponseFromJson(json);
   Map<String, dynamic> toJson() => _$PostResponseToJson(this);
 }
+
+@JsonSerializable()
+class PostListResponse extends ResponseModel<List<PostModel>> {
+  PostListResponse(
+      {required super.status,
+      required super.message,
+      required super.data,
+      required super.code});
+
+  factory PostListResponse.fromJson(Map<String, dynamic> json) =>
+      _$PostListResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$PostListResponseToJson(this);
+}

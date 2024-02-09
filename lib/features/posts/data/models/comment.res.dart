@@ -16,3 +16,16 @@ class CommentResponse extends ResponseModel<CommentModel> {
       _$CommentResponseFromJson(json);
   Map<String, dynamic> toJson() => _$CommentResponseToJson(this);
 }
+
+@JsonSerializable()
+class CommentListResponse extends ResponseModel<List<CommentModel>> {
+  CommentListResponse(
+      {required super.status,
+      required super.message,
+      required super.data,
+      required super.code});
+
+  factory CommentListResponse.fromJson(Map<String, dynamic> json) =>
+      _$CommentListResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$CommentListResponseToJson(this);
+}
