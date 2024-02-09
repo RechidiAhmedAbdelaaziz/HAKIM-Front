@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:front/core/Theme/colors.dart';
 import 'package:front/core/Theme/fonts.dart';
 import 'package:front/core/widgets/profile.pic.dart';
-import 'package:front/features/auth/data/model/user.dart';
-import 'package:front/features/posts/domain/entites/post.dart';
+import 'package:front/features/auth/domain/enitities/doctor.dart';
 
+import 'package:front/features/posts/domain/entites/post.dart';
 
 class PosterInfo extends StatelessWidget {
   const PosterInfo({
@@ -31,7 +31,7 @@ class _PosterInfo extends StatelessWidget {
   });
 
   final Post post;
-  final User poster;
+  final Doctor poster;
 
   @override
   Widget build(BuildContext context) {
