@@ -24,6 +24,7 @@ class AppointmentListResponse extends ResponseModel<List<AppointmentModel>> {
       {required super.status,
       required super.message,
       required super.data,
+      required super.pagination,
       required super.code});
 
   factory AppointmentListResponse.fromJson(Map<String, dynamic> json) =>

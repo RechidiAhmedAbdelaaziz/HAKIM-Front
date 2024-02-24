@@ -6,6 +6,23 @@ part of 'res.model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+Pagination _$PaginationFromJson(Map<String, dynamic> json) => Pagination(
+      currentPage: json['currentPage'] as int?,
+      pagesNumber: json['pagesNumber'] as int?,
+      length: json['length'] as int?,
+      previous: json['previous'] as int?,
+      next: json['next'] as int?,
+    );
+
+Map<String, dynamic> _$PaginationToJson(Pagination instance) =>
+    <String, dynamic>{
+      'currentPage': instance.currentPage,
+      'pagesNumber': instance.pagesNumber,
+      'length': instance.length,
+      'previous': instance.previous,
+      'next': instance.next,
+    };
+
 DefaultResponse _$DefaultResponseFromJson(Map<String, dynamic> json) =>
     DefaultResponse(
       status: json['status'] as bool?,

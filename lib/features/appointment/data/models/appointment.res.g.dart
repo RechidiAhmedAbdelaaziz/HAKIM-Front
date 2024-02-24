@@ -33,6 +33,9 @@ AppointmentListResponse _$AppointmentListResponseFromJson(
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => AppointmentModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      pagination: json['pagination'] == null
+          ? null
+          : Pagination.fromJson(json['pagination'] as Map<String, dynamic>),
       code: json['code'] as int?,
     );
 
@@ -41,6 +44,7 @@ Map<String, dynamic> _$AppointmentListResponseToJson(
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,
+      'pagination': instance.pagination,
       'data': instance.data,
       'code': instance.code,
     };
