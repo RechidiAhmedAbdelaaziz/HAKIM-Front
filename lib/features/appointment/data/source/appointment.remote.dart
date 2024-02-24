@@ -6,36 +6,36 @@ import '../models/appointment.res.dart';
 
 part 'appointment.remote.g.dart';
 
-@RestApi(baseUrl: ApiConstants.baseUrl)
+@RestApi(baseUrl: ApiConsts.baseUrl)
 abstract class AppointmentRemoteDataSource {
   factory AppointmentRemoteDataSource(Dio dio, {String baseUrl}) =
       _AppointmentRemoteDataSource;
 
   //Get All
-  @GET(ApiConstants.appointments)
+  @GET(ApiConsts.appointments)
   Future<AppointmentListResponse> getAllAppointments();
 
   //Get One
-  @GET("${ApiConstants.appointments}/{id}")
+  @GET("${ApiConsts.appointments}/{id}")
   Future<AppointmentResponse> getAppointment(
     @Path("id") String id,
   );
 
   //Create Appointment
-  @POST(ApiConstants.appointments)
+  @POST(ApiConsts.appointments)
   Future<AppointmentResponse> createAppointment(
     @Body() AppointmentModel appointment,
   );
 
   //Update Appointment
-  @PATCH("${ApiConstants.appointments}/{id}")
+  @PATCH("${ApiConsts.appointments}/{id}")
   Future<AppointmentResponse> updateAppointment(
     @Path("id") String id,
     @Body() AppointmentModel update,
   );
 
   //Delete Appointment
-  @DELETE("${ApiConstants.appointments}/{id}")
+  @DELETE("${ApiConsts.appointments}/{id}")
   Future<AppointmentResponse> deleteAppointment(
     @Path("id") String id,
   );

@@ -1,6 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:equatable/equatable.dart';
+import 'package:front/features/auth/data/models/models/document.dart';
+import 'package:front/features/auth/data/models/models/info.dart';
+import 'package:front/features/auth/data/models/models/location.dart';
+import 'package:front/features/auth/data/models/models/medical_record.dart';
+import 'package:front/features/auth/data/models/models/patient_card.dart';
+import 'package:front/features/auth/data/models/models/worktime.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
@@ -8,38 +14,45 @@ part 'user.g.dart';
 @JsonSerializable()
 class AuthModel extends Equatable {
   const AuthModel({
-    required this.patient,
     required this.id,
+    required this.name,
+    required this.email,
+    required this.info,
+    required this.kind,
+    required this.isVerified,
+    required this.isOnline,
+    required this.patientCard,
+    required this.medicalRecord,
+    required this.documents,
     this.phone,
     this.specialization,
-    this.appointments,
     this.location,
     this.worktime,
     this.points,
-    required this.name,
-    required this.pic,
-    required this.email,
-    required this.kind,
-    required this.isVerified,
-    required this.posts,
+    this.followers,
+    this.hearts,
+    this.rating,
   });
 
-  final IPatientModel patient;
-
   @JsonKey(name: '_id')
-  final String id;
+  final String? id;
+  final String? name;
+  final String? email;
+  final Info? info;
+  final String? kind;
+  final bool? isVerified;
+  final bool? isOnline;
+  final PatientCard? patientCard;
+  final MedicalRecord? medicalRecord;
+  final List<Document>? documents;
   final String? phone;
   final String? specialization;
-  final List<String>? appointments;
-  final List<String>? location;
-  final List<DateTime>? worktime;
+  final List<Location>? location;
+  final List<Worktime>? worktime;
   final int? points;
-  final String name;
-  final String pic;
-  final String email;
-  final String kind;
-  final bool isVerified;
-  final List<String> posts;
+  final int? followers;
+  final int? hearts;
+  final double? rating;
 
   factory AuthModel.fromJson(Map<String, dynamic> json) =>
       _$AuthModelFromJson(json);
@@ -48,33 +61,9 @@ class AuthModel extends Equatable {
 
   @override
   String toString() {
-    return "$patient, $id, $phone, $specialization, $appointments, $location, $worktime, $points, $name, $pic, $email, $kind, $isVerified, $posts, ";
+    return "$name, $email, $info, $kind, $isVerified, $isOnline, $patientCard, $medicalRecord, $documents, $phone, $specialization, $location, $worktime, $points, $followers, $hearts, $rating, ";
   }
 
   @override
   List<Object?> get props => [id];
-}
-
-@JsonSerializable()
-class IPatientModel extends Equatable {
-  const IPatientModel({
-    required this.appointments,
-  });
-
-  final List<String> appointments;
-
-  factory IPatientModel.fromJson(Map<String, dynamic> json) =>
-      _$IPatientModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$IPatientModelToJson(this);
-
-  @override
-  String toString() {
-    return "$appointments, ";
-  }
-
-  @override
-  List<Object?> get props => [
-        appointments,
-      ];
 }

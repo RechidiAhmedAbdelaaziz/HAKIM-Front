@@ -7,53 +7,56 @@ part of 'user.dart';
 // **************************************************************************
 
 AuthModel _$AuthModelFromJson(Map<String, dynamic> json) => AuthModel(
-      patient: IPatientModel.fromJson(json['patient'] as Map<String, dynamic>),
-      id: json['_id'] as String,
+      id: json['_id'] as String?,
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      info: json['info'] == null
+          ? null
+          : Info.fromJson(json['info'] as Map<String, dynamic>),
+      kind: json['kind'] as String?,
+      isVerified: json['isVerified'] as bool?,
+      isOnline: json['isOnline'] as bool?,
+      patientCard: json['patientCard'] == null
+          ? null
+          : PatientCard.fromJson(json['patientCard'] as Map<String, dynamic>),
+      medicalRecord: json['medicalRecord'] == null
+          ? null
+          : MedicalRecord.fromJson(
+              json['medicalRecord'] as Map<String, dynamic>),
+      documents: (json['documents'] as List<dynamic>?)
+          ?.map((e) => Document.fromJson(e as Map<String, dynamic>))
+          .toList(),
       phone: json['phone'] as String?,
       specialization: json['specialization'] as String?,
-      appointments: (json['appointments'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
       location: (json['location'] as List<dynamic>?)
-          ?.map((e) => e as String)
+          ?.map((e) => Location.fromJson(e as Map<String, dynamic>))
           .toList(),
       worktime: (json['worktime'] as List<dynamic>?)
-          ?.map((e) => DateTime.parse(e as String))
+          ?.map((e) => Worktime.fromJson(e as Map<String, dynamic>))
           .toList(),
       points: json['points'] as int?,
-      name: json['name'] as String,
-      pic: json['pic'] as String,
-      email: json['email'] as String,
-      kind: json['kind'] as String,
-      isVerified: json['isVerified'] as bool,
-      posts: (json['posts'] as List<dynamic>).map((e) => e as String).toList(),
+      followers: json['followers'] as int?,
+      hearts: json['hearts'] as int?,
+      rating: (json['rating'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$AuthModelToJson(AuthModel instance) => <String, dynamic>{
-      'patient': instance.patient,
       '_id': instance.id,
-      'phone': instance.phone,
-      'specialization': instance.specialization,
-      'appointments': instance.appointments,
-      'location': instance.location,
-      'worktime': instance.worktime?.map((e) => e.toIso8601String()).toList(),
-      'points': instance.points,
       'name': instance.name,
-      'pic': instance.pic,
       'email': instance.email,
+      'info': instance.info,
       'kind': instance.kind,
       'isVerified': instance.isVerified,
-      'posts': instance.posts,
-    };
-
-IPatientModel _$IPatientModelFromJson(Map<String, dynamic> json) =>
-    IPatientModel(
-      appointments: (json['appointments'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-    );
-
-Map<String, dynamic> _$IPatientModelToJson(IPatientModel instance) =>
-    <String, dynamic>{
-      'appointments': instance.appointments,
+      'isOnline': instance.isOnline,
+      'patientCard': instance.patientCard,
+      'medicalRecord': instance.medicalRecord,
+      'documents': instance.documents,
+      'phone': instance.phone,
+      'specialization': instance.specialization,
+      'location': instance.location,
+      'worktime': instance.worktime,
+      'points': instance.points,
+      'followers': instance.followers,
+      'hearts': instance.hearts,
+      'rating': instance.rating,
     };

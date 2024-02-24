@@ -6,38 +6,38 @@ import '../models/location.res.dart';
 
 part 'location.remote.g.dart';
 
-@RestApi(baseUrl: ApiConstants.baseUrl)
+@RestApi(baseUrl: ApiConsts.baseUrl)
 abstract class LocationRemoteDataSource {
   factory LocationRemoteDataSource(Dio dio, {String baseUrl}) =
       _LocationRemoteDataSource;
 
   //Get Locations of Dr
-  @GET("${ApiConstants.location}/dr/{id}")
+  @GET("${ApiConsts.location}/dr/{id}")
   Future<LocationListResponse> getLocations(
     @Path("id") String id,
   );
 
   //Get Location
-  @GET("${ApiConstants.location}/{id}")
+  @GET("${ApiConsts.location}/{id}")
   Future<LocationResponse> getLocation(
     @Path("id") String id,
   );
 
   //Create Location
-  @POST(ApiConstants.location)
+  @POST(ApiConsts.location)
   Future<LocationResponse> createLocation(
     @Body() LocationModel location,
   );
 
   //Update Location
-  @POST("${ApiConstants.location}/{id}")
+  @POST("${ApiConsts.location}/{id}")
   Future<LocationResponse> updateLocation(
     @Path("id") String id,
     @Body() LocationModel location,
   );
 
   //Delete Location
-  @DELETE("${ApiConstants.location}/{id}")
+  @DELETE("${ApiConsts.location}/{id}")
   Future<LocationResponse> deleteLocation(
     @Path("id") String id,
   );

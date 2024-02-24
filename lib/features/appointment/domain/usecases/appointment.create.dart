@@ -1,5 +1,5 @@
 import 'package:front/core/networking/api.result.dart';
-import 'package:front/core/types/usecase.dart';
+import 'package:front/core/usecase/usecase.dart';
 import 'package:front/features/appointment/data/models/appointment.dart';
 import 'package:front/features/appointment/domain/entities/appointment.dart';
 import 'package:front/features/appointment/domain/repo/appointment.dart';

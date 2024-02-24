@@ -6,31 +6,31 @@ import '../models/comment.res.dart';
 
 part 'comment.remote.g.dart';
 
-@RestApi(baseUrl: ApiConstants.baseUrl)
+@RestApi(baseUrl: ApiConsts.baseUrl)
 abstract class CommentRemoteDataSource {
   factory CommentRemoteDataSource(Dio dio, {String baseUrl}) =
       _CommentRemoteDataSource;
 
   //Get All
-  @GET(ApiConstants.comments)
+  @GET(ApiConsts.comments)
   Future<CommentListResponse> getAllComments();
 
   //Create Comment
-  @POST("${ApiConstants.posts}/{id}/comment")
+  @POST("${ApiConsts.posts}/{id}/comment")
   Future<CommentResponse> createComment(
     @Body() CommentModel comment,
     @Path("id") String id,
   );
 
   //Update Comment
-  @POST("${ApiConstants.comments}/{id}")
+  @POST("${ApiConsts.comments}/{id}")
   Future<CommentResponse> updateComment(
     @Path("id") String id,
     @Body() CommentModel update,
   );
 
   //Delete Comment
-  @DELETE("${ApiConstants.comments}/{id}")
+  @DELETE("${ApiConsts.comments}/{id}")
   Future<CommentResponse> deleteComment(
     @Path("id") String id,
   );
