@@ -7,42 +7,42 @@ import '../models/post.res.dart';
 
 part 'post.remote.g.dart';
 
-@RestApi(baseUrl: ApiConstants.baseUrl)
+@RestApi(baseUrl: ApiConsts.baseUrl)
 abstract class PostRemoteDataSource {
   factory PostRemoteDataSource(Dio dio, {String baseUrl}) =
       _PostRemoteDataSource;
 
   //Get All
-  @GET(ApiConstants.posts)
+  @GET(ApiConsts.posts)
   Future<PostListResponse> getAllPosts();
 
   //Create Post
-  @POST(ApiConstants.posts)
+  @POST(ApiConsts.posts)
   Future<DefaultResponse> createPost(
     @Body() PostModel post,
   );
 
   //Update Post
-  @POST("${ApiConstants.posts}/{id}")
+  @POST("${ApiConsts.posts}/{id}")
   Future<DefaultResponse> updatePost(
     @Path("id") String id,
     @Body() PostModel update,
   );
 
   //Delete Post
-  @DELETE("${ApiConstants.posts}/{id}")
+  @DELETE("${ApiConsts.posts}/{id}")
   Future<DefaultResponse> deletePost(
     @Path("id") String id,
   );
 
   //Like Post
-  @POST("${ApiConstants.posts}/{id}/like")
+  @POST("${ApiConsts.posts}/{id}/like")
   Future<DefaultResponse> like(
     @Path("id") String id,
   );
 
   //UnLike Post
-  @POST("${ApiConstants.posts}/{id}/like")
+  @POST("${ApiConsts.posts}/{id}/like")
   Future<DefaultResponse> unLike(
     @Path("id") String id,
   );

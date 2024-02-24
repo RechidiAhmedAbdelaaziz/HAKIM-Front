@@ -1,16 +1,44 @@
 import 'package:dio/dio.dart';
 import 'package:front/core/networking/api.constants.dart';
+import 'package:front/features/auth/data/models/user.dart';
 import 'package:retrofit/http.dart';
-import '../models/auth.res.dart';
+import 'auth.res.dart';
 
 part 'auth.remote.g.dart';
 
-@RestApi(baseUrl: ApiConstants.baseUrl)
+@RestApi(baseUrl: ApiConsts.baseUrl)
 abstract class AuthRemoteDataSource {
   factory AuthRemoteDataSource(Dio dio, {String baseUrl}) =
       _AuthRemoteDataSource;
 
   //Get Profile
-  @GET(ApiConstants.auth)
-  Future<AuthResponse> getProfile();
+  @GET("${ApiConsts.auth}/{id}")
+  Future<AuthResponse> getProfile(
+    @Path("id") String id,
+  );
+
+  //Get My Profile
+  @GET(ApiConsts.auth)
+  Future<AuthResponse> getMyProfile();
+
+  //Login
+  @POST(ApiConsts.auth)
+  Future<AuthResponse> login({
+    @Body() required String login,
+    @Body() required String password,
+  });
+
+  //@User - SignUp
+  @POST("${ApiConsts.auth}/signup")
+  Future<AuthResponse> signUp({
+    @Body() required String name,
+    @Body() required String email,
+    @Body() required String password,
+  });
+
+  //@DOCTOR - create
+  @POST("${ApiConsts.auth}/signup-dr")
+  Future<AuthResponse> createDoctor(
+    @Body() AuthModel info,
+  );
 }

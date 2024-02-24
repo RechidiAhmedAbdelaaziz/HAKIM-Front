@@ -7,33 +7,33 @@ import '../models/answer.res.dart';
 
 part 'answer.remote.g.dart';
 
-@RestApi(baseUrl: ApiConstants.baseUrl)
+@RestApi(baseUrl: ApiConsts.baseUrl)
 abstract class AnswerRemoteDataSource {
   factory AnswerRemoteDataSource(Dio dio, {String baseUrl}) =
       _AnswerRemoteDataSource;
 
   //Get All
-  @GET("${ApiConstants.questions}/{id}/answer")
+  @GET("${ApiConsts.questions}/{id}/answer")
   Future<AnswerListResponse> getAllAnswers(
     @Path("id") String id,
   );
 
   //Create Answer
-  @POST("${ApiConstants.questions}/{id}/answer")
+  @POST("${ApiConsts.questions}/{id}/answer")
   Future<AnswerResponse> createAnswer(
     @Path("id") String id,
     @Body() AnswerModel answer,
   );
 
   //Update Answer
-  @POST("${ApiConstants.answers}/{id}")
+  @POST("${ApiConsts.answers}/{id}")
   Future<AnswerResponse> updateAnswer(
     @Path("id") String id,
     @Body() AnswerModel update,
   );
 
   //Delete Answer
-  @DELETE("${ApiConstants.answers}/{id}")
+  @DELETE("${ApiConsts.answers}/{id}")
   Future<DefaultResponse> deleteAnswer(
     @Path("id") String id,
   );

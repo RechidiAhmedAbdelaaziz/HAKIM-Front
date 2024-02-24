@@ -1,31 +1,38 @@
 import 'package:equatable/equatable.dart';
-import 'package:front/features/posts/domain/entites/post.dart';
 
-import 'ipatient.dart';
-// import 'doctor.dart';
-// import 'patient.dart';
+import '../../data/models/models/document.dart';
+import '../../data/models/models/info.dart';
+import '../../data/models/models/medical_record.dart';
+import '../../data/models/models/patient_card.dart';
+import '../../data/models/user.dart';
 
 abstract class User extends Equatable {
-  final String id;
-  final String name;
-  final String pic;
-  final String email;
-  final String kind;
-  final bool isVerified;
-  final List<Post> posts;
-  final IPatient patient;
+  const User(
+      {required this.id,
+      required this.name,
+      required this.email,
+      required this.info,
+      required this.kind,
+      required this.isVerified,
+      required this.isOnline,
+      required this.patientCard,
+      required this.medicalRecord,
+      required this.documents});
 
-  const User({
-    required this.id,
-    required this.name,
-    required this.pic,
-    required this.email,
-    required this.kind,
-    required this.isVerified,
-    required this.posts,
-    required this.patient,
-  });
+  final String? id;
+  final String? name;
+  final String? email;
+  final Info? info;
+  final String? kind;
+  final bool? isVerified;
+  final bool? isOnline;
+  final PatientCard? patientCard;
+  final MedicalRecord? medicalRecord;
+  final List<Document>? documents;
+  
 
+  AuthModel toModel();
+  User copyWith();
   @override
   List<Object?> get props => [
         id,

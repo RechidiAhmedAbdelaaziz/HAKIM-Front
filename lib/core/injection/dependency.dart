@@ -25,6 +25,7 @@ Future<void> setupDependencies() async {
   //*                   Global dependencies                  *\\
   //**                                                      **\\
 
+
   //Dio & ApiService
   locator.registerLazySingleton<Dio>(() => DioFactory.getDio());
   locator.registerLazySingleton<ApiService>(() => ApiService(locator<Dio>()));

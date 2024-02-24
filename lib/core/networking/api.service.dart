@@ -8,24 +8,23 @@ import 'package:retrofit/http.dart';
 
 part 'api.service.g.dart';
 
-@RestApi(baseUrl: ApiConstants.baseUrl)
+@RestApi(baseUrl: ApiConsts.baseUrl)
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
   // Authentication methods
-  @POST(ApiConstants.login)
+  @POST(ApiConsts.login)
   Future<LoginResponse> login(
     @Body() LoginRequestBody body,
   );
 
-  @POST(ApiConstants.signup)
+  @POST(ApiConsts.signup)
   Future<SignupResponse> signup(
     @Body() SignupRequestBody body,
   );
 
-  @POST(ApiConstants.signup)
+  @POST(ApiConsts.signup)
   Future<SignupResponse> signupDr(
     @Body() SignupRequestBodyDr body,
   );
-
 }

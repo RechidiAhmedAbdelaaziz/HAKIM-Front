@@ -1,4 +1,4 @@
-class ApiConstants {
+class ApiConsts {
   static const String baseUrl = "";
 
   static const String auth = "auth";

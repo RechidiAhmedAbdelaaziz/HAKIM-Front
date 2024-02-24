@@ -7,12 +7,18 @@ part 'res.model.g.dart';
 abstract class ResponseModel<T> {
   final bool? status;
   final String? message;
+  final String? token;
   final Pagination? pagination;
   final T? data;
   final int? code;
 
   ResponseModel(
-      {this.status, this.pagination, this.message, this.data, this.code});
+      {required this.status,
+      this.token,
+      this.pagination,
+      this.message,
+      this.data,
+      required this.code});
 }
 
 @JsonSerializable()
