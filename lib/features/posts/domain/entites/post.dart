@@ -1,48 +1,64 @@
-// ignore_for_file: must_be_immutable
-
+import 'package:equatable/equatable.dart';
+import 'package:front/core/usecase/byidgetter.dart';
 import 'package:front/features/auth/domain/enitities/doctor.dart';
-import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/posts/data/models/post.dart';
 
-import '../../post.dart';
-import 'comment.dart';
-
-class Post extends IPost {
-  final Doctor poster;
-  List<Comment> comments;
-
-  Post({
-    required super.post,
+class Post extends Equatable {
+  const Post({
+    required this.id,
+    required this.text,
     required this.poster,
-    super.likers = const [],
-    this.comments = const [],
-    required super.date,
-    required super.id,
+    required this.likers,
+    required this.comments,
+    required this.date,
   });
 
-  factory Post.fromModel(PostModel model) => Post(
-        post: model.post,
-        poster: getDrById(model.poster!),
-        date: model.date,
-        id: model.id,
-        comments: [], //TODO: create getComments of Post function
-        likers: model.likers,
-      );
+  final String? id;
+  final String? text;
+  final Doctor? poster;
+  final int? likers;
+  final int? comments;
+  final DateTime? date;
+
+  static Future<Post> fromModel(PostModel model) async {
+    final poster = await ByIdGetter(id: model.id!).user() as Doctor?;
+    return Post(
+      id: model.id,
+      text: model.text,
+      poster: poster,
+      likers: model.likers,
+      comments: model.comments,
+      date: model.date,
+    );
+  }
+
   PostModel toModel() => PostModel(
-      id: id,
-      post: post,
-      poster: poster.id,
-      likers: likers,
-      comments: comments.map((e) => e.id).toList(),
-      date: date);
+        id: id,
+        text: text,
+        poster: poster?.id,
+        likers: likers,
+        comments: comments,
+        date: date,
+      );
+
+  Post copyWith({
+    String? id,
+    String? text,
+    Doctor? poster,
+    int? likers,
+    int? comments,
+    DateTime? date,
+  }) {
+    return Post(
+      id: id ?? this.id,
+      text: text ?? this.text,
+      poster: poster ?? this.poster,
+      likers: likers ?? this.likers,
+      comments: comments ?? this.comments,
+      date: date ?? this.date,
+    );
+  }
 
   @override
   List<Object?> get props => [id];
 }
-
-Post getPostById(String id) => Post(
-      id: "",
-      post: "",
-      poster: getDrById(id),
-      date: DateTime.now(),
-    );

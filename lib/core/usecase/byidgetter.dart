@@ -1,4 +1,6 @@
 import 'package:front/core/injection/dependency.dart';
+import 'package:front/features/auth/domain/enitities/doctor.dart';
+import 'package:front/features/auth/domain/enitities/patient.dart';
 import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/auth/domain/usecases/get.profile.dart';
 
@@ -9,6 +11,11 @@ class ByIdGetter {
 
   Future<User?> user() async =>
       (await locator<GetProfileUseCase>()(id)).mapOrNull(
-        sucess: (value) => value.data,
+        sucess: (value) {
+          if (value.data.kind == "Doctor") {
+            return value.data as Doctor;
+          }
+          return value.data as Patient;
+        },
       );
 }
