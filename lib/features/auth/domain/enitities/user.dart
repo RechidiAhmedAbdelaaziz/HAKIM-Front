@@ -35,6 +35,6 @@ abstract class User extends Equatable {
   User copyWith();
   @override
   List<Object?> get props => [
-        id,
+        id
       ];
 }

@@ -9,11 +9,9 @@ class LocationRepositoryImp implements LocationRepository {
   LocationRepositoryImp(
       {required LocationRemoteDataSource remote,
       required NetworkInfo networkInfo})
-      : _remote = remote,
-        _networkInfo = networkInfo;
+      : _remote = remote;
 
   final LocationRemoteDataSource _remote;
-  final NetworkInfo _networkInfo;
 
   @override
   Future<ApiResult<List<Location>>> getLocations(String drID) {
