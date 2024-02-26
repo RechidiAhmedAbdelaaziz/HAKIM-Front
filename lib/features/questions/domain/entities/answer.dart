@@ -1,56 +1,51 @@
 import 'package:equatable/equatable.dart';
-import 'package:front/features/auth/domain/enitities/doctor.dart';
-import 'package:front/features/auth/domain/enitities/patient.dart';
-
+import 'package:front/core/usecase/byidgetter.dart';
+import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/questions/data/models/answer.dart';
-import 'package:front/features/questions/domain/entities/question.dart';
 
 class Answer extends Equatable {
   const Answer({
     required this.id,
-    required this.question,
-    required this.answer,
+    required this.text,
     required this.respondent,
+    required this.date,
   });
 
-  final String id;
-  final Question question;
-  final String answer;
-  final Doctor respondent;
+  final String? id;
+  final String? text;
+  final User? respondent;
+  final DateTime? date;
 
-  Answer copyWith({
-    String? answer,
-  }) {
+  static Future<Answer> fromModel(AnswerModel model) async {
+    final respondent = await ByIdGetter(id: model.id!).user();
     return Answer(
-      id: id,
-      question: question,
-      answer: answer ?? this.answer,
-      respondent: respondent,
-    );
+        id: model.id,
+        text: model.text,
+        respondent: respondent,
+        date: model.date);
   }
 
   AnswerModel toModel() => AnswerModel(
         id: id,
-        question: question.id,
-        answer: answer,
-        respondent: respondent.id,
+        text: text,
+        respondent: respondent?.id,
+        date: date,
       );
 
-  factory Answer.fromModel(AnswerModel model) => Answer(
-        id: model.id,
-        question: getQuestionById(model.question),
-        answer: model.answer,
-        respondent: getDrById(model.respondent),
-      );
+  Answer copyWith({
+    String? id,
+    String? text,
+    User? respondent,
+    DateTime? date,
+  }) {
+    return Answer(
+      id: id ?? this.id,
+      text: text ?? this.text,
+      respondent: respondent ?? this.respondent,
+      date: date ?? this.date,
+    );
+  }
 
   @override
-  List<Object?> get props => [
-        id,
-        question,
-        answer,
-        respondent,
-      ];
+  List<Object?> get props => [id];
 }
-
-getQuestionById(id) =>
-    Question(id: id, question: "", questioner: getUserById(id));

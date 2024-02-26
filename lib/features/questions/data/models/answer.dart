@@ -7,30 +7,17 @@ part 'answer.g.dart';
 class AnswerModel extends Equatable {
   const AnswerModel({
     required this.id,
-    required this.question,
-    required this.answer,
+    required this.text,
     required this.respondent,
+    required this.date,
   });
 
   @JsonKey(name: '_id')
-  final String id;
-  final String question;
-  final String answer;
-  final String respondent;
-
-  AnswerModel copyWith({
-    String? id,
-    String? question,
-    String? answer,
-    String? respondent,
-  }) {
-    return AnswerModel(
-      id: id ?? this.id,
-      question: question ?? this.question,
-      answer: answer ?? this.answer,
-      respondent: respondent ?? this.respondent,
-    );
-  }
+  final String? id;
+  final String? text;
+  final String? respondent;
+  @JsonKey(name: 'createdAt')
+  final DateTime? date;
 
   factory AnswerModel.fromJson(Map<String, dynamic> json) =>
       _$AnswerModelFromJson(json);
@@ -38,15 +25,8 @@ class AnswerModel extends Equatable {
   Map<String, dynamic> toJson() => _$AnswerModelToJson(this);
 
   @override
-  String toString() {
-    return "$id, $question, $answer, $respondent, ";
-  }
+  String toString() => "$id, $text, $respondent, $date, ";
 
   @override
-  List<Object?> get props => [
-        id,
-        question,
-        answer,
-        respondent,
-      ];
+  List<Object?> get props => [id];
 }

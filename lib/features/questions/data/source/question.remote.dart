@@ -3,7 +3,8 @@ import 'package:front/core/networking/api.constants.dart';
 import 'package:front/core/networking/res.model.dart';
 import 'package:front/features/questions/data/models/question.dart';
 import 'package:retrofit/http.dart';
-import '../models/question.res.dart';
+
+import 'question.res.dart';
 
 part 'question.remote.g.dart';
 

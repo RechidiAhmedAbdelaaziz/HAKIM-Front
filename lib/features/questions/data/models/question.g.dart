@@ -8,19 +8,18 @@ part of 'question.dart';
 
 QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
     QuestionModel(
-      id: json['_id'] as String,
-      question: json['question'] as String,
-      questioner: json['questioner'] as String,
-      answers: (json['answers'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
+      id: json['_id'] as String?,
+      text: json['text'] as String?,
+      questioner: json['questioner'] as String?,
+      date: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$QuestionModelToJson(QuestionModel instance) =>
     <String, dynamic>{
       '_id': instance.id,
-      'question': instance.question,
+      'text': instance.text,
       'questioner': instance.questioner,
-      'answers': instance.answers,
+      'createdAt': instance.date?.toIso8601String(),
     };
