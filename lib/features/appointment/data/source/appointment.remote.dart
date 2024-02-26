@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:front/core/networking/api.constants.dart';
 import 'package:retrofit/http.dart';
 import '../models/appointment.dart';
-import '../models/appointment.res.dart';
+import 'appointment.res.dart';
 
 part 'appointment.remote.g.dart';
 
@@ -13,7 +13,7 @@ abstract class AppointmentRemoteDataSource {
 
   //Get All
   @GET(ApiConsts.appointments)
-  Future<AppointmentListResponse> getAllAppointments();
+  Future<AppointmentListResponse> getAllAppointments(@Query('page') int page);
 
   //Get One
   @GET("${ApiConsts.appointments}/{id}")
@@ -31,7 +31,7 @@ abstract class AppointmentRemoteDataSource {
   @PATCH("${ApiConsts.appointments}/{id}")
   Future<AppointmentResponse> updateAppointment(
     @Path("id") String id,
-    @Body() AppointmentModel update,
+    @Body() DateTime date,
   );
 
   //Delete Appointment

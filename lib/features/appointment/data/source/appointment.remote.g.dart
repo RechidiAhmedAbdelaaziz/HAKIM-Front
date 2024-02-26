@@ -19,11 +19,11 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<AppointmentListResponse> getAllAppointments() async {
+  Future<AppointmentListResponse> getAllAppointments(int page) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AppointmentListResponse>(Options(
       method: 'GET',
@@ -50,7 +50,7 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AppointmentResponse>(Options(
       method: 'GET',
@@ -104,13 +104,12 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
   @override
   Future<AppointmentResponse> updateAppointment(
     String id,
-    AppointmentModel update,
+    DateTime date,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(update.toJson());
+    final _data = {"date": date};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AppointmentResponse>(Options(
       method: 'PATCH',
@@ -137,7 +136,7 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AppointmentResponse>(Options(
       method: 'DELETE',
