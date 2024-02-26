@@ -9,7 +9,6 @@ class CommentModel extends Equatable {
     required this.id,
     required this.text,
     required this.commentator,
-    required this.post,
     required this.date,
   });
 
@@ -17,7 +16,6 @@ class CommentModel extends Equatable {
   final String? id;
   final String? text;
   final String? commentator;
-  final String? post;
   @JsonKey(name: 'createdAt')
   final DateTime? date;
 
@@ -28,7 +26,7 @@ class CommentModel extends Equatable {
 
   @override
   String toString() {
-    return "$id, $text, $commentator, $post, $date, ";
+    return "$id, $text, $commentator, $date, ";
   }
 
   @override

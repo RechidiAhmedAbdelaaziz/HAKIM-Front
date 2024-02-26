@@ -19,9 +19,12 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<CommentListResponse> getAllComments() async {
+  Future<CommentListResponse> getAllComments(
+    String id,
+    int page,
+  ) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -32,7 +35,7 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
     )
             .compose(
               _dio.options,
-              'posts/comment',
+              'posts/${id}/comments',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -47,7 +50,7 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
 
   @override
   Future<CommentResponse> createComment(
-    CommentModel comment,
+    CommentRequestBody comment,
     String id,
   ) async {
     const _extra = <String, dynamic>{};
@@ -63,7 +66,34 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
     )
             .compose(
               _dio.options,
-              'posts/${id}/comment',
+              'posts/${id}/comments',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = CommentResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<CommentResponse> getComment(String id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<CommentResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'posts/comment/${id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -78,14 +108,14 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
 
   @override
   Future<CommentResponse> updateComment(
+    CommentRequestBody comment,
     String id,
-    CommentModel update,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(update.toJson());
+    _data.addAll(comment.toJson());
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<CommentResponse>(Options(
       method: 'POST',

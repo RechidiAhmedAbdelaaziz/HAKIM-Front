@@ -17,6 +17,7 @@ abstract class PostRepository {
   Future<ApiResult<List<Post>>> getAllPosts(int page);
   Future<ApiResult<List<Post>>> getMyPosts(int page);
   Future<ApiResult<List<Post>>> getUserPosts(String id, int page);
+  Future<ApiResult<Post>> getPost(String id);
   Future<ApiResult<Post>> createPost(PostRequestBody post);
   Future<ApiResult<Post>> updatePost(PostRequestBody post);
   Future<ApiResult<bool>> deletePost(String id);
