@@ -3,8 +3,8 @@ import 'package:front/core/networking/api.constants.dart';
 import 'package:front/core/networking/res.model.dart';
 import 'package:front/features/posts/domain/repositories/post.dart';
 import 'package:retrofit/http.dart';
-import '../models/post.res.dart';
 
+import 'post.res.dart';
 part 'post.remote.g.dart';
 
 @RestApi(baseUrl: ApiConsts.baseUrl)
@@ -26,6 +26,10 @@ abstract class PostRemoteDataSource {
     @Path('id') String id,
     @Query('page') int page,
   );
+
+  //Get Post
+  @GET("${ApiConsts.posts}/{id}")
+  Future<PostResponse> getPostById(@Path('id') String id);
 
   //Create Post
   @POST(ApiConsts.posts)

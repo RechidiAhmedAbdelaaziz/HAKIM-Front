@@ -1,38 +1,38 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:equatable/equatable.dart';
-import 'package:front/features/auth/domain/enitities/patient.dart';
+import 'package:front/core/usecase/byidgetter.dart';
 import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/posts/data/models/comment.dart';
-import 'package:front/features/posts/domain/entites/post.dart';
 
 class Comment extends Equatable {
-  String comment;
-  final Patient commentator;
-  final Post post;
-  List<Comment> replys;
-  final String id;
+  final String? text;
+  final User? commentator;
+  final DateTime? date;
+  final String? id;
 
-  Comment({
-    required this.comment,
+  const Comment({
+    required this.date,
+    required this.text,
     required this.commentator,
-    required this.post,
-    this.replys = const [],
     required this.id,
   });
 
-  factory Comment.fromModle(CommentModel model) => Comment(
-      comment: model.comment,
-      commentator: getUserById(model.commentator),
-      post: getPostById(model.post),
-      id: model.id);
+  static Future<Comment> fromModle(CommentModel model) async {
+    final commentator = await ByIdGetter(id: model.commentator!).user();
+
+    return Comment(
+        text: model.text,
+        commentator: commentator,
+        id: model.id,
+        date: model.date);
+  }
 
   CommentModel toModel() => CommentModel(
-        comment: comment,
-        commentator: commentator.id,
-        post: post.id,
-        replys: replys.map((e) => e.id).toList(),
+        text: text,
+        commentator: commentator?.id,
         id: id,
+        date: date,
       );
 
   @override

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:front/core/networking/api.constants.dart';
+import 'package:front/features/posts/domain/repositories/comment.dart';
 import 'package:retrofit/http.dart';
-import '../models/comment.dart';
-import '../models/comment.res.dart';
+import 'comment.res.dart';
 
 part 'comment.remote.g.dart';
 
@@ -12,26 +12,31 @@ abstract class CommentRemoteDataSource {
       _CommentRemoteDataSource;
 
   //Get All
-  @GET(ApiConsts.comments)
-  Future<CommentListResponse> getAllComments();
+  @GET("${ApiConsts.posts}/{id}/comments")
+  Future<CommentListResponse> getAllComments(
+    @Path("id") String id,
+    @Query('page') int page,
+  );
 
   //Create Comment
-  @POST("${ApiConsts.posts}/{id}/comment")
+  @POST("${ApiConsts.posts}/{id}/comments")
   Future<CommentResponse> createComment(
-    @Body() CommentModel comment,
+    @Body() CommentRequestBody comment,
     @Path("id") String id,
   );
+
+  //Get Comment
+  @GET("${ApiConsts.comments}/{id}")
+  Future<CommentResponse> getComment(@Path("id") String id);
 
   //Update Comment
   @POST("${ApiConsts.comments}/{id}")
   Future<CommentResponse> updateComment(
+    @Body() CommentRequestBody comment,
     @Path("id") String id,
-    @Body() CommentModel update,
   );
 
   //Delete Comment
   @DELETE("${ApiConsts.comments}/{id}")
-  Future<CommentResponse> deleteComment(
-    @Path("id") String id,
-  );
+  Future<CommentResponse> deleteComment(@Path("id") String id);
 }
