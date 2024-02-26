@@ -14,27 +14,11 @@ class AppointmentModel extends Equatable {
   });
 
   @JsonKey(name: '_id')
-  final String id;
-  final String type;
-  final DateTime date;
-  final String doctor;
-  final String patient;
-
-  AppointmentModel copyWith({
-    String? id,
-    String? type,
-    DateTime? date,
-    String? doctor,
-    String? patient,
-  }) {
-    return AppointmentModel(
-      id: id ?? this.id,
-      type: type ?? this.type,
-      date: date ?? this.date,
-      doctor: doctor ?? this.doctor,
-      patient: patient ?? this.patient,
-    );
-  }
+  final String? id;
+  final String? type;
+  final DateTime? date;
+  final String? doctor;
+  final String? patient;
 
   factory AppointmentModel.fromJson(Map<String, dynamic> json) =>
       _$AppointmentModelFromJson(json);
@@ -47,11 +31,5 @@ class AppointmentModel extends Equatable {
   }
 
   @override
-  List<Object?> get props => [
-        id,
-        type,
-        date,
-        doctor,
-        patient,
-      ];
+  List<Object?> get props => [id];
 }

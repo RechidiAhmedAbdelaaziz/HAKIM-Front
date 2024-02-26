@@ -7,7 +7,7 @@ class ByIdGetter {
 
   ByIdGetter({required this.id});
 
-  Future<User?> get user async =>
+  Future<User?> user() async =>
       (await locator<GetProfileUseCase>()(id)).mapOrNull(
         sucess: (value) => value.data,
       );

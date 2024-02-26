@@ -1,7 +1,7 @@
 import 'package:front/core/networking/res.model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'appointment.dart';
+import '../models/appointment.dart';
 
 part 'appointment.res.g.dart';
 

@@ -9,70 +9,70 @@ import 'package:front/features/appointment/domain/repo/appointment.dart';
 
 class AppointmentRepositoryImpl implements AppointmentRepository {
   final AppointmentRemoteDataSource _remote;
-  final ApponitmentLocalSourceData _local;
-  final NetworkInfo _info;
 
   AppointmentRepositoryImpl(
       {required AppointmentRemoteDataSource remote,
       required ApponitmentLocalSourceData local,
       required NetworkInfo info})
-      : _remote = remote,
-        _local = local,
-        _info = info;
+      : _remote = remote;
 
   @override
   Future<ApiResult<Appointment>> createAppointment(
-      AppointmentModel appointment) {
+      AppointmentModel appointment) async {
     callback() async {
       final response = await _remote.createAppointment(appointment);
-      final data = Appointment.fromModel(response.data!);
+      final data = await Appointment.fromModel(response.data!);
       return ApiResult.sucess(data);
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<void>> deleteAppointment(Appointment update) {
+  Future<ApiResult<bool>> deleteAppointment(AppointmentModel update) async {
     callback() async {
-      await _remote.deleteAppointment(update.id);
-      return const ApiResult.sucess(null);
+      final response = await _remote.deleteAppointment(update.id!);
+      return ApiResult.sucess(response.status!);
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<List<Appointment>>> getAllAppointment() {
+  Future<ApiResult<List<Appointment>>> getAllAppointment(int page) async {
     callback() async {
-      final response = await _remote.getAllAppointments();
-      final data = response.data!.map((e) => Appointment.fromModel(e)).toList();
+      final response = await _remote.getAllAppointments(page);
+      List<Appointment> data = [];
+      for (final appointment in response.data!) {
+        final x = await Appointment.fromModel(appointment);
+        data.add(x);
+      }
       return ApiResult.sucess(data);
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<Appointment>> getAppointment(String id) {
+  Future<ApiResult<Appointment>> getAppointment(String id) async {
     callback() async {
       final response = await _remote.getAppointment(id);
-      final data = Appointment.fromModel(response.data!);
+      final data = await Appointment.fromModel(response.data!);
       return ApiResult.sucess(data);
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<Appointment>> reschedule(Appointment update) {
+  Future<ApiResult<Appointment>> update(AppointmentModel update) async {
     callback() async {
       final response =
-          await _remote.updateAppointment(update.id, update.toModel());
-      final data = Appointment.fromModel(response.data!);
+          await _remote.updateAppointment(update.id!, update.date!);
+      final data = await Appointment.fromModel(response.data!);
       return ApiResult.sucess(data);
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
   }
 }
