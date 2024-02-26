@@ -1,6 +1,7 @@
 import 'package:front/core/networking/api.result.dart';
 import 'package:front/core/networking/api.try_catch.dart';
 import 'package:front/core/networking/info.dart';
+import 'package:front/features/posts/data/models/post.dart';
 
 import '../../domain/entites/post.dart';
 import '../../domain/repositories/post.dart';
@@ -9,73 +10,113 @@ import '../source/post.remote.dart';
 
 class PostRepositoryImp implements PostRepository {
   final PostRemoteDataSource _remote;
-  final PostLocalDataSource _local;
-  final NetworkInfo _networkInfo;
 
   PostRepositoryImp(
       {required PostRemoteDataSource remote,
       required PostLocalDataSource local,
       required NetworkInfo networkInfo})
-      : _networkInfo = networkInfo,
-        _local = local,
-        _remote = remote;
+      : _remote = remote;
 
   @override
-  Future<ApiResult> createPost(Post post) async {
-    return TryCallApi(() async {
-      await _remote.createPost(post.toModel());
-      return const ApiResult.sucess(null);
-    }).call();
-  }
-
-  @override
-  Future<ApiResult> deletePost(String id) {
-    return TryCallApi(() async {
-      await _remote.deletePost(id);
-      return const ApiResult.sucess(null);
-    }).call();
-  }
-
-  @override
-  Future<ApiResult<List<Post>>> getAllPosts() async {
-    return TryCallApi<List<Post>>(
-      () async {
-        final response = await _remote.getAllPosts();
-
-        List<Post> posts =
-            response.data!.map((e) => Post.fromModel(e)).toList();
-
-        return ApiResult.sucess(posts);
-      },
-    ).call();
-  }
-
-  @override
-  Future<ApiResult> updatePost(Post post) {
-    final post0 = post.toModel();
-    return TryCallApi(() async {
-      await _remote.updatePost(post0.id, post0);
-      return const ApiResult.sucess(null);
-    }).call();
-  }
-
-  @override
-  Future<ApiResult> like(String id) {
+  Future<ApiResult<List<Post>>> getAllPosts(int page) async {
     callback() async {
-      await _remote.like(id);
-      return const ApiResult.sucess(null);
+      final response = await _remote.getAllPosts(page);
+      final data = await _posts(response.data);
+
+      return ApiResult.sucess(data);
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult> unLike(String id) {
+  Future<ApiResult<List<Post>>> getMyPosts(int page) async {
     callback() async {
-      await _remote.unLike(id);
-      return const ApiResult.sucess(null);
+      final response = await _remote.getMyPosts(page);
+      final data = await _posts(response.data);
+
+      return ApiResult.sucess(data);
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
+  }
+
+  @override
+  Future<ApiResult<List<Post>>> getUserPosts(String id, int page) async {
+    callback() async {
+      final response = await _remote.getUserPosts(id, page);
+      final data = await _posts(response.data);
+
+      return ApiResult.sucess(data);
+    }
+
+    return await TryCallApi(callback).call();
+  }
+
+  @override
+  Future<ApiResult<Post>> createPost(PostRequestBody post) async {
+    callback() async {
+      final response = await _remote.createPost(post);
+      final data = await Post.fromModel(response.data!);
+      return ApiResult.sucess(data);
+    }
+
+    return await TryCallApi(callback).call();
+  }
+
+  @override
+  Future<ApiResult<Post>> updatePost(PostRequestBody post) async {
+    callback() async {
+      final response = await _remote.updatePost(post.id!, post);
+      final data = await Post.fromModel(response.data!);
+      return ApiResult.sucess(data);
+    }
+
+    return await TryCallApi(callback).call();
+  }
+
+  @override
+  Future<ApiResult<bool>> deletePost(String id) async {
+    callback() async {
+      final response = await _remote.deletePost(id);
+      final data = response.status == true;
+      return ApiResult.sucess(data);
+    }
+
+    return await TryCallApi(callback).call();
+  }
+
+  @override
+  Future<ApiResult<bool>> like(String id) async {
+    callback() async {
+      final response = await _remote.like(id);
+      final data = response.status == true;
+      return ApiResult.sucess(data);
+    }
+
+    return await TryCallApi(callback).call();
+  }
+
+  @override
+  Future<ApiResult<bool>> unLike(String id) async {
+    callback() async {
+      final response = await _remote.unLike(id);
+      final data = response.status == true;
+      return ApiResult.sucess(data);
+    }
+
+    return await TryCallApi(callback).call();
+  }
+
+  Future<List<Post>> _posts(List<PostModel>? posts) async {
+    var data = <Post>[];
+
+    if (posts != null) {
+      for (final post in posts) {
+        final post_ = await Post.fromModel(post);
+        data.add(post_);
+      }
+    }
+    return data;
   }
 }

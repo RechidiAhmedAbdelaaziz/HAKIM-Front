@@ -19,9 +19,9 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<PostListResponse> getAllPosts() async {
+  Future<PostListResponse> getAllPosts(int page) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -46,14 +46,71 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   }
 
   @override
-  Future<DefaultResponse> createPost(PostModel post) async {
+  Future<PostListResponse> getMyPosts(int page) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<PostListResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'posts/my',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = PostListResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<PostListResponse> getUserPosts(
+    String id,
+    int page,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
+    final _headers = <String, dynamic>{};
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<PostListResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'posts/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = PostListResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<PostResponse> createPost(PostRequestBody post) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(post.toJson());
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<DefaultResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<PostResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -69,14 +126,14 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = DefaultResponse.fromJson(_result.data!);
+    final value = PostResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<DefaultResponse> updatePost(
+  Future<PostResponse> updatePost(
     String id,
-    PostModel update,
+    PostRequestBody update,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -84,7 +141,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
     final _data = <String, dynamic>{};
     _data.addAll(update.toJson());
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<DefaultResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<PostResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -100,18 +157,18 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = DefaultResponse.fromJson(_result.data!);
+    final value = PostResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<DefaultResponse> deletePost(String id) async {
+  Future<PostResponse> deletePost(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<DefaultResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<PostResponse>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -127,7 +184,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = DefaultResponse.fromJson(_result.data!);
+    final value = PostResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -166,7 +223,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<DefaultResponse>(Options(
-      method: 'POST',
+      method: 'DELETE',
       headers: _headers,
       extra: _extra,
     )
