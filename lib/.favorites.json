@@ -1,10 +1,10 @@
 [
     {
         "type": "Directory",
-        "name": "/home/ahmed/Documents/Project/FRONT/lib/features/appointment",
+        "name": "/home/ahmed/Documents/Project/FRONT/lib/features/posts",
         "parent_id": null,
         "workspaceRoot": "/home/ahmed/Documents/Project/FRONT/lib",
-        "workspacePath": "features/appointment",
-        "id": "9mWDhFqOkwXB21MJ"
+        "workspacePath": "features/posts",
+        "id": "aifCVZo4s39mFWKp"
     }
 ]

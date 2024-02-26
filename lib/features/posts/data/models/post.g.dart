@@ -7,22 +7,21 @@ part of 'post.dart';
 // **************************************************************************
 
 PostModel _$PostModelFromJson(Map<String, dynamic> json) => PostModel(
-      id: json['id'] as String,
-      post: json['post'] as String,
+      id: json['_id'] as String?,
+      text: json['text'] as String?,
       poster: json['poster'] as String?,
-      likers:
-          (json['likers'] as List<dynamic>).map((e) => e as String).toList(),
-      comments: (json['comments'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      date: DateTime.parse(json['date'] as String),
+      likers: json['likers'] as int?,
+      comments: json['comments'] as int?,
+      date: json['createdAt'] == null
+          ? null
+          : DateTime.parse(json['createdAt'] as String),
     );
 
 Map<String, dynamic> _$PostModelToJson(PostModel instance) => <String, dynamic>{
-      'id': instance.id,
-      'likers': instance.likers,
-      'date': instance.date.toIso8601String(),
-      'post': instance.post,
+      '_id': instance.id,
+      'text': instance.text,
       'poster': instance.poster,
+      'likers': instance.likers,
       'comments': instance.comments,
+      'createdAt': instance.date?.toIso8601String(),
     };

@@ -1,44 +1,27 @@
-// ignore_for_file: must_be_immutable
-
-import 'dart:convert';
-
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../post.dart';
 
 part 'post.g.dart';
 
 @JsonSerializable()
-class PostModel extends IPost {
-  PostModel({
-    required super.id,
-    required super.post,
+class PostModel extends Equatable {
+  const PostModel({
+    required this.id,
+    required this.text,
     required this.poster,
-    required super.likers,
+    required this.likers,
     required this.comments,
-    required super.date,
+    required this.date,
   });
 
+  @JsonKey(name: '_id')
+  final String? id;
+  final String? text;
   final String? poster;
-  final List<String>? comments;
-
-  PostModel copyWith({
-    String? id,
-    String? post,
-    String? poster,
-    List<String>? likers,
-    List<String>? comments,
-    DateTime? date,
-  }) {
-    return PostModel(
-      id: id ?? this.id,
-      post: post ?? this.post,
-      poster: poster ?? this.poster,
-      likers: likers ?? this.likers,
-      comments: comments ?? this.comments,
-      date: date ?? this.date,
-    );
-  }
+  final int? likers;
+  final int? comments;
+  @JsonKey(name: 'createdAt')
+  final DateTime? date;
 
   factory PostModel.fromJson(Map<String, dynamic> json) =>
       _$PostModelFromJson(json);
@@ -47,9 +30,9 @@ class PostModel extends IPost {
 
   @override
   String toString() {
-    return jsonEncode(toJson());
+    return "$id, $text, $poster, $likers, $comments, $date, ";
   }
 
   @override
-  List<Object?> get props => [id, post, poster, likers, comments, date];
+  List<Object?> get props => [id];
 }
