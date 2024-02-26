@@ -6,35 +6,20 @@ part 'comment.g.dart';
 @JsonSerializable()
 class CommentModel extends Equatable {
   const CommentModel({
-    required this.comment,
+    required this.id,
+    required this.text,
     required this.commentator,
     required this.post,
-    required this.replys,
-    required this.id,
+    required this.date,
   });
 
   @JsonKey(name: '_id')
-  final String id;
-  final String comment;
-  final String commentator;
-  final String post;
-  final List<String>? replys;
-
-  CommentModel copyWith({
-    String? comment,
-    String? commentator,
-    String? post,
-    List<String>? replys,
-    String? id,
-  }) {
-    return CommentModel(
-      comment: comment ?? this.comment,
-      commentator: commentator ?? this.commentator,
-      post: post ?? this.post,
-      replys: replys ?? this.replys,
-      id: id ?? this.id,
-    );
-  }
+  final String? id;
+  final String? text;
+  final String? commentator;
+  final String? post;
+  @JsonKey(name: 'createdAt')
+  final DateTime? date;
 
   factory CommentModel.fromJson(Map<String, dynamic> json) =>
       _$CommentModelFromJson(json);
@@ -42,11 +27,10 @@ class CommentModel extends Equatable {
   Map<String, dynamic> toJson() => _$CommentModelToJson(this);
 
   @override
-  List<Object?> get props => [
-        comment,
-        commentator,
-        post,
-        replys,
-        id,
-      ];
+  String toString() {
+    return "$id, $text, $commentator, $post, $date, ";
+  }
+
+  @override
+  List<Object?> get props => [id];
 }

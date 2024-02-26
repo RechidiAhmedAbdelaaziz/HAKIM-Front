@@ -3,6 +3,8 @@
 *.log
 *.pyc
 *.swp
+.gitignore
+.favorites.json
 .DS_Store
 .atom/
 .buildlog/
