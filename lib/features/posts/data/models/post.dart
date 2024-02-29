@@ -36,3 +36,4 @@ class PostModel extends Equatable {
   @override
   List<Object?> get props => [id];
 }
+

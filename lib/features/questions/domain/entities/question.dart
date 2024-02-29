@@ -1,53 +1,57 @@
 import 'package:equatable/equatable.dart';
-import 'package:front/features/auth/domain/enitities/patient.dart';
+import 'package:front/core/usecase/byidgetter.dart';
 import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/questions/data/models/question.dart';
-import 'package:front/features/questions/domain/entities/answer.dart';
 
 class Question extends Equatable {
   const Question({
     required this.id,
-    required this.question,
+    required this.text,
     required this.questioner,
-    this.answers = const [],
+    required this.date,
   });
 
-  final String id;
-  final String question;
-  final User questioner;
-  final List<Answer> answers;
+  final String? id;
+  final String? text;
+  final User? questioner;
+  final DateTime? date;
 
-  Question copyWith({
-    String? question,
-    List<Answer>? answers,
-  }) {
+  static Future<Question> fromModel(QuestionModel model) async {
+    final questioner = await ByIdGetter(id: model.id!).user();
+
     return Question(
-      id: id,
-      question: question ?? this.question,
-      questioner: questioner,
-      answers: answers ?? this.answers,
-    );
-  }
-
-  factory Question.fromModel(QuestionModel model) => Question(
         id: model.id,
-        question: model.question,
-        questioner: getUserById(model.questioner),
-        //TODO: add answers
-      );
+        text: model.text,
+        questioner: questioner,
+        date: model.date);
+  }
 
   QuestionModel toModel() => QuestionModel(
         id: id,
-        question: question,
-        questioner: questioner.id,
-        answers: answers.map((e) => e.id).toList(),
+        text: text,
+        questioner: questioner?.id,
+        date: date,
       );
+
+  Question copyWith({
+    String? id,
+    String? text,
+    User? questioner,
+    DateTime? date,
+  }) {
+    return Question(
+      id: id ?? this.id,
+      text: text ?? this.text,
+      questioner: questioner ?? this.questioner,
+      date: date ?? this.date,
+    );
+  }
 
   @override
   List<Object?> get props => [
         id,
-        question,
+        text,
         questioner,
-        answers,
+        date,
       ];
 }
