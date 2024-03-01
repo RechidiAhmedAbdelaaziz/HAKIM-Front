@@ -9,11 +9,11 @@ part 'comment_cubit.freezed.dart';
 
 class CommentCubit extends Cubit<CommentState> {
   final CommentUseCases _useCases;
-  CommentCubit(this._useCases, {required Comment comment})
-      : _comment = comment,
-        super(const CommentState.initial());
+  CommentCubit(this._useCases) : super(const CommentState.initial());
 
-  final Comment _comment;
+  late final Comment _comment;
+  Comment get post => _comment;
+  set setPost(Comment x) => _comment = x;
 
   Future<void> create() async {
     _loading();

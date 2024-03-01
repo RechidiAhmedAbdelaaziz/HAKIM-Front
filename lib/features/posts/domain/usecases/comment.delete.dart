@@ -7,7 +7,9 @@ import '../entites/comment.dart';
 import '../repositories/comment.dart';
 
 class DeleteCommentUseCase extends UseCaseWithParams<bool, Comment> {
-  late final CommentRepository _repository;
+  final CommentRepository _repository;
+
+  DeleteCommentUseCase(this._repository);
 
   @override
   Future<ApiResult<bool>> call(Comment comment) async {

@@ -1,11 +1,11 @@
-part of 'dependency.dart';
+part of 'index.dart';
 
-Future<void> setupPostDependencies() async {
+Future<void> setupPost() async {
   // Remote date_Source
   locator.registerLazySingleton<PostRemoteDataSource>(
       () => PostRemoteDataSource(locator<Dio>()));
 
-  // Remote local_Source
+  // Local data_Source
   locator.registerLazySingleton(
     () => PostCache(
       locator<SharedPreferences>(),
@@ -17,12 +17,8 @@ Future<void> setupPostDependencies() async {
     ),
   );
 
-  //Network Info
-  locator.registerLazySingleton<NetworkInfo>(
-    () => NetworkInfoImp(
-      locator<InternetConnectionChecker>(),
-    ),
-  );
+  //Use Cases
+  await setupPostUseCases();
 
   //Repository
   locator.registerLazySingleton<PostRepository>(() => PostRepositoryImp(
@@ -30,14 +26,6 @@ Future<void> setupPostDependencies() async {
         local: locator<PostLocalDataSource>(),
         networkInfo: locator<NetworkInfo>(),
       ));
-
-  //Use Cases
-  locator.registerLazySingleton<CreatePostUseCase>(
-      () => CreatePostUseCase(locator<PostRepository>()));
-
-  locator.registerLazySingleton<UpdatePostUseCase>(
-      () => UpdatePostUseCase(locator<PostRepository>()));
-
 
   //Cubit
   locator.registerFactory<PostCubit>(() => PostCubit(locator<PostUseCases>()));
