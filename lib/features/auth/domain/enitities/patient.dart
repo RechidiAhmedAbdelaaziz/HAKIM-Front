@@ -32,20 +32,19 @@ class Patient extends User {
         patientCard: patientCard,
         medicalRecord: medicalRecord,
         documents: documents,
-        
       );
 
-  factory Patient.fromModel(AuthModel model) => Patient(
-        id: model.id,
-        name: model.name,
-        email: model.email,
-        info: model.info,
-        kind: model.kind,
-        isVerified: model.isVerified,
-        isOnline: model.isOnline,
-        patientCard: model.patientCard,
-        medicalRecord: model.medicalRecord,
-        documents: model.documents,
+  factory Patient.fromModel(AuthModel? model) => Patient(
+        id: model?.id,
+        name: model?.name,
+        email: model?.email,
+        info: model?.info,
+        kind: model?.kind,
+        isVerified: model?.isVerified,
+        isOnline: model?.isOnline,
+        patientCard: model?.patientCard,
+        medicalRecord: model?.medicalRecord,
+        documents: model?.documents,
       );
 
   @override

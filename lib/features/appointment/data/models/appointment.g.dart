@@ -12,8 +12,12 @@ AppointmentModel _$AppointmentModelFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String?,
       date:
           json['date'] == null ? null : DateTime.parse(json['date'] as String),
-      doctor: json['doctor'] as String?,
-      patient: json['patient'] as String?,
+      doctor: json['doctor'] == null
+          ? null
+          : AuthModel.fromJson(json['doctor'] as Map<String, dynamic>),
+      patient: json['patient'] == null
+          ? null
+          : AuthModel.fromJson(json['patient'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AppointmentModelToJson(AppointmentModel instance) =>

@@ -21,7 +21,7 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
       AppointmentModel appointment) async {
     callback() async {
       final response = await _remote.createAppointment(appointment);
-      final data = await Appointment.fromModel(response.data!);
+      final data = Appointment.fromModel(response.data);
       return ApiResult.sucess(data);
     }
 
@@ -32,7 +32,7 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
   Future<ApiResult<bool>> deleteAppointment(AppointmentModel update) async {
     callback() async {
       final response = await _remote.deleteAppointment(update.id!);
-      return ApiResult.sucess(response.status!);
+      return ApiResult.sucess(response.status == true);
     }
 
     return await TryCallApi(callback).call();
@@ -43,9 +43,11 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
     callback() async {
       final response = await _remote.getAllAppointments(page);
       List<Appointment> data = [];
-      for (final appointment in response.data!) {
-        final x = await Appointment.fromModel(appointment);
-        data.add(x);
+      if (response.data != null) {
+        for (final appointment in response.data!) {
+          final x = Appointment.fromModel(appointment);
+          data.add(x);
+        }
       }
       return ApiResult.sucess(data);
     }
@@ -57,7 +59,7 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
   Future<ApiResult<Appointment>> getAppointment(String id) async {
     callback() async {
       final response = await _remote.getAppointment(id);
-      final data = await Appointment.fromModel(response.data!);
+      final data = Appointment.fromModel(response.data);
       return ApiResult.sucess(data);
     }
 
@@ -69,7 +71,7 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
     callback() async {
       final response =
           await _remote.updateAppointment(update.id!, update.date!);
-      final data = await Appointment.fromModel(response.data!);
+      final data = Appointment.fromModel(response.data);
       return ApiResult.sucess(data);
     }
 
