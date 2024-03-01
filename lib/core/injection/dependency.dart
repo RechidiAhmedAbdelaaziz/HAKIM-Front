@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:front/core/injection/Auth/index.dart';
+import 'package:front/core/injection/appointment/index.dart';
 import 'package:front/core/networking/api.service.dart';
 import 'package:front/core/networking/dio.factory.dart';
 import 'package:front/core/networking/info.dart';
@@ -41,4 +42,5 @@ Future<void> setupDependencies() async {
 
   await setupAuthependencies();
   await setupPostDependencies();
+  await setUpAppointmentDependencies();
 }
