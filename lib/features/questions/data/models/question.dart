@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:front/features/auth/data/models/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'question.g.dart';
@@ -15,7 +16,7 @@ class QuestionModel extends Equatable {
   @JsonKey(name: '_id')
   final String? id;
   final String? text;
-  final String? questioner;
+  final AuthModel? questioner;
   @JsonKey(name: 'createdAt')
   final DateTime? date;
 

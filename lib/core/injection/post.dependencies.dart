@@ -31,7 +31,14 @@ Future<void> setupPostDependencies() async {
         networkInfo: locator<NetworkInfo>(),
       ));
 
+  //Use Cases
+  locator.registerLazySingleton<CreatePostUseCase>(
+      () => CreatePostUseCase(locator<PostRepository>()));
+
+  locator.registerLazySingleton<UpdatePostUseCase>(
+      () => UpdatePostUseCase(locator<PostRepository>()));
+
+
   //Cubit
-  locator
-      .registerFactory<PostCubit>(() => PostCubit(locator<PostRepository>()));
+  locator.registerFactory<PostCubit>(() => PostCubit(locator<PostUseCases>()));
 }

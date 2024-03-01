@@ -7,7 +7,9 @@ import '../entites/post.dart';
 import '../repositories/post.dart';
 
 class UpdatePostUseCase extends UseCaseWithParams<Post, Post> {
-  late final PostRepository _repository;
+  final PostRepository _repository;
+
+  UpdatePostUseCase(this._repository);
 
   @override
   Future<ApiResult<Post>> call(Post post) {

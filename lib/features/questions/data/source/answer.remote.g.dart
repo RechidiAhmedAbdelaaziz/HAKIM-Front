@@ -19,9 +19,10 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<AnswerListResponse> getAllAnswers(String id) async {
+  Future<AnswerListResponse> getAllAnswers(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -47,14 +48,15 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
 
   @override
   Future<AnswerResponse> createAnswer(
-    String id,
-    AnswerModel answer,
+    String? id,
+    AnswerModel? answer,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(answer.toJson());
+    _data.addAll(answer?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AnswerResponse>(Options(
       method: 'POST',
@@ -78,14 +80,15 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
 
   @override
   Future<AnswerResponse> updateAnswer(
-    String id,
-    AnswerModel update,
+    String? id,
+    AnswerModel? update,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(update.toJson());
+    _data.addAll(update?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AnswerResponse>(Options(
       method: 'POST',
@@ -108,9 +111,10 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
   }
 
   @override
-  Future<DefaultResponse> deleteAnswer(String id) async {
+  Future<DefaultResponse> deleteAnswer(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio

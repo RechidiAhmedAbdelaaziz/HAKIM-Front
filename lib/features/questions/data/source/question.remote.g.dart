@@ -19,9 +19,10 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<QuestionListResponse> getAllQuestions() async {
+  Future<QuestionListResponse> getAllQuestions(int? page) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -46,12 +47,13 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
   }
 
   @override
-  Future<QuestionResponse> createQuestion(QuestionModel question) async {
+  Future<QuestionResponse> createQuestion(QuestionModel? question) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(question.toJson());
+    _data.addAll(question?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<QuestionResponse>(Options(
       method: 'POST',
@@ -75,14 +77,15 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
 
   @override
   Future<QuestionResponse> updateQuestion(
-    String id,
-    QuestionModel update,
+    String? id,
+    QuestionModel? update,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(update.toJson());
+    _data.addAll(update?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<QuestionResponse>(Options(
       method: 'POST',
@@ -105,9 +108,10 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
   }
 
   @override
-  Future<DefaultResponse> deleteQuestion(String id) async {
+  Future<DefaultResponse> deleteQuestion(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio

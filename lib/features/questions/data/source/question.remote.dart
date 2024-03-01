@@ -15,24 +15,26 @@ abstract class QuestionRemoteDataSource {
 
   //Get All
   @GET(ApiConsts.questions)
-  Future<QuestionListResponse> getAllQuestions();
+  Future<QuestionListResponse> getAllQuestions(
+    @Query('page') int? page,
+  );
 
   //Create Question
   @POST(ApiConsts.questions)
   Future<QuestionResponse> createQuestion(
-    @Body() QuestionModel question,
+    @Body() QuestionModel? question,
   );
 
   //Update Question
   @POST("${ApiConsts.questions}/{id}")
   Future<QuestionResponse> updateQuestion(
-    @Path("id") String id,
-    @Body() QuestionModel update,
+    @Path("id") String? id,
+    @Body() QuestionModel? update,
   );
 
   //Delete Question
   @DELETE("${ApiConsts.questions}/{id}")
   Future<DefaultResponse> deleteQuestion(
-    @Path("id") String id,
+    @Path("id") String? id,
   );
 }
