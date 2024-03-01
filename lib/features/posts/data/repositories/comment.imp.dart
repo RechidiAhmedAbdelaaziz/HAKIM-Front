@@ -4,6 +4,7 @@ import 'package:front/core/networking/info.dart';
 
 import '../../domain/entites/comment.dart';
 import '../../domain/repositories/comment.dart';
+import '../models/comment.dart';
 import '../source/comment.local.dart';
 import '../source/comment.remote.dart';
 
@@ -17,10 +18,10 @@ class CommentRepositoryImp implements CommentRepository {
       : _remote = remote;
 
   @override
-  Future<ApiResult<Comment>> createComment(CommentRequestBody comment) async {
+  Future<ApiResult<Comment>> createComment(CommentModel comment) async {
     callback() async {
       final response = await _remote.createComment(comment, comment.id);
-      final data = await Comment.fromModle(response.data!);
+      final data = Comment.fromModel(response.data);
       return ApiResult.sucess(data);
     }
 
@@ -28,9 +29,9 @@ class CommentRepositoryImp implements CommentRepository {
   }
 
   @override
-  Future<ApiResult<bool>> deleteComment(String id) async {
+  Future<ApiResult<bool>> deleteComment(CommentModel comment) async {
     callback() async {
-      final response = await _remote.deleteComment(id);
+      final response = await _remote.deleteComment(comment.id);
       final data = response.status == true;
       return ApiResult.sucess(data);
     }
@@ -42,7 +43,7 @@ class CommentRepositoryImp implements CommentRepository {
   Future<ApiResult<Comment>> getComment(String id) async {
     callback() async {
       final response = await _remote.getComment(id);
-      final data = await Comment.fromModle(response.data!);
+      final data = Comment.fromModel(response.data);
       return ApiResult.sucess(data);
     }
 
@@ -55,9 +56,11 @@ class CommentRepositoryImp implements CommentRepository {
       final response = await _remote.getAllComments(id, page);
       List<Comment> data = [];
 
-      for (final model in response.data!) {
-        final x = await Comment.fromModle(model);
-        data.add(x);
+      if (response.data != null) {
+        for (final model in response.data!) {
+          final x = Comment.fromModel(model);
+          data.add(x);
+        }
       }
 
       return ApiResult.sucess(data);
@@ -67,10 +70,10 @@ class CommentRepositoryImp implements CommentRepository {
   }
 
   @override
-  Future<ApiResult<Comment>> updateComment(CommentRequestBody comment) async {
+  Future<ApiResult<Comment>> updateComment(CommentModel comment) async {
     callback() async {
       final response = await _remote.updateComment(comment, comment.id);
-      final data = await Comment.fromModle(response.data!);
+      final data = Comment.fromModel(response.data);
       return ApiResult.sucess(data);
     }
 

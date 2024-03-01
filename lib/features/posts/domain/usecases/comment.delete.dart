@@ -2,13 +2,15 @@
 
 import 'package:front/core/networking/api.result.dart';
 import 'package:front/core/usecase/usecase.dart';
-import 'package:front/features/posts/domain/repositories/comment.dart';
 
-class DeleteCommentUseCase extends UseCaseWithParams<bool, String> {
+import '../entites/comment.dart';
+import '../repositories/comment.dart';
+
+class DeleteCommentUseCase extends UseCaseWithParams<bool, Comment> {
   late final CommentRepository _repository;
 
   @override
-  Future<ApiResult<bool>> call(String id) async {
-    return await _repository.deleteComment(id);
+  Future<ApiResult<bool>> call(Comment comment) async {
+    return await _repository.deleteComment(comment.toModel());
   }
 }

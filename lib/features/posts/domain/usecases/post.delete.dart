@@ -11,8 +11,6 @@ class DeletePostUseCase implements UseCaseWithParams<bool, Post> {
 
   @override
   Future<ApiResult<bool>> call(Post params) async {
-    final id = params.id;
-
-    return await _repository.deletePost(id!);
+    return await _repository.deletePost(params.toModel());
   }
 }

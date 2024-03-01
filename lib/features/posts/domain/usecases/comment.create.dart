@@ -11,7 +11,6 @@ class CreateCommentUseCase extends UseCaseWithParams<Comment, Comment> {
 
   @override
   Future<ApiResult<Comment>> call(Comment params) async {
-    final comment = CommentRequestBody(text: params.text!, id: params.id!);
-    return await _repository.createComment(comment);
+    return await _repository.createComment(params.toModel());
   }
 }

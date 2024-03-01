@@ -47,7 +47,7 @@ class PostPox extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: 355.w),
       margin: EdgeInsetsDirectional.only(start: 5.w),
       child: ReadMoreText(
-        post.post,
+        "${post.text}",
         trimLines: 3,
         style: TextStyle(
             color: AppColor.bluePost,

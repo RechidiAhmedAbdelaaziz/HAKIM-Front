@@ -19,11 +19,12 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<PostListResponse> getAllPosts(int page) async {
+  Future<PostListResponse> getAllPosts(int? page) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostListResponse>(Options(
       method: 'GET',
@@ -46,11 +47,12 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   }
 
   @override
-  Future<PostListResponse> getMyPosts(int page) async {
+  Future<PostListResponse> getMyPosts(int? page) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostListResponse>(Options(
       method: 'GET',
@@ -74,13 +76,14 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
 
   @override
   Future<PostListResponse> getUserPosts(
-    String id,
-    int page,
+    String? id,
+    int? page,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostListResponse>(Options(
       method: 'GET',
@@ -103,11 +106,12 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   }
 
   @override
-  Future<PostResponse> getPostById(String id) async {
+  Future<PostResponse> getPostById(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostResponse>(Options(
       method: 'GET',
@@ -130,12 +134,13 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   }
 
   @override
-  Future<PostResponse> createPost(PostRequestBody post) async {
+  Future<PostResponse> createPost(PostModel? post) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(post.toJson());
+    _data.addAll(post?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostResponse>(Options(
       method: 'POST',
@@ -160,13 +165,14 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   @override
   Future<PostResponse> updatePost(
     String id,
-    PostRequestBody update,
+    PostModel? update,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(update.toJson());
+    _data.addAll(update?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostResponse>(Options(
       method: 'POST',
@@ -189,11 +195,12 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   }
 
   @override
-  Future<PostResponse> deletePost(String id) async {
+  Future<PostResponse> deletePost(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostResponse>(Options(
       method: 'DELETE',
@@ -216,11 +223,12 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   }
 
   @override
-  Future<DefaultResponse> like(String id) async {
+  Future<DefaultResponse> like(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<DefaultResponse>(Options(
       method: 'POST',
@@ -243,11 +251,12 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   }
 
   @override
-  Future<DefaultResponse> unLike(String id) async {
+  Future<DefaultResponse> unLike(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<DefaultResponse>(Options(
       method: 'DELETE',

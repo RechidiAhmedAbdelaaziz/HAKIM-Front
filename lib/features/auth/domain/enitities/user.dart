@@ -29,12 +29,9 @@ abstract class User extends Equatable {
   final PatientCard? patientCard;
   final MedicalRecord? medicalRecord;
   final List<Document>? documents;
-  
 
   AuthModel toModel();
   User copyWith();
   @override
-  List<Object?> get props => [
-        id
-      ];
+  List<Object?> get props => [id];
 }

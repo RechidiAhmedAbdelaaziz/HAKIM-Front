@@ -11,7 +11,6 @@ class CreatePostUseCase implements UseCaseWithParams<Post, Post> {
 
   @override
   Future<ApiResult<Post>> call(Post params) async {
-    final post = PostRequestBody(text: params.text!, id: params.id);
-    return await _repository.createPost(post);
+    return await _repository.createPost(params.toModel());
   }
 }

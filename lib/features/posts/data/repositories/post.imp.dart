@@ -54,10 +54,10 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<Post>> createPost(PostRequestBody post) async {
+  Future<ApiResult<Post>> createPost(PostModel post) async {
     callback() async {
       final response = await _remote.createPost(post);
-      final data = await Post.fromModel(response.data!);
+      final data = Post.fromModel(response.data!);
       return ApiResult.sucess(data);
     }
 
@@ -65,10 +65,10 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<Post>> updatePost(PostRequestBody post) async {
+  Future<ApiResult<Post>> updatePost(PostModel post) async {
     callback() async {
       final response = await _remote.updatePost(post.id!, post);
-      final data = await Post.fromModel(response.data!);
+      final data = Post.fromModel(response.data!);
       return ApiResult.sucess(data);
     }
 
@@ -76,9 +76,9 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<bool>> deletePost(String id) async {
+  Future<ApiResult<bool>> deletePost(PostModel post) async {
     callback() async {
-      final response = await _remote.deletePost(id);
+      final response = await _remote.deletePost(post.id);
       final data = response.status == true;
       return ApiResult.sucess(data);
     }
@@ -87,9 +87,9 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<bool>> like(String id) async {
+  Future<ApiResult<bool>> like(PostModel post) async {
     callback() async {
-      final response = await _remote.like(id);
+      final response = await _remote.like(post.id);
       final data = response.status == true;
       return ApiResult.sucess(data);
     }
@@ -98,9 +98,9 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<bool>> unLike(String id) async {
+  Future<ApiResult<bool>> unLike(PostModel post) async {
     callback() async {
-      final response = await _remote.unLike(id);
+      final response = await _remote.unLike(post.id);
       final data = response.status == true;
       return ApiResult.sucess(data);
     }
@@ -113,7 +113,7 @@ class PostRepositoryImp implements PostRepository {
 
     if (posts != null) {
       for (final post in posts) {
-        final post_ = await Post.fromModel(post);
+        final post_ = Post.fromModel(post);
         data.add(post_);
       }
     }
@@ -124,7 +124,7 @@ class PostRepositoryImp implements PostRepository {
   Future<ApiResult<Post>> getPost(String id) async {
     callback() async {
       final response = await _remote.getPostById(id);
-      final data = await Post.fromModel(response.data!);
+      final data = Post.fromModel(response.data!);
       return ApiResult.sucess(data);
     }
 

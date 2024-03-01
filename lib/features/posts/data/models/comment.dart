@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:front/features/auth/data/models/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'comment.g.dart';
@@ -15,7 +16,7 @@ class CommentModel extends Equatable {
   @JsonKey(name: '_id')
   final String? id;
   final String? text;
-  final String? commentator;
+  final AuthModel? commentator;
   @JsonKey(name: 'createdAt')
   final DateTime? date;
 

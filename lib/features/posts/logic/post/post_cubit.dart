@@ -2,14 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:front/core/networking/error.handler.dart';
 import 'package:front/features/posts/domain/entites/post.dart';
-import 'package:front/features/posts/domain/repositories/post.dart';
+import 'package:front/features/posts/domain/usecases/index.dart';
 
 part 'post_state.dart';
 part 'post_cubit.freezed.dart';
 
 class PostCubit extends Cubit<PostState> {
-  final PostRepository _repo;
-  PostCubit(this._repo) : super(const PostState.initial());
+  final PostUseCases _usecases;
+  PostCubit(this._usecases) : super(const PostState.initial());
 
   late final Post _post;
   Post get post => _post;
@@ -17,19 +17,19 @@ class PostCubit extends Cubit<PostState> {
 
   void delete() async {
     _loading();
-    final response = await _repo.deletePost(_post.id);
+    final response = await _usecases.delete(_post);
     response.when(sucess: _loaded, failure: _error);
   }
 
   void update() async {
     _loading();
-    final response = await _repo.updatePost(_post);
+    final response = await _usecases.update(_post);
     response.when(sucess: _loaded, failure: _error);
   }
 
   void create() async {
     _loading();
-    final response = await _repo.createPost(_post);
+    final response = await _usecases.create(_post);
     response.when(sucess: _loaded, failure: _error);
   }
 

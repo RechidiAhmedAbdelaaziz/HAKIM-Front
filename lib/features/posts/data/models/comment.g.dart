@@ -9,7 +9,9 @@ part of 'comment.dart';
 CommentModel _$CommentModelFromJson(Map<String, dynamic> json) => CommentModel(
       id: json['_id'] as String?,
       text: json['text'] as String?,
-      commentator: json['commentator'] as String?,
+      commentator: json['commentator'] == null
+          ? null
+          : AuthModel.fromJson(json['commentator'] as Map<String, dynamic>),
       date: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
