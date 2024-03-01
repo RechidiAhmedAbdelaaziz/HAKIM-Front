@@ -22,5 +22,6 @@ part 'post.usecases.dart';
 part 'comment.usecases.dart';
 
 Future<void> setupPostDependencies() async {
-  await setupPost();
+  await _setupPost();
+  await _setupComment();
 }

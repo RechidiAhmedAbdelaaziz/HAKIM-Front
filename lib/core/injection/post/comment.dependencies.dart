@@ -1,6 +1,6 @@
 part of 'index.dart';
 
-Future<void> setupComment() async {
+Future<void> _setupComment() async {
   //Data Sources
   locator.registerLazySingleton<CommentRemoteDataSource>(
       () => CommentRemoteDataSource(locator<Dio>()));
@@ -12,9 +12,9 @@ Future<void> setupComment() async {
         networkInfo: locator<NetworkInfo>(),
       ));
 
+  await _setupCommentUseCases();
+
   locator.registerFactory<CommentCubit>(
       () => CommentCubit(locator<CommentUseCases>()));
 
-  //Use Cases
-  await setupCommentUseCases();
 }

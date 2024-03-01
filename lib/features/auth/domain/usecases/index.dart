@@ -1,5 +1,10 @@
-// ignore_for_file: unused_field
-
+// ignoreforfile: unusedfield
+export 'signup.dart';
+export 'create.doctor.dart';
+export 'get.my.profile.dart';
+export 'get.profile.dart';
+export 'login.dart';
+export 'logout.dart';
 import 'signup.dart';
 import 'create.doctor.dart';
 import 'get.my.profile.dart';
@@ -9,23 +14,17 @@ import 'logout.dart';
 
 class AuthUseCases {
   AuthUseCases(
-      {required CreateDoctorUseCase createDoctor,
-      required GetMyProfileUseCase getMyProfile,
-      required GetProfileUseCase getProfile,
-      required LoginUseCase login,
-      required LogOutUseCase logout,
-      required SignUpUseCase signup})
-      : _createDoctor = createDoctor,
-        _getMyProfile = getMyProfile,
-        _getProfile = getProfile,
-        _login = login,
-        _logout = logout,
-        _signup = signup;
+      {required this.createDoctor,
+      required this.getMyProfile,
+      required this.getProfile,
+      required this.login,
+      required this.logout,
+      required this.signup});
 
-  final CreateDoctorUseCase _createDoctor;
-  final GetMyProfileUseCase _getMyProfile;
-  final GetProfileUseCase _getProfile;
-  final LoginUseCase _login;
-  final LogOutUseCase _logout;
-  final SignUpUseCase _signup;
+  final CreateDoctorUseCase createDoctor;
+  final GetMyProfileUseCase getMyProfile;
+  final GetProfileUseCase getProfile;
+  final LoginUseCase login;
+  final LogOutUseCase logout;
+  final SignUpUseCase signup;
 }

@@ -1,6 +1,6 @@
 part of 'index.dart';
 
-Future<void> setupCommentUseCases() async {
+Future<void> _setupCommentUseCases() async {
   locator.registerLazySingleton<CreateCommentUseCase>(
       () => CreateCommentUseCase(locator<CommentRepository>()));
 

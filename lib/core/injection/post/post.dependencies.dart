@@ -1,6 +1,6 @@
 part of 'index.dart';
 
-Future<void> setupPost() async {
+Future<void> _setupPost() async {
   // Remote date_Source
   locator.registerLazySingleton<PostRemoteDataSource>(
       () => PostRemoteDataSource(locator<Dio>()));
@@ -17,15 +17,14 @@ Future<void> setupPost() async {
     ),
   );
 
-  //Use Cases
-  await setupPostUseCases();
-
   //Repository
   locator.registerLazySingleton<PostRepository>(() => PostRepositoryImp(
         remote: locator<PostRemoteDataSource>(),
         local: locator<PostLocalDataSource>(),
         networkInfo: locator<NetworkInfo>(),
       ));
+
+  await _setupPostUseCases();
 
   //Cubit
   locator.registerFactory<PostCubit>(() => PostCubit(locator<PostUseCases>()));

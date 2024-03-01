@@ -1,6 +1,6 @@
 part of 'index.dart';
 
-Future<void> setupPostUseCases() async {
+Future<void> _setupPostUseCases() async {
   //Use Cases
   locator.registerLazySingleton<DeletePostUseCase>(
       () => DeletePostUseCase(locator<PostRepository>()));
