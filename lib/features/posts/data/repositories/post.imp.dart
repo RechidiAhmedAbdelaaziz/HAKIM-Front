@@ -54,11 +54,10 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<Post>> createPost(PostModel post) async {
+  Future<ApiResult<String?>> createPost(PostModel post) async {
     callback() async {
       final response = await _remote.createPost(post);
-      final data = Post.fromModel(response.data!);
-      return ApiResult.sucess(data);
+      return ApiResult.sucess(response.data);
     }
 
     return await TryCallApi(callback).call();

@@ -4,7 +4,7 @@ import 'package:front/features/posts/domain/entites/post.dart';
 
 import '../repositories/post.dart';
 
-class DeletePostUseCase implements UseCaseWithParams<bool, Post> {
+class DeletePostUseCase implements UseCase<bool, Post> {
   final PostRepository _repository;
 
   DeletePostUseCase(this._repository);

@@ -24,6 +24,22 @@ Map<String, dynamic> _$QuestionResponseToJson(QuestionResponse instance) =>
       'code': instance.code,
     };
 
+QuestionIdResponse _$QuestionIdResponseFromJson(Map<String, dynamic> json) =>
+    QuestionIdResponse(
+      status: json['status'] as bool?,
+      message: json['message'] as String?,
+      data: json['data'] as String?,
+      code: json['code'] as int?,
+    );
+
+Map<String, dynamic> _$QuestionIdResponseToJson(QuestionIdResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+      'code': instance.code,
+    };
+
 QuestionListResponse _$QuestionListResponseFromJson(
         Map<String, dynamic> json) =>
     QuestionListResponse(

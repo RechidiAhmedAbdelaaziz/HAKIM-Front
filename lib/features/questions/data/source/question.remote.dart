@@ -21,7 +21,7 @@ abstract class QuestionRemoteDataSource {
 
   //Create Question
   @POST(ApiConsts.questions)
-  Future<QuestionResponse> createQuestion(
+  Future<QuestionIdResponse> createQuestion(
     @Body() QuestionModel? question,
   );
 
@@ -34,7 +34,7 @@ abstract class QuestionRemoteDataSource {
 
   //Delete Question
   @DELETE("${ApiConsts.questions}/{id}")
-  Future<DefaultResponse> deleteQuestion(
+  Future<ElementIdResponse> deleteQuestion(
     @Path("id") String? id,
   );
 }

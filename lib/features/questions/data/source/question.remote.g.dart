@@ -24,7 +24,7 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
     final queryParameters = <String, dynamic>{r'page': page};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<QuestionListResponse>(Options(
       method: 'GET',
@@ -47,7 +47,7 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
   }
 
   @override
-  Future<QuestionResponse> createQuestion(QuestionModel? question) async {
+  Future<QuestionIdResponse> createQuestion(QuestionModel? question) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
@@ -55,7 +55,7 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
     final _data = <String, dynamic>{};
     _data.addAll(question?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<QuestionResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<QuestionIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -71,7 +71,7 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = QuestionResponse.fromJson(_result.data!);
+    final value = QuestionIdResponse.fromJson(_result.data!);
     return value;
   }
 
@@ -108,14 +108,14 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
   }
 
   @override
-  Future<DefaultResponse> deleteQuestion(String? id) async {
+  Future<ElementIdResponse> deleteQuestion(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<DefaultResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -131,7 +131,7 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = DefaultResponse.fromJson(_result.data!);
+    final value = ElementIdResponse.fromJson(_result.data!);
     return value;
   }
 

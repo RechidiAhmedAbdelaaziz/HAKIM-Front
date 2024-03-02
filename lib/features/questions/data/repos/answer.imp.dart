@@ -28,20 +28,20 @@ class AnswerRepositoryImp implements AnswerRepository {
   }
 
   @override
-  Future<ApiResult<Answer>> createAnswer(AnswerModel answer) {
+  Future<ApiResult<String?>> createAnswer(AnswerModel answer) {
     callback() async {
       final response = await _remote.createAnswer(answer.question, answer);
-      return ApiResult.sucess(Answer.fromModel(response.data!));
+      return ApiResult.sucess(response.data);
     }
 
     return TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<void>> deleteAnswer(AnswerModel answer) {
+  Future<ApiResult<bool>> deleteAnswer(AnswerModel answer) {
     callback() async {
-      await _remote.deleteAnswer(answer.id);
-      return const ApiResult.sucess(null);
+      final response = await _remote.deleteAnswer(answer.id);
+      return ApiResult.sucess(response.status == true);
     }
 
     return TryCallApi(callback).call();

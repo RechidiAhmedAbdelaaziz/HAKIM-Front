@@ -6,7 +6,7 @@ import '../entites/comment.dart';
 abstract class CommentRepository {
   Future<ApiResult<List<Comment>>> getPostComments(String id, int page);
   Future<ApiResult<Comment>> getComment(String id);
-  Future<ApiResult<Comment>> createComment(CommentModel comment);
+  Future<ApiResult<String?>> createComment(CommentModel comment);
   Future<ApiResult<Comment>> updateComment(CommentModel comment);
   Future<ApiResult<bool>> deleteComment(CommentModel comment);
 }

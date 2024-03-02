@@ -6,7 +6,7 @@ import 'package:front/core/usecase/usecase.dart';
 import '../entites/comment.dart';
 import '../repositories/comment.dart';
 
-class DeleteCommentUseCase extends UseCaseWithParams<bool, Comment> {
+class DeleteCommentUseCase extends UseCase<bool, Comment> {
   final CommentRepository _repository;
 
   DeleteCommentUseCase(this._repository);

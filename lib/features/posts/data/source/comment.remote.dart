@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:front/core/networking/api.constants.dart';
+import 'package:front/core/networking/res.model.dart';
 import 'package:front/features/posts/data/models/comment.dart';
 import 'package:retrofit/http.dart';
 import 'comment.res.dart';
@@ -20,7 +21,7 @@ abstract class CommentRemoteDataSource {
 
   //Create Comment
   @POST("${ApiConsts.posts}/{id}/comments")
-  Future<CommentResponse> createComment(
+  Future<ElementIdResponse> createComment(
     @Body() CommentModel? comment,
     @Path("id") String? id,
   );

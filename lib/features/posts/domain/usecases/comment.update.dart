@@ -4,7 +4,7 @@ import 'package:front/core/usecase/usecase.dart';
 import '../entites/comment.dart';
 import '../repositories/comment.dart';
 
-class UpdateCommentUseCase extends UseCaseWithParams<Comment, Comment> {
+class UpdateCommentUseCase extends UseCase<Comment, Comment> {
   final CommentRepository _repository;
 
   UpdateCommentUseCase(this._repository);

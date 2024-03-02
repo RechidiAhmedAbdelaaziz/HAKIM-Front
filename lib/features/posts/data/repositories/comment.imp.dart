@@ -18,11 +18,10 @@ class CommentRepositoryImp implements CommentRepository {
       : _remote = remote;
 
   @override
-  Future<ApiResult<Comment>> createComment(CommentModel comment) async {
+  Future<ApiResult<String?>> createComment(CommentModel comment) async {
     callback() async {
       final response = await _remote.createComment(comment, comment.id);
-      final data = Comment.fromModel(response.data);
-      return ApiResult.sucess(data);
+      return ApiResult.sucess(response.data);
     }
 
     return await TryCallApi(callback).call();

@@ -7,12 +7,12 @@ import 'package:front/features/questions/data/source/question.remote.dart';
 import 'package:front/features/questions/domain/entities/question.dart';
 import 'package:front/features/questions/domain/repo/question.dart';
 
-class QuestionRepositoryImp implements QuestionRepository {
+class QuestionRepositoryImpl implements QuestionRepository {
   final QuestionRemoteDataSource _remote;
 
-  QuestionRepositoryImp(
+  QuestionRepositoryImpl(
       {required QuestionRemoteDataSource remote,
-      required QuestionLocalDataSource local,
+      required QuestionLocalSourceData local,
       required NetworkInfo info})
       : _remote = remote;
 
@@ -29,20 +29,20 @@ class QuestionRepositoryImp implements QuestionRepository {
   }
 
   @override
-  Future<ApiResult<Question>> addQuestion(QuestionModel question) {
+  Future<ApiResult<String?>> addQuestion(QuestionModel question) {
     callback() async {
       final data = await _remote.createQuestion(question);
-      return ApiResult.sucess(Question.fromModel(data.data));
+      return ApiResult.sucess(data.data);
     }
 
     return TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<void>> deleteQuestion(Question question) {
+  Future<ApiResult<bool>> deleteQuestion(QuestionModel question) {
     callback() async {
-      await _remote.deleteQuestion(question.id);
-      return const ApiResult.sucess(null);
+      final response = await _remote.deleteQuestion(question.id);
+      return ApiResult.sucess(response.status == true);
     }
 
     return TryCallApi(callback).call();

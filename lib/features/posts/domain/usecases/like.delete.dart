@@ -4,7 +4,7 @@ import 'package:front/features/posts/domain/entites/post.dart';
 
 import '../repositories/post.dart';
 
-class UnLikePostUseCase extends UseCaseWithParams<bool, Post> {
+class UnLikePostUseCase extends UseCase<bool, Post> {
   final PostRepository _repository;
 
   UnLikePostUseCase(this._repository);

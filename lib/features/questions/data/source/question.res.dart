@@ -18,6 +18,19 @@ class QuestionResponse extends ResponseModel<QuestionModel> {
 }
 
 @JsonSerializable()
+class QuestionIdResponse extends ResponseModel<String> {
+  QuestionIdResponse(
+      {required super.status,
+      required super.message,
+      required super.data,
+      required super.code});
+
+  factory QuestionIdResponse.fromJson(Map<String, dynamic> json) =>
+      _$QuestionIdResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$QuestionIdResponseToJson(this);
+}
+
+@JsonSerializable()
 class QuestionListResponse extends ResponseModel<List<QuestionModel>> {
   QuestionListResponse(
       {required super.status,

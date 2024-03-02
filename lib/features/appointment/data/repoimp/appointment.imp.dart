@@ -17,12 +17,11 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
       : _remote = remote;
 
   @override
-  Future<ApiResult<Appointment>> createAppointment(
+  Future<ApiResult<String?>> createAppointment(
       AppointmentModel appointment) async {
     callback() async {
       final response = await _remote.createAppointment(appointment);
-      final data = Appointment.fromModel(response.data);
-      return ApiResult.sucess(data);
+      return ApiResult.sucess(response.data);
     }
 
     return await TryCallApi(callback).call();

@@ -6,7 +6,7 @@ import '../../domain/repo/appointment.dart';
 import '../entities/appointment.dart';
 
 class RescheduleAppointmentUseCase
-    implements UseCaseWithParams<Appointment, AppointmentModel> {
+    implements UseCase<Appointment, AppointmentModel> {
   final AppointmentRepository _repository;
 
   RescheduleAppointmentUseCase(this._repository);

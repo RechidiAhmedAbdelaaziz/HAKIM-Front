@@ -50,7 +50,7 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
   }
 
   @override
-  Future<CommentResponse> createComment(
+  Future<ElementIdResponse> createComment(
     CommentModel? comment,
     String? id,
   ) async {
@@ -61,7 +61,7 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
     final _data = <String, dynamic>{};
     _data.addAll(comment?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<CommentResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -77,7 +77,7 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = CommentResponse.fromJson(_result.data!);
+    final value = ElementIdResponse.fromJson(_result.data!);
     return value;
   }
 

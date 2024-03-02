@@ -33,7 +33,7 @@ abstract class PostRemoteDataSource {
 
   //Create Post
   @POST(ApiConsts.posts)
-  Future<PostResponse> createPost(@Body() PostModel? post);
+  Future<ElementIdResponse> createPost(@Body() PostModel? post);
 
   //Update Post
   @POST("${ApiConsts.posts}/{id}")
@@ -48,9 +48,9 @@ abstract class PostRemoteDataSource {
 
   //Like Post
   @POST("${ApiConsts.posts}/{id}/like")
-  Future<DefaultResponse> like(@Path("id") String? id);
+  Future<ElementIdResponse> like(@Path("id") String? id);
 
   //UnLike Post
   @DELETE("${ApiConsts.posts}/{id}/like")
-  Future<DefaultResponse> unLike(@Path("id") String? id);
+  Future<ElementIdResponse> unLike(@Path("id") String? id);
 }

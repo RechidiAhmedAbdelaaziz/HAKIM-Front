@@ -6,7 +6,7 @@ import 'package:front/core/usecase/usecase.dart';
 import '../entites/post.dart';
 import '../repositories/post.dart';
 
-class UpdatePostUseCase extends UseCaseWithParams<Post, Post> {
+class UpdatePostUseCase extends UseCase<Post, Post> {
   final PostRepository _repository;
 
   UpdatePostUseCase(this._repository);

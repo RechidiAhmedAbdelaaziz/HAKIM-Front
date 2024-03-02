@@ -23,15 +23,15 @@ Map<String, dynamic> _$PaginationToJson(Pagination instance) =>
       'next': instance.next,
     };
 
-DefaultResponse _$DefaultResponseFromJson(Map<String, dynamic> json) =>
-    DefaultResponse(
+ElementIdResponse _$ElementIdResponseFromJson(Map<String, dynamic> json) =>
+    ElementIdResponse(
       status: json['status'] as bool?,
       message: json['message'] as String?,
-      data: json['data'],
+      data: json['data'] as String?,
       code: json['code'] as int?,
     );
 
-Map<String, dynamic> _$DefaultResponseToJson(DefaultResponse instance) =>
+Map<String, dynamic> _$ElementIdResponseToJson(ElementIdResponse instance) =>
     <String, dynamic>{
       'status': instance.status,
       'message': instance.message,

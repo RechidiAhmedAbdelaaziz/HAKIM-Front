@@ -10,7 +10,7 @@ import 'package:front/features/auth/data/models/user.dart';
 import '../enitities/user.dart';
 import '../repo/auth.dart';
 
-class CreateDoctorUseCase extends UseCaseWithParams<User, AuthModel> {
+class CreateDoctorUseCase extends UseCase<User, AuthModel> {
   final AuthRepository _repository;
   final AuthCache _cache;
 

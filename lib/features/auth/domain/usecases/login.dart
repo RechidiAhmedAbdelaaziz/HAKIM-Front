@@ -13,7 +13,7 @@ class LoginParams {
   LoginParams({required this.login, required this.password});
 }
 
-class LoginUseCase extends UseCaseWithParams<User, LoginParams> {
+class LoginUseCase extends UseCase<User, LoginParams> {
   final AuthRepository _repository;
   final AuthCache _cache;
 

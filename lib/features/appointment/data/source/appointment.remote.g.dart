@@ -73,15 +73,15 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
   }
 
   @override
-  Future<AppointmentResponse> createAppointment(
+  Future<ElementIdResponse> createAppointment(
       AppointmentModel appointment) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(appointment.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AppointmentResponse>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -97,7 +97,7 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AppointmentResponse.fromJson(_result.data!);
+    final value = ElementIdResponse.fromJson(_result.data!);
     return value;
   }
 

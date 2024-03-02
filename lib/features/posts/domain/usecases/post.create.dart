@@ -4,13 +4,13 @@ import 'package:front/features/posts/domain/entites/post.dart';
 
 import '../repositories/post.dart';
 
-class CreatePostUseCase implements UseCaseWithParams<Post, Post> {
+class CreatePostUseCase implements UseCase<String?, Post> {
   final PostRepository _repository;
 
   CreatePostUseCase(this._repository);
 
   @override
-  Future<ApiResult<Post>> call(Post params) async {
+  Future<ApiResult<String?>> call(Post params) async {
     return await _repository.createPost(params.toModel());
   }
 }

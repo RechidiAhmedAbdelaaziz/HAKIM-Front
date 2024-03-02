@@ -43,14 +43,14 @@ class Pagination {
 }
 
 @JsonSerializable()
-class DefaultResponse extends ResponseModel {
-  DefaultResponse(
+class ElementIdResponse extends ResponseModel<String> {
+  ElementIdResponse(
       {required super.status,
       required super.message,
       super.data,
       required super.code});
 
-  factory DefaultResponse.fromJson(Map<String, dynamic> json) =>
+  factory ElementIdResponse.fromJson(Map<String, dynamic> json) =>
       _$DefaultResponseFromJson(json);
 
   Map<String, dynamic> toJson() => _$DefaultResponseToJson(this);

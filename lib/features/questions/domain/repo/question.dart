@@ -4,7 +4,7 @@ import 'package:front/features/questions/domain/entities/question.dart';
 
 abstract class QuestionRepository {
   Future<ApiResult<List<Question>>> getAllQuestion(int page);
-  Future<ApiResult<Question>> addQuestion(QuestionModel question);
-  Future<ApiResult<void>> deleteQuestion(Question question);
+  Future<ApiResult<String?>> addQuestion(QuestionModel question);
+  Future<ApiResult<bool>> deleteQuestion(QuestionModel question);
   Future<ApiResult<Question>> update(QuestionModel question);
 }
