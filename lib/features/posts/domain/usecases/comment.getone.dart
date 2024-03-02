@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_renaming_method_parameters
+
 import 'package:front/core/networking/api.result.dart';
 import 'package:front/core/usecase/usecase.dart';
 

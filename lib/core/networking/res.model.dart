@@ -51,7 +51,7 @@ class ElementIdResponse extends ResponseModel<String> {
       required super.code});
 
   factory ElementIdResponse.fromJson(Map<String, dynamic> json) =>
-      _$DefaultResponseFromJson(json);
+      _$ElementIdResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DefaultResponseToJson(this);
+  Map<String, dynamic> toJson() => _$ElementIdResponseToJson(this);
 }

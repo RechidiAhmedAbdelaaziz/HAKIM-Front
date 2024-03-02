@@ -1,3 +1,3 @@
 abstract class QuestionLocalSourceData {}
 
-class QuestionLocalDataSourceImpl implements QuestionLocalSourceData {}
+class QuestionLocalSourceDataImpl implements QuestionLocalSourceData {}

@@ -27,7 +27,7 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
     final queryParameters = <String, dynamic>{r'page': page};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<CommentListResponse>(Options(
       method: 'GET',
@@ -87,7 +87,7 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<CommentResponse>(Options(
       method: 'GET',
@@ -147,7 +147,7 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<CommentResponse>(Options(
       method: 'DELETE',

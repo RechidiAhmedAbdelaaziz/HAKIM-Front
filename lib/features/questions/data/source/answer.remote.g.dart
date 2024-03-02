@@ -24,7 +24,7 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AnswerListResponse>(Options(
       method: 'GET',
@@ -116,7 +116,7 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'DELETE',

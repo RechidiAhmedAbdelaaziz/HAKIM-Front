@@ -1,8 +1,11 @@
 part of 'index.dart';
 
 Future _setUpQuestion() async {
+  
   locator.registerLazySingleton<QuestionRemoteDataSource>(
       () => QuestionRemoteDataSource(locator<Dio>()));
+  locator.registerLazySingleton<QuestionLocalSourceData>(
+      () => QuestionLocalSourceDataImpl());
 
   locator
       .registerLazySingleton<QuestionRepository>(() => QuestionRepositoryImpl(

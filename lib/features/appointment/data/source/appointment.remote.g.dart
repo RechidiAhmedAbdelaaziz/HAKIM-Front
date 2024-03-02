@@ -23,7 +23,7 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AppointmentListResponse>(Options(
       method: 'GET',
@@ -50,7 +50,7 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AppointmentResponse>(Options(
       method: 'GET',
@@ -136,7 +136,7 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AppointmentResponse>(Options(
       method: 'DELETE',
