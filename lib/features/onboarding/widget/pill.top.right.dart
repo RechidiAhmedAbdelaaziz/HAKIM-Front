@@ -32,7 +32,7 @@ class PillsTopRight extends StatelessWidget {
                   height: 123.72.h,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/splash/top-right.png"),
+                      image: AssetImage("assets/images/top-right.png"),
                       fit: BoxFit.fill,
                     ),
                   ),

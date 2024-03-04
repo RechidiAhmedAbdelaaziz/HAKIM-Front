@@ -12,7 +12,9 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
   _PostRemoteDataSource(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://192.168.5.172:3000/api/v1/';
+  }
 
   final Dio _dio;
 
@@ -24,7 +26,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
     final queryParameters = <String, dynamic>{r'page': page};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostListResponse>(Options(
       method: 'GET',
@@ -52,7 +54,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
     final queryParameters = <String, dynamic>{r'page': page};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostListResponse>(Options(
       method: 'GET',
@@ -83,7 +85,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
     final queryParameters = <String, dynamic>{r'page': page};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostListResponse>(Options(
       method: 'GET',
@@ -111,7 +113,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostResponse>(Options(
       method: 'GET',
@@ -200,7 +202,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<PostResponse>(Options(
       method: 'DELETE',
@@ -228,7 +230,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'POST',
@@ -256,7 +258,7 @@ class _PostRemoteDataSource implements PostRemoteDataSource {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'DELETE',

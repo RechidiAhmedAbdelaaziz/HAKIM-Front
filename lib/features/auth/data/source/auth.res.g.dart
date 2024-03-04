@@ -16,6 +16,7 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) => AuthResponse(
       code: json['code'] as int?,
     );
 
+
 AuthListResponse _$AuthListResponseFromJson(Map<String, dynamic> json) =>
     AuthListResponse(
       status: json['status'] as bool?,
@@ -28,3 +29,4 @@ AuthListResponse _$AuthListResponseFromJson(Map<String, dynamic> json) =>
           .toList(),
       code: json['code'] as int?,
     );
+

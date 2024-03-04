@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:front/core/networking/api.constants.dart';
 import 'package:front/features/auth/data/models/user.dart';
+import 'package:front/features/auth/domain/usecases/index.dart';
 import 'package:retrofit/http.dart';
 import 'auth.res.dart';
 
@@ -23,10 +24,9 @@ abstract class AuthRemoteDataSource {
 
   //Login
   @POST(ApiConsts.auth)
-  Future<AuthResponse> login({
-    @Body() required String login,
-    @Body() required String password,
-  });
+  Future<AuthResponse> login(
+    @Body()  LoginParams info,
+  );
 
   //@User - SignUp
   @POST("${ApiConsts.auth}/signup")

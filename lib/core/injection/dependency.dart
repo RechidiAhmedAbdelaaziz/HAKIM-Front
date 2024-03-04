@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:front/core/injection/Auth/index.dart';
 import 'package:front/core/injection/appointment/index.dart';
+import 'package:front/core/injection/donation/index.dart';
 import 'package:front/core/injection/question/index.dart';
 import 'package:front/core/networking/api.service.dart';
 import 'package:front/core/networking/dio.factory.dart';
@@ -19,7 +20,8 @@ Future<void> setupDependencies() async {
   //**                                                      **\\
 
   //Dio & ApiService
-  locator.registerLazySingleton<Dio>(() => DioFactory.getDio());
+  DioFactory.getDio();
+  locator.registerLazySingleton<Dio>(() => DioFactory.dio!);
   locator.registerLazySingleton<ApiService>(() => ApiService(locator<Dio>()));
 
   //Network Info
@@ -30,8 +32,9 @@ Future<void> setupDependencies() async {
   );
 
   //Shared preferences
-  locator.registerLazySingletonAsync(
+  locator.registerLazySingletonAsync<SharedPreferences>(
       () async => await SharedPreferences.getInstance());
+  await locator.isReady<SharedPreferences>();
 
   //Internet connection checker
   locator
@@ -45,4 +48,5 @@ Future<void> setupDependencies() async {
   await setupPostDependencies();
   await setUpAppointmentDependencies();
   await setUpQuestionDependencies();
+  await setUpDonationDependencies();
 }

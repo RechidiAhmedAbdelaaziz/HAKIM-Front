@@ -14,7 +14,13 @@ class DioFactory {
       dio = Dio();
       dio!
         ..options.connectTimeout = timeOut
-        ..options.receiveTimeout = timeOut;
+        ..options.receiveTimeout = timeOut
+        ..options.contentType = Headers.formUrlEncodedContentType
+        ..options.headers.addAll({
+          "Content-Type": "application/json",
+          "content-type": "application/json",
+          "Accept": "*/*",
+        });
       addDioInterceptor();
     }
     return dio!;
@@ -26,6 +32,8 @@ class DioFactory {
         requestBody: true,
         requestHeader: true,
         responseHeader: true,
+        responseBody: true,
+        error: true,
       ),
     );
   }

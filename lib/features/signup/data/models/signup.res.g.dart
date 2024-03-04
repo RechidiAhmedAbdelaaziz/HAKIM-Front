@@ -16,7 +16,9 @@ SignupResponse _$SignupResponseFromJson(Map<String, dynamic> json) =>
           : _Data.fromJson(json['data'] as Map<String, dynamic>),
     );
 
+
 _Data _$DataFromJson(Map<String, dynamic> json) => _Data(
       token: json['token'] as String?,
       userName: json['username'] as String?,
     );
+

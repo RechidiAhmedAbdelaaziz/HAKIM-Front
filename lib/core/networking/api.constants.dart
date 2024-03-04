@@ -1,5 +1,5 @@
 class ApiConsts {
-  static const String baseUrl = "";
+  static const String baseUrl = "http://192.168.5.172:3000/api/v1/";
 
   static const String auth = "auth";
 
@@ -16,6 +16,8 @@ class ApiConsts {
   static const String appointments = "appointments";
 
   static const String location = "location";
+
+  static const String donation = "donations";
 }
 
 class ApiErrors {

@@ -12,7 +12,9 @@ class _LocationRemoteDataSource implements LocationRemoteDataSource {
   _LocationRemoteDataSource(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://192.168.5.172:3000/api/v1/';
+  }
 
   final Dio _dio;
 
@@ -23,7 +25,7 @@ class _LocationRemoteDataSource implements LocationRemoteDataSource {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<LocationListResponse>(Options(
       method: 'GET',
@@ -50,7 +52,7 @@ class _LocationRemoteDataSource implements LocationRemoteDataSource {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<LocationResponse>(Options(
       method: 'GET',
@@ -136,7 +138,7 @@ class _LocationRemoteDataSource implements LocationRemoteDataSource {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<LocationResponse>(Options(
       method: 'DELETE',

@@ -7,6 +7,7 @@ import 'package:front/features/auth/domain/enitities/doctor.dart';
 import 'package:front/features/auth/domain/enitities/patient.dart';
 import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/auth/domain/repo/auth.dart';
+import 'package:front/features/auth/domain/usecases/index.dart';
 
 import '../source/auth.res.dart';
 
@@ -55,7 +56,8 @@ class AuthRepositoryImp implements AuthRepository {
   Future<ApiResult<User>> login(
       {required String login, required String password}) async {
     callback() async {
-      final response = await _remote.login(login: login, password: password);
+      final response =
+          await _remote.login(LoginParams(login: login, password: password));
 
       await _local.cacheToken(response.token!);
       return _checkUserKind(response);

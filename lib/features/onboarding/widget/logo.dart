@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:front/core/constants/icons.dart';
 
 // ignore: must_be_immutable
 class Logo extends StatelessWidget {
   Logo({
     this.top = 242,
-    this.left = 14.78,//try
+    this.left = 14.78, //try
     this.height = 247.81,
     this.width = 322.46,
     super.key,
@@ -24,7 +25,7 @@ class Logo extends StatelessWidget {
         height: height.h,
         decoration: ShapeDecoration(
           image: const DecorationImage(
-            image: AssetImage("assets/splash/logo.png"),
+            image: AssetImage(AppImages.logo),
             fit: BoxFit.cover,
           ),
           shape: RoundedRectangleBorder(

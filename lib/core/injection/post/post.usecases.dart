@@ -23,6 +23,12 @@ Future<void> _setupPostUseCases() async {
   locator.registerLazySingleton<UnLikePostUseCase>(
       () => UnLikePostUseCase(locator<PostRepository>()));
 
+  locator.registerLazySingleton<CreatePostUseCase>(
+      () => CreatePostUseCase(locator<PostRepository>()));
+
+  locator.registerLazySingleton<UpdatePostUseCase>(
+      () => UpdatePostUseCase(locator<PostRepository>()));
+
 // Register post use cases
   locator.registerLazySingleton<PostUseCases>(() => PostUseCases(
         create: locator<CreatePostUseCase>(),

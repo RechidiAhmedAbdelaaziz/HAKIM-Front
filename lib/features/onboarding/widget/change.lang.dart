@@ -18,7 +18,7 @@ class ChangeLangButton extends StatelessWidget {
           color: AppColor.blueDark,
           alignment: Alignment.center,
           child: Text(
-            "controller.language!.languageCode.toUpperCase(",
+            "EN",
             style: TextStyle(
                 color: AppColor.white,
                 fontSize: 18.sp,

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:front/core/cache/auth.dart';
 import 'package:front/core/injection/dependency.dart';
 import 'package:front/core/networking/api.result.dart';
@@ -6,11 +7,17 @@ import 'package:front/core/usecase/usecase.dart';
 import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/auth/domain/repo/auth.dart';
 
+part 'login.g.dart';
+
+@JsonSerializable()
 class LoginParams {
   final String login;
   final String password;
 
   LoginParams({required this.login, required this.password});
+  factory LoginParams.fromJson(Map<String, dynamic> json) => _$LoginParamsFromJson(json);
+     Map<String, dynamic> toJson() => _$LoginParamsToJson(this);
+
 }
 
 class LoginUseCase extends UseCase<User, LoginParams> {

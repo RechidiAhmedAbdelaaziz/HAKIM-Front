@@ -12,7 +12,9 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
   _QuestionRemoteDataSource(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://192.168.5.172:3000/api/v1/';
+  }
 
   final Dio _dio;
 
@@ -24,7 +26,7 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
     final queryParameters = <String, dynamic>{r'page': page};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<QuestionListResponse>(Options(
       method: 'GET',
@@ -113,7 +115,7 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
     final queryParameters = <String, dynamic>{};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'DELETE',

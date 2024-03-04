@@ -4,6 +4,7 @@ import 'package:front/features/auth/data/repo/auth.imp.dart';
 import 'package:front/features/auth/data/source/auth.remote.dart';
 import 'package:front/features/auth/domain/repo/auth.dart';
 import 'package:front/features/auth/domain/usecases/index.dart';
+import 'package:front/features/login/logic/login_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../dependency.dart';
