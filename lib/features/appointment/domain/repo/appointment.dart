@@ -4,7 +4,7 @@ import 'package:front/features/appointment/domain/entities/appointment.dart';
 
 abstract class AppointmentRepository {
   Future<ApiResult<List<Appointment>>> getAllAppointment(int page);
-  Future<ApiResult<String?>> createAppointment(
+  Future<ApiResult<Appointment>> createAppointment(
       AppointmentModel appointment);
   Future<ApiResult<Appointment>> getAppointment(String id);
   Future<ApiResult<bool>> deleteAppointment(AppointmentModel update);

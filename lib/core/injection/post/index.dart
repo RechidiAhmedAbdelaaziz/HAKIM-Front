@@ -8,10 +8,9 @@ import 'package:front/features/posts/data/source/post.remote.dart';
 import 'package:front/features/posts/domain/repositories/comment.dart';
 import 'package:front/features/posts/domain/repositories/post.dart';
 import 'package:front/features/posts/domain/usecases/index.dart';
-import 'package:front/features/posts/logic/comment/comment_cubit.dart';
-import 'package:front/features/posts/logic/post/post_cubit.dart';
 import 'package:front/core/cache/post_comment.dart';
 import 'package:front/core/networking/info.dart';
+import 'package:front/features/posts/logic/posts.cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../dependency.dart';

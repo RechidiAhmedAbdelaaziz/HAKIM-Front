@@ -19,15 +19,26 @@ class Appointment extends Equatable {
   final Patient? patient;
 
   Appointment copyWith({
+    String? id,
     String? type,
     DateTime? date,
   }) {
     return Appointment(
-      id: id,
+      id: id ?? this.id,
       type: type ?? this.type,
       date: date ?? this.date,
       doctor: doctor,
       patient: patient,
+    );
+  }
+
+  Appointment copyWithEntity(Appointment x) {
+    return Appointment(
+      id: x.id ?? id,
+      type: x.type ?? type,
+      date: x.date ?? date,
+      doctor: x.doctor ?? doctor,
+      patient: x.patient ?? patient,
     );
   }
 
@@ -50,11 +61,5 @@ class Appointment extends Equatable {
       );
 
   @override
-  List<Object?> get props => [
-        id,
-        type,
-        date,
-        doctor,
-        patient,
-      ];
+  List<Object?> get props => [id];
 }

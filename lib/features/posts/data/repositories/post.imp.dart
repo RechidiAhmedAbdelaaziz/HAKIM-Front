@@ -1,5 +1,6 @@
 import 'package:front/core/networking/api.result.dart';
 import 'package:front/core/networking/api.try_catch.dart';
+import 'package:front/core/networking/error.handler.dart';
 import 'package:front/core/networking/info.dart';
 import 'package:front/features/posts/data/models/post.dart';
 
@@ -54,10 +55,11 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<String?>> createPost(PostModel post) async {
+  Future<ApiResult<Post>> createPost(PostModel post) async {
     callback() async {
       final response = await _remote.createPost(post);
-      return ApiResult.sucess(response.data);
+      final data = Post.fromModel(post).copyWith(id: response.data!);
+      return ApiResult.sucess(data);
     }
 
     return await TryCallApi(callback).call();
@@ -75,11 +77,14 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<bool>> deletePost(PostModel post) async {
+  Future<ApiResult<Post>> deletePost(PostModel post) async {
     callback() async {
       final response = await _remote.deletePost(post.id);
-      final data = response.status == true;
-      return ApiResult.sucess(data);
+      final data = Post.fromModel(post);
+      if (response.status!) {
+        return ApiResult.sucess(data);
+      }
+      return ApiResult<Post>.failure(ErrorHandler.handle("error"));
     }
 
     return await TryCallApi(callback).call();

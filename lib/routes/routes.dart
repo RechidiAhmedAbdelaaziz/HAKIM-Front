@@ -4,12 +4,14 @@ import 'package:front/core/injection/dependency.dart';
 import 'package:front/features/login/logic/login_cubit.dart';
 import 'package:front/features/login/view/login.screen.dart';
 import 'package:front/features/onboarding/onbording.screen.dart';
+import 'package:front/features/posts/logic/posts.cubit.dart';
 import 'package:front/test.dart';
 
 class Routes {
   static const String onBoarding = "/onBoarding";
   static const String home = "/home";
   static const String login = "/login";
+  static const String signup = "/signup";
 
   static const String test = "/test";
 }
@@ -34,7 +36,7 @@ class AppRouter {
       case Routes.test:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => locator<LoginCubit>(),
+            create: (context) => locator<PostListCubit>(),
             child: const TestScreen(),
           ),
         );
@@ -42,8 +44,10 @@ class AppRouter {
       //No Screen
       default:
         return MaterialPageRoute(
-          builder: (_) => const Center(
-            child: Text("NO ROUTE 404"),
+          builder: (_) => const Scaffold(
+            body: Center(
+              child: Text("NO ROUTE 404"),
+            ),
           ),
         );
     }

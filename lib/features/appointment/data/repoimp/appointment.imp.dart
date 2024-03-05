@@ -17,11 +17,13 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
       : _remote = remote;
 
   @override
-  Future<ApiResult<String?>> createAppointment(
+  Future<ApiResult<Appointment>> createAppointment(
       AppointmentModel appointment) async {
     callback() async {
       final response = await _remote.createAppointment(appointment);
-      return ApiResult.sucess(response.data);
+      final data =
+          Appointment.fromModel(appointment).copyWith(id: response.data);
+      return ApiResult.sucess(data);
     }
 
     return await TryCallApi(callback).call();
@@ -41,13 +43,17 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
   Future<ApiResult<List<Appointment>>> getAllAppointment(int page) async {
     callback() async {
       final response = await _remote.getAllAppointments(page);
-      List<Appointment> data = [];
-      if (response.data != null) {
-        for (final appointment in response.data!) {
-          final x = Appointment.fromModel(appointment);
-          data.add(x);
-        }
+
+      if (page > response.pagination!.pagesNumber!) {
+        return const ApiResult.sucess(<Appointment>[]);
       }
+
+      List<Appointment> data = [];
+      for (final appointment in response.data!) {
+        final x = Appointment.fromModel(appointment);
+        data.add(x);
+      }
+
       return ApiResult.sucess(data);
     }
 

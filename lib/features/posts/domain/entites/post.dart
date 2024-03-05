@@ -19,6 +19,24 @@ class Post extends Equatable {
   final int? comments;
   final DateTime? date;
 
+  Post copyWith({
+    String? id,
+    String? text,
+    Doctor? poster,
+    int? likers,
+    int? comments,
+    DateTime? date,
+  }) {
+    return Post(
+      id: id ?? this.id,
+      text: text ?? this.text,
+      poster: poster ?? this.poster,
+      likers: likers ?? this.likers,
+      comments: comments ?? this.comments,
+      date: date ?? this.date,
+    );
+  }
+
   factory Post.fromModel(PostModel model) {
     return Post(
       id: model.id,
@@ -38,24 +56,6 @@ class Post extends Equatable {
         comments: comments,
         date: date,
       );
-
-  Post copyWith({
-    String? id,
-    String? text,
-    Doctor? poster,
-    int? likers,
-    int? comments,
-    DateTime? date,
-  }) {
-    return Post(
-      id: id ?? this.id,
-      text: text ?? this.text,
-      poster: poster ?? this.poster,
-      likers: likers ?? this.likers,
-      comments: comments ?? this.comments,
-      date: date ?? this.date,
-    );
-  }
 
   @override
   List<Object?> get props => [id];

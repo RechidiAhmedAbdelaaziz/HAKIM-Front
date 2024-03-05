@@ -15,9 +15,9 @@ class LoginParams {
   final String password;
 
   LoginParams({required this.login, required this.password});
-  factory LoginParams.fromJson(Map<String, dynamic> json) => _$LoginParamsFromJson(json);
-     Map<String, dynamic> toJson() => _$LoginParamsToJson(this);
-
+  factory LoginParams.fromJson(Map<String, dynamic> json) =>
+      _$LoginParamsFromJson(json);
+  Map<String, dynamic> toJson() => _$LoginParamsToJson(this);
 }
 
 class LoginUseCase extends UseCase<User, LoginParams> {

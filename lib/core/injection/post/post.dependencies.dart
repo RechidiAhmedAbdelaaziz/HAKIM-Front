@@ -27,5 +27,6 @@ Future<void> _setupPost() async {
   await _setupPostUseCases();
 
   //Cubit
-  locator.registerFactory<PostCubit>(() => PostCubit(locator<PostUseCases>()));
+  locator.registerFactory<PostListCubit>(
+      () => PostListCubit(locator<PostUseCases>()));
 }

@@ -23,6 +23,6 @@ Future _setUpUseCases() async {
         getOne: locator<GetOneAppointmentUseCase>(),
         getAll: locator<GetAllAppointmentUseCase>(),
         cancel: locator<CancelAppointmentUseCase>(),
-        resched: locator<RescheduleAppointmentUseCase>(),
+        reschedule: locator<RescheduleAppointmentUseCase>(),
       ));
 }

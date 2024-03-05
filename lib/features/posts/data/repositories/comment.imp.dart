@@ -1,5 +1,6 @@
 import 'package:front/core/networking/api.result.dart';
 import 'package:front/core/networking/api.try_catch.dart';
+import 'package:front/core/networking/error.handler.dart';
 import 'package:front/core/networking/info.dart';
 
 import '../../domain/entites/comment.dart';
@@ -18,21 +19,24 @@ class CommentRepositoryImp implements CommentRepository {
       : _remote = remote;
 
   @override
-  Future<ApiResult<String?>> createComment(CommentModel comment) async {
+  Future<ApiResult<Comment>> createComment(CommentModel comment) async {
     callback() async {
       final response = await _remote.createComment(comment, comment.id);
-      return ApiResult.sucess(response.data);
+      final data = Comment.fromModel(comment).copyWith(id: response.data!);
+      return ApiResult.sucess(data);
     }
 
     return await TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<bool>> deleteComment(CommentModel comment) async {
+  Future<ApiResult<Comment>> deleteComment(CommentModel comment) async {
     callback() async {
       final response = await _remote.deleteComment(comment.id);
-      final data = response.status == true;
-      return ApiResult.sucess(data);
+      if (response.status == true) {
+        return ApiResult.sucess(Comment.fromModel(comment));
+      }
+      return ApiResult<Comment>.failure(ErrorHandler.handle(''));
     }
 
     return await TryCallApi(callback).call();

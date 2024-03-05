@@ -4,13 +4,13 @@ import 'package:front/features/posts/domain/entites/post.dart';
 
 import '../repositories/post.dart';
 
-class DeletePostUseCase implements UseCase<bool, Post> {
+class DeletePostUseCase implements UseCase<Post, Post> {
   final PostRepository _repository;
 
   DeletePostUseCase(this._repository);
 
   @override
-  Future<ApiResult<bool>> call(Post params) async {
+  Future<ApiResult<Post>> call(Post params) async {
     return await _repository.deletePost(params.toModel());
   }
 }

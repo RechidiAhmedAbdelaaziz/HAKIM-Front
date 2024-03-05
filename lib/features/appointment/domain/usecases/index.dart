@@ -16,11 +16,11 @@ class AppointmentUseCases {
       required this.getOne,
       required this.getAll,
       required this.cancel,
-      required this.resched});
+      required this.reschedule});
 
   final CreateAppointmentUseCase create;
   final GetOneAppointmentUseCase getOne;
   final GetAllAppointmentUseCase getAll;
   final CancelAppointmentUseCase cancel;
-  final RescheduleAppointmentUseCase resched;
+  final RescheduleAppointmentUseCase reschedule;
 }

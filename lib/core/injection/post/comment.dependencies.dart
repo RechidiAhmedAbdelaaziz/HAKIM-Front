@@ -14,7 +14,5 @@ Future<void> _setupComment() async {
 
   await _setupCommentUseCases();
 
-  locator.registerFactory<CommentCubit>(
-      () => CommentCubit(locator<CommentUseCases>()));
-
+  
 }

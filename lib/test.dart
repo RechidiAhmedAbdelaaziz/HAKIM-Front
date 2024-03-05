@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:front/core/injection/dependency.dart';
-import 'package:front/features/login/logic/login_cubit.dart';
-import 'package:front/features/login/logic/login_state.dart';
+import 'package:front/core/types/app_state.dart';
+import 'package:front/features/posts/data/models/post.dart';
 import 'package:front/features/posts/domain/entites/post.dart';
-import 'package:front/features/posts/domain/usecases/index.dart';
+import 'package:front/features/posts/logic/posts.cubit.dart';
 
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});
@@ -13,23 +12,17 @@ class TestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: BlocBuilder<LoginCubit, LoginState>(
+      body: BlocBuilder<PostListCubit, AppState<List<Post>>>(
         builder: (context, state) {
           return state.when(
+            delted: () => const Center(
+                child: CircularProgressIndicator(color: Colors.red)),
             initial: () => _buildpage(context),
             loading: () => const Center(
                 child: CircularProgressIndicator(color: Colors.purple)),
-            success: (data) {
-              final post = Post(
-                  id: null,
-                  text: "new post ",
-                  poster: data,
-                  likers: 0,
-                  comments: 0,
-                  date: DateTime.now());
-
+            loaded: (data) {
               return _buildpage(context,
-                  text: data.toModel().toJson().toString(), post: post);
+                  text: data.map((e) => e.toModel().toString()).toString());
             },
             error: (error) => Center(child: Text(error)),
           );
@@ -42,14 +35,11 @@ class TestScreen extends StatelessWidget {
     return Center(
       child: TextButton(
         onPressed: () async {
-          if (post != null) {
-            final x = await locator<PostUseCases>().create(post);
-            x.whenOrNull(
-              sucess: (data) {
-                if (data != null) post.copyWith(id: data);
-              },
-            );
-          }
+          context
+              .read<PostListCubit>()
+              .delete(Post.fromModel(PostModel.fromJson(const {
+                "_id": "65dc44db7c88105aa88ef966",
+              })));
 
           // context.read<LoginCubit>().login();
           // context.read<LoginCubit>().posts();
