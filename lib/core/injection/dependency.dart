@@ -3,7 +3,6 @@ import 'package:front/core/injection/Auth/index.dart';
 import 'package:front/core/injection/appointment/index.dart';
 import 'package:front/core/injection/donation/index.dart';
 import 'package:front/core/injection/question/index.dart';
-import 'package:front/core/networking/api.service.dart';
 import 'package:front/core/networking/dio.factory.dart';
 import 'package:front/core/networking/info.dart';
 import 'package:get_it/get_it.dart';
@@ -22,7 +21,6 @@ Future<void> setupDependencies() async {
   //Dio & ApiService
   DioFactory.getDio();
   locator.registerLazySingleton<Dio>(() => DioFactory.dio!);
-  locator.registerLazySingleton<ApiService>(() => ApiService(locator<Dio>()));
 
   //Network Info
   locator.registerLazySingleton<NetworkInfo>(

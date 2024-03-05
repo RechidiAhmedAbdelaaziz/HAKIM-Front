@@ -4,8 +4,7 @@ Future _setUpAuth() async {
   locator.registerLazySingleton<AuthRemoteDataSource>(
       () => AuthRemoteDataSource(locator<Dio>()));
 
-  locator.registerLazySingleton(
-      () => AuthCache(locator<SharedPreferences>()));
+  locator.registerLazySingleton(() => AuthCache(locator<SharedPreferences>()));
 
   locator.registerLazySingleton<AuthRepository>(() => AuthRepositoryImp(
         remote: locator<AuthRemoteDataSource>(),
@@ -14,6 +13,5 @@ Future _setUpAuth() async {
 
   await _setUpUseCases();
 
-  locator
-      .registerFactory<LoginCubit>(() => LoginCubit(locator<AuthUseCases>()));
+  locator.registerFactory<AuthCubit>(() => AuthCubit(locator<AuthUseCases>()));
 }
