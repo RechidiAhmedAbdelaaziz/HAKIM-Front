@@ -3,7 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:front/core/types/app_state.dart';
 import 'package:front/features/posts/data/models/post.dart';
 import 'package:front/features/posts/domain/entites/post.dart';
-import 'package:front/features/posts/logic/posts.cubit.dart';
+
+import 'features/posts/logic/index.dart';
 
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});

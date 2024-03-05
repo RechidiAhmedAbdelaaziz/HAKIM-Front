@@ -13,7 +13,7 @@ abstract class AppCubit<T> extends Cubit<AppState<T>> {
   void emitError(ErrorHandler x) =>
       emit(AppState.error(x.apiErrorModel.message ?? ''));
 
-  Future<void> hendleResult<D, C>(
+  Future<void> DoThis<D, C>(
     Future<ApiResult<D>> Function(C) result,
     C x,
     void Function(D) sucess,
