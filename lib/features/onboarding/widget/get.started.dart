@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:front/core/helpers/extension.dart';
+import 'package:front/core/helpers/routing.dart';
 import 'package:front/routes/routes.dart';
 import 'package:front/core/widgets/continue.button.dart';
 

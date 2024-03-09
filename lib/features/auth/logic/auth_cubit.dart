@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:front/core/helpers/extension.dart';
+import 'package:front/core/helpers/routing.dart';
 import 'package:front/core/networking/api.result.dart';
 import 'package:front/core/networking/error.handler.dart';
 import 'package:front/features/auth/domain/usecases/index.dart';
