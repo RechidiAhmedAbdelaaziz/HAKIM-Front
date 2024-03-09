@@ -16,14 +16,14 @@ class TestScreen extends StatelessWidget {
       body: BlocBuilder<PostListCubit, AppState<List<Post>>>(
         builder: (context, state) {
           return state.when(
-            delted: () => const Center(
+            deleted: (posts) => const Center(
                 child: CircularProgressIndicator(color: Colors.red)),
             initial: () => _buildpage(context),
             loading: () => const Center(
                 child: CircularProgressIndicator(color: Colors.purple)),
-            loaded: (data) {
+            loaded: (posts) {
               return _buildpage(context,
-                  text: data.map((e) => e.toModel().toString()).toString());
+                  text: posts.map((e) => e.toModel().toString()).toString());
             },
             error: (error) => Center(child: Text(error)),
           );
@@ -32,7 +32,7 @@ class TestScreen extends StatelessWidget {
     );
   }
 
-  Center _buildpage(BuildContext context, {String? text, Post? post}) {
+  Center _buildpage(BuildContext context, {String? text}) {
     return Center(
       child: TextButton(
         onPressed: () async {

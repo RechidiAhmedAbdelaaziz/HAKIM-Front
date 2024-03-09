@@ -17,7 +17,7 @@ class QuestionRepositoryImpl implements QuestionRepository {
       : _remote = remote;
 
   @override
-  Future<ApiResult<List<Question>>> getAllQuestion(int page) {
+  Future<ApiResult<List<Question>>> getAllQuestion(int page) async {
     callback() async {
       final data = await _remote.getAllQuestions(page);
       final questions = data.data?.map((e) => Question.fromModel(e)).toList();
@@ -25,36 +25,48 @@ class QuestionRepositoryImpl implements QuestionRepository {
       return ApiResult.sucess(questions ?? []);
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<String?>> addQuestion(QuestionModel question) {
+  Future<ApiResult<Question>> addQuestion(QuestionModel question) async {
     callback() async {
-      final data = await _remote.createQuestion(question);
-      return ApiResult.sucess(data.data);
+      final response = await _remote.createQuestion(question);
+      final data = Question.fromModel(question).copyWith(id: response.data!);
+      return ApiResult.sucess(data);
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<bool>> deleteQuestion(QuestionModel question) {
+  Future<ApiResult<Question?>> deleteQuestion(QuestionModel question) async {
     callback() async {
       final response = await _remote.deleteQuestion(question.id);
-      return ApiResult.sucess(response.status == true);
+      if (!response.status!) return const ApiResult.sucess(null);
+      return ApiResult.sucess(Question.fromModel(question));
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<Question>> update(QuestionModel question) {
+  Future<ApiResult<Question>> update(QuestionModel question) async {
     callback() async {
       final data = await _remote.updateQuestion(question.id, question);
       return ApiResult.sucess(Question.fromModel(data.data));
     }
 
-    return TryCallApi(callback).call();
+    return await TryCallApi(callback).call();
+  }
+
+  @override
+  Future<ApiResult<Question>> getQuestion(String id) async {
+    callback() async {
+      final response = await _remote.getQuestion(id);
+      return ApiResult.sucess(Question.fromModel(response.data!));
+    }
+
+    return await TryCallApi(callback).call();
   }
 }

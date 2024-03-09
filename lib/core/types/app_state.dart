@@ -7,6 +7,6 @@ class AppState<T> with _$AppState<T> {
   const factory AppState.initial() = _Initial;
   const factory AppState.loading() = _Loading;
   const factory AppState.loaded(T x) = _Loaded;
-  const factory AppState.delted() = _Deleted;
+  const factory AppState.deleted(T x) = _Deleted;
   const factory AppState.error(String error) = _ErrorHandler;
 }

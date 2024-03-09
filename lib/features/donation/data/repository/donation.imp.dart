@@ -27,10 +27,11 @@ class DonationRepositoryImp implements DonationRepository {
   }
 
   @override
-  FutureApi<String> createDonation(DonationModel donation) async {
+  FutureApi<Donation> createDonation(DonationModel donation) async {
     callback() async {
       final response = await _remote.createDonation(donation);
-      return ApiResult.sucess(response.data!);
+      final data = Donation.fromModel(donation).copyWith(id: response.data!);
+      return ApiResult.sucess(data);
     }
 
     return await TryCallApi(callback).call();
@@ -48,10 +49,12 @@ class DonationRepositoryImp implements DonationRepository {
   }
 
   @override
-  FutureApi<bool> deleteDonation(String id) async {
+  FutureApi<Donation?> deleteDonation(DonationModel donation) async {
     callback() async {
-      final response = await _remote.deleteDonation(id);
-      return ApiResult.sucess(response.status == true);
+      final response = await _remote.deleteDonation(donation.id!);
+      if (!response.status!) return const ApiResult.sucess(null);
+      final data = Donation.fromModel(donation);
+      return ApiResult.sucess(data);
     }
 
     return await TryCallApi(callback).call();

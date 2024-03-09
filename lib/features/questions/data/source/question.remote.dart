@@ -19,6 +19,12 @@ abstract class QuestionRemoteDataSource {
     @Query('page') int? page,
   );
 
+  //Get One
+  @GET("${ApiConsts.questions}/{id}")
+  Future<QuestionResponse> getQuestion(
+    @Path('id') String id,
+  );
+
   //Create Question
   @POST(ApiConsts.questions)
   Future<QuestionIdResponse> createQuestion(

@@ -4,13 +4,11 @@ import 'package:front/features/questions/domain/repo/question.dart';
 
 import '../entities/question.dart';
 
-class CreateQuestionUseCase extends UseCase<Question, Question> {
+class GetQuestionByIdUseCase extends UseCase<Question, String> {
   final QuestionRepository _repository;
 
-  CreateQuestionUseCase(this._repository);
-
+  GetQuestionByIdUseCase(this._repository);
   @override
-  Future<ApiResult<Question>> call(Question params) async {
-    return await _repository.addQuestion(params.toModel());
-  }
+  Future<ApiResult<Question>> call(String params) async =>
+      await _repository.getQuestion(params);
 }

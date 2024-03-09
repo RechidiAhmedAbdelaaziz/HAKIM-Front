@@ -6,6 +6,9 @@ export 'question.getall.dart';
 export 'question.create.dart';
 export 'question.delete.dart';
 export 'question.update.dart';
+export 'question.getone.dart';
+
+import 'question.getone.dart';
 import 'answer.create.dart';
 import 'answer.delete.dart';
 import 'answer.getforquestion.dart';
@@ -33,10 +36,13 @@ class QuestionUseCases {
   final UpdateQuestionUseCase update;
   final GetAllQuestionUseCase getAll;
   final DeleteQuestionUseCase delete;
+  final GetQuestionByIdUseCase get;
 
-  QuestionUseCases(
-      {required this.create,
-      required this.update,
-      required this.getAll,
-      required this.delete});
+  QuestionUseCases({
+    required this.create,
+    required this.update,
+    required this.getAll,
+    required this.delete,
+    required this.get,
+  });
 }

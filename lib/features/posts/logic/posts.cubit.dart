@@ -10,17 +10,17 @@ class PostListCubit extends ListCubit<Post> {
   int _page = 0;
 
   @override
-  Future<void> getList() async => await DoThis(
+  Future<void> getList() async => await doThis(
         _cases.getAll,
         _page + 1,
         _geted,
       );
-  Future<void> getUserList(String id) async => await DoThis(
+  Future<void> getUserList(String id) async => await doThis(
         _cases.getUser,
         GetUserPostParams(page: _page + 1, id: id),
         _geted,
       );
-  Future<void> getMyList() async => await DoThis(
+  Future<void> getMyList() async => await doThis(
         _cases.getMy,
         _page + 1,
         _geted,
@@ -35,14 +35,14 @@ class PostListCubit extends ListCubit<Post> {
   }
 
   @override
-  Future<void> create(Post x) async => await DoThis(_cases.create, x, _created);
+  Future<void> create(Post x) async => await doThis(_cases.create, x, _created);
   void _created(Post x) {
     _posts.add(x);
     emitLoaded(_posts);
   }
 
   @override
-  Future<void> delete(Post x) async => await DoThis(_cases.delete, x, _deleted);
+  Future<void> delete(Post x) async => await doThis(_cases.delete, x, _deleted);
   void _deleted(Post x) {
     _posts.remove(x);
     emitLoaded(_posts);

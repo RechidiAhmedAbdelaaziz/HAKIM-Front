@@ -21,7 +21,7 @@ mixin _$AppState<T> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(T x) loaded,
-    required TResult Function() delted,
+    required TResult Function(T x) deleted,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$AppState<T> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(T x)? loaded,
-    TResult? Function()? delted,
+    TResult? Function(T x)? deleted,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$AppState<T> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(T x)? loaded,
-    TResult Function()? delted,
+    TResult Function(T x)? deleted,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -49,7 +49,7 @@ mixin _$AppState<T> {
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Loaded<T> value) loaded,
-    required TResult Function(_Deleted<T> value) delted,
+    required TResult Function(_Deleted<T> value) deleted,
     required TResult Function(_ErrorHandler<T> value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ mixin _$AppState<T> {
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
     TResult? Function(_Loaded<T> value)? loaded,
-    TResult? Function(_Deleted<T> value)? delted,
+    TResult? Function(_Deleted<T> value)? deleted,
     TResult? Function(_ErrorHandler<T> value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +67,7 @@ mixin _$AppState<T> {
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Loaded<T> value)? loaded,
-    TResult Function(_Deleted<T> value)? delted,
+    TResult Function(_Deleted<T> value)? deleted,
     TResult Function(_ErrorHandler<T> value)? error,
     required TResult orElse(),
   }) =>
@@ -133,7 +133,7 @@ class _$InitialImpl<T> implements _Initial<T> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(T x) loaded,
-    required TResult Function() delted,
+    required TResult Function(T x) deleted,
     required TResult Function(String error) error,
   }) {
     return initial();
@@ -145,7 +145,7 @@ class _$InitialImpl<T> implements _Initial<T> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(T x)? loaded,
-    TResult? Function()? delted,
+    TResult? Function(T x)? deleted,
     TResult? Function(String error)? error,
   }) {
     return initial?.call();
@@ -157,7 +157,7 @@ class _$InitialImpl<T> implements _Initial<T> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(T x)? loaded,
-    TResult Function()? delted,
+    TResult Function(T x)? deleted,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -173,7 +173,7 @@ class _$InitialImpl<T> implements _Initial<T> {
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Loaded<T> value) loaded,
-    required TResult Function(_Deleted<T> value) delted,
+    required TResult Function(_Deleted<T> value) deleted,
     required TResult Function(_ErrorHandler<T> value) error,
   }) {
     return initial(this);
@@ -185,7 +185,7 @@ class _$InitialImpl<T> implements _Initial<T> {
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
     TResult? Function(_Loaded<T> value)? loaded,
-    TResult? Function(_Deleted<T> value)? delted,
+    TResult? Function(_Deleted<T> value)? deleted,
     TResult? Function(_ErrorHandler<T> value)? error,
   }) {
     return initial?.call(this);
@@ -197,7 +197,7 @@ class _$InitialImpl<T> implements _Initial<T> {
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Loaded<T> value)? loaded,
-    TResult Function(_Deleted<T> value)? delted,
+    TResult Function(_Deleted<T> value)? deleted,
     TResult Function(_ErrorHandler<T> value)? error,
     required TResult orElse(),
   }) {
@@ -253,7 +253,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(T x) loaded,
-    required TResult Function() delted,
+    required TResult Function(T x) deleted,
     required TResult Function(String error) error,
   }) {
     return loading();
@@ -265,7 +265,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(T x)? loaded,
-    TResult? Function()? delted,
+    TResult? Function(T x)? deleted,
     TResult? Function(String error)? error,
   }) {
     return loading?.call();
@@ -277,7 +277,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(T x)? loaded,
-    TResult Function()? delted,
+    TResult Function(T x)? deleted,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -293,7 +293,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Loaded<T> value) loaded,
-    required TResult Function(_Deleted<T> value) delted,
+    required TResult Function(_Deleted<T> value) deleted,
     required TResult Function(_ErrorHandler<T> value) error,
   }) {
     return loading(this);
@@ -305,7 +305,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
     TResult? Function(_Loaded<T> value)? loaded,
-    TResult? Function(_Deleted<T> value)? delted,
+    TResult? Function(_Deleted<T> value)? deleted,
     TResult? Function(_ErrorHandler<T> value)? error,
   }) {
     return loading?.call(this);
@@ -317,7 +317,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Loaded<T> value)? loaded,
-    TResult Function(_Deleted<T> value)? delted,
+    TResult Function(_Deleted<T> value)? deleted,
     TResult Function(_ErrorHandler<T> value)? error,
     required TResult orElse(),
   }) {
@@ -400,7 +400,7 @@ class _$LoadedImpl<T> implements _Loaded<T> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(T x) loaded,
-    required TResult Function() delted,
+    required TResult Function(T x) deleted,
     required TResult Function(String error) error,
   }) {
     return loaded(x);
@@ -412,7 +412,7 @@ class _$LoadedImpl<T> implements _Loaded<T> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(T x)? loaded,
-    TResult? Function()? delted,
+    TResult? Function(T x)? deleted,
     TResult? Function(String error)? error,
   }) {
     return loaded?.call(x);
@@ -424,7 +424,7 @@ class _$LoadedImpl<T> implements _Loaded<T> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(T x)? loaded,
-    TResult Function()? delted,
+    TResult Function(T x)? deleted,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -440,7 +440,7 @@ class _$LoadedImpl<T> implements _Loaded<T> {
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Loaded<T> value) loaded,
-    required TResult Function(_Deleted<T> value) delted,
+    required TResult Function(_Deleted<T> value) deleted,
     required TResult Function(_ErrorHandler<T> value) error,
   }) {
     return loaded(this);
@@ -452,7 +452,7 @@ class _$LoadedImpl<T> implements _Loaded<T> {
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
     TResult? Function(_Loaded<T> value)? loaded,
-    TResult? Function(_Deleted<T> value)? delted,
+    TResult? Function(_Deleted<T> value)? deleted,
     TResult? Function(_ErrorHandler<T> value)? error,
   }) {
     return loaded?.call(this);
@@ -464,7 +464,7 @@ class _$LoadedImpl<T> implements _Loaded<T> {
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Loaded<T> value)? loaded,
-    TResult Function(_Deleted<T> value)? delted,
+    TResult Function(_Deleted<T> value)? deleted,
     TResult Function(_ErrorHandler<T> value)? error,
     required TResult orElse(),
   }) {
@@ -489,6 +489,8 @@ abstract class _$$DeletedImplCopyWith<T, $Res> {
   factory _$$DeletedImplCopyWith(
           _$DeletedImpl<T> value, $Res Function(_$DeletedImpl<T>) then) =
       __$$DeletedImplCopyWithImpl<T, $Res>;
+  @useResult
+  $Res call({T x});
 }
 
 /// @nodoc
@@ -498,26 +500,51 @@ class __$$DeletedImplCopyWithImpl<T, $Res>
   __$$DeletedImplCopyWithImpl(
       _$DeletedImpl<T> _value, $Res Function(_$DeletedImpl<T>) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? x = freezed,
+  }) {
+    return _then(_$DeletedImpl<T>(
+      freezed == x
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as T,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$DeletedImpl<T> implements _Deleted<T> {
-  const _$DeletedImpl();
+  const _$DeletedImpl(this.x);
+
+  @override
+  final T x;
 
   @override
   String toString() {
-    return 'AppState<$T>.delted()';
+    return 'AppState<$T>.deleted(x: $x)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$DeletedImpl<T>);
+        (other.runtimeType == runtimeType &&
+            other is _$DeletedImpl<T> &&
+            const DeepCollectionEquality().equals(other.x, x));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(x));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeletedImplCopyWith<T, _$DeletedImpl<T>> get copyWith =>
+      __$$DeletedImplCopyWithImpl<T, _$DeletedImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -525,10 +552,10 @@ class _$DeletedImpl<T> implements _Deleted<T> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(T x) loaded,
-    required TResult Function() delted,
+    required TResult Function(T x) deleted,
     required TResult Function(String error) error,
   }) {
-    return delted();
+    return deleted(x);
   }
 
   @override
@@ -537,10 +564,10 @@ class _$DeletedImpl<T> implements _Deleted<T> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(T x)? loaded,
-    TResult? Function()? delted,
+    TResult? Function(T x)? deleted,
     TResult? Function(String error)? error,
   }) {
-    return delted?.call();
+    return deleted?.call(x);
   }
 
   @override
@@ -549,12 +576,12 @@ class _$DeletedImpl<T> implements _Deleted<T> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(T x)? loaded,
-    TResult Function()? delted,
+    TResult Function(T x)? deleted,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (delted != null) {
-      return delted();
+    if (deleted != null) {
+      return deleted(x);
     }
     return orElse();
   }
@@ -565,10 +592,10 @@ class _$DeletedImpl<T> implements _Deleted<T> {
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Loaded<T> value) loaded,
-    required TResult Function(_Deleted<T> value) delted,
+    required TResult Function(_Deleted<T> value) deleted,
     required TResult Function(_ErrorHandler<T> value) error,
   }) {
-    return delted(this);
+    return deleted(this);
   }
 
   @override
@@ -577,10 +604,10 @@ class _$DeletedImpl<T> implements _Deleted<T> {
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
     TResult? Function(_Loaded<T> value)? loaded,
-    TResult? Function(_Deleted<T> value)? delted,
+    TResult? Function(_Deleted<T> value)? deleted,
     TResult? Function(_ErrorHandler<T> value)? error,
   }) {
-    return delted?.call(this);
+    return deleted?.call(this);
   }
 
   @override
@@ -589,19 +616,24 @@ class _$DeletedImpl<T> implements _Deleted<T> {
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Loaded<T> value)? loaded,
-    TResult Function(_Deleted<T> value)? delted,
+    TResult Function(_Deleted<T> value)? deleted,
     TResult Function(_ErrorHandler<T> value)? error,
     required TResult orElse(),
   }) {
-    if (delted != null) {
-      return delted(this);
+    if (deleted != null) {
+      return deleted(this);
     }
     return orElse();
   }
 }
 
 abstract class _Deleted<T> implements AppState<T> {
-  const factory _Deleted() = _$DeletedImpl<T>;
+  const factory _Deleted(final T x) = _$DeletedImpl<T>;
+
+  T get x;
+  @JsonKey(ignore: true)
+  _$$DeletedImplCopyWith<T, _$DeletedImpl<T>> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -672,7 +704,7 @@ class _$ErrorHandlerImpl<T> implements _ErrorHandler<T> {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(T x) loaded,
-    required TResult Function() delted,
+    required TResult Function(T x) deleted,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -684,7 +716,7 @@ class _$ErrorHandlerImpl<T> implements _ErrorHandler<T> {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(T x)? loaded,
-    TResult? Function()? delted,
+    TResult? Function(T x)? deleted,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -696,7 +728,7 @@ class _$ErrorHandlerImpl<T> implements _ErrorHandler<T> {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(T x)? loaded,
-    TResult Function()? delted,
+    TResult Function(T x)? deleted,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -712,7 +744,7 @@ class _$ErrorHandlerImpl<T> implements _ErrorHandler<T> {
     required TResult Function(_Initial<T> value) initial,
     required TResult Function(_Loading<T> value) loading,
     required TResult Function(_Loaded<T> value) loaded,
-    required TResult Function(_Deleted<T> value) delted,
+    required TResult Function(_Deleted<T> value) deleted,
     required TResult Function(_ErrorHandler<T> value) error,
   }) {
     return error(this);
@@ -724,7 +756,7 @@ class _$ErrorHandlerImpl<T> implements _ErrorHandler<T> {
     TResult? Function(_Initial<T> value)? initial,
     TResult? Function(_Loading<T> value)? loading,
     TResult? Function(_Loaded<T> value)? loaded,
-    TResult? Function(_Deleted<T> value)? delted,
+    TResult? Function(_Deleted<T> value)? deleted,
     TResult? Function(_ErrorHandler<T> value)? error,
   }) {
     return error?.call(this);
@@ -736,7 +768,7 @@ class _$ErrorHandlerImpl<T> implements _ErrorHandler<T> {
     TResult Function(_Initial<T> value)? initial,
     TResult Function(_Loading<T> value)? loading,
     TResult Function(_Loaded<T> value)? loaded,
-    TResult Function(_Deleted<T> value)? delted,
+    TResult Function(_Deleted<T> value)? deleted,
     TResult Function(_ErrorHandler<T> value)? error,
     required TResult orElse(),
   }) {

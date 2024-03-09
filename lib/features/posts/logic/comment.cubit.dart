@@ -4,14 +4,13 @@ class CommentCubit extends AppCubit<Comment> {
   CommentCubit(this._cases);
   final CommentUseCases _cases;
 
-  late Comment _comment;
-  Comment get comment => _comment;
+  late Comment comment;
 
-  Future<void> get(String x) async => await DoThis(_cases.getOne, x, _geted);
-  Future<void> update() async => await DoThis(_cases.update, _comment, _geted);
+  Future<void> get(String x) async => await doThis(_cases.getOne, x, _geted);
+  Future<void> update() async => await doThis(_cases.update, comment, _geted);
 
   void _geted(Comment x) {
-    _comment = x;
+    comment = x;
     emitLoaded(x);
   }
 }

@@ -5,7 +5,7 @@ import '../entity/donation.dart';
 
 abstract class DonationRepository {
   FutureApi<List<Donation>> getDonations(int page);
-  FutureApi<String> createDonation(DonationModel donation);
+  FutureApi<Donation> createDonation(DonationModel donation);
   FutureApi<Donation> updateDonation(DonationModel donation);
-  FutureApi<bool> deleteDonation(String id);
+  FutureApi<Donation?> deleteDonation(DonationModel donation);
 }

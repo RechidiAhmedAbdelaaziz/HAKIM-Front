@@ -8,39 +8,39 @@ class CommentListCubit extends ListCubit<Comment> {
   late String _postid;
   set post(String id) => _postid = id;
 
-  late List<Comment> _comment;
-  List<Comment> get comment => _comment;
-  set element(Comment x) => _comment.add(x);
+  late List<Comment> _comments;
+  List<Comment> get comments => _comments;
+  set element(Comment x) => _comments.add(x);
 
   int _nextPage = 0;
 
   @override
-  Future<void> getList() async => await DoThis(
+  Future<void> getList() async => await doThis(
         _useCases.getAll,
         GetCommentsParams(page: _nextPage, postid: _postid),
         _geted,
       );
   void _geted(List<Comment> x) {
     if (x.isNotEmpty) {
-      _comment.addAll(x);
+      _comments.addAll(x); //TODO remove dublicats
       _nextPage += 1;
     }
-    emitLoaded(_comment);
+    emitLoaded(_comments);
   }
 
   @override
   Future<void> create(Comment x) async =>
-      await DoThis(_useCases.create, x, _created);
+      await doThis(_useCases.create, x, _created);
   void _created(Comment x) {
-    _comment.add(x);
-    emitLoaded(_comment);
+    _comments.add(x);
+    emitLoaded(_comments);
   }
 
   @override
   Future<void> delete(Comment x) async =>
-      await DoThis(_useCases.delete, x, _deleted);
+      await doThis(_useCases.delete, x, _deleted);
   void _deleted(Comment x) {
-    _comment.remove(x);
-    emitDeleted();
+    _comments.remove(x);
+    emitDeleted(_comments);
   }
 }

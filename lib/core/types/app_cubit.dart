@@ -9,11 +9,11 @@ abstract class AppCubit<T> extends Cubit<AppState<T>> {
 
   void emitLoading() => emit(const AppState.loading());
   void emitLoaded(T x) => emit(AppState.loaded(x));
-  void emitDeleted() => emit(const AppState.delted());
+  void emitDeleted(T x ) => emit(AppState.deleted(x));
   void emitError(ErrorHandler x) =>
       emit(AppState.error(x.apiErrorModel.message ?? ''));
 
-  Future<void> DoThis<D, C>(
+  Future<void> doThis<D, C>(
     Future<ApiResult<D>> Function(C) result,
     C x,
     void Function(D) sucess,
