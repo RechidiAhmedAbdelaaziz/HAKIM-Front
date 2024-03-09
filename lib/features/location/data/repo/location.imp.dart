@@ -49,7 +49,7 @@ class LocationRepositoryImp implements LocationRepository {
   @override
   Future<ApiResult<void>> deleteLocation(Location location) {
     callback() async {
-      await _remote.deleteLocation(location.id);
+      await _remote.deleteLocation(location.id!);
       return const ApiResult.sucess(null);
     }
 
@@ -60,7 +60,7 @@ class LocationRepositoryImp implements LocationRepository {
   Future<ApiResult<Location>> updateLocation(Location location) {
     callback() async {
       final response =
-          await _remote.updateLocation(location.id, location.toModel());
+          await _remote.updateLocation(location.id!, location.toModel());
       final data = Location.fromModel(response.data!);
       return ApiResult.sucess(data);
     }

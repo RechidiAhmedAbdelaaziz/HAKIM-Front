@@ -19,7 +19,7 @@ class PosterInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsDirectional.only(start: 9.w),
-      child: _PosterInfo(post: post, poster: post.poster),
+      child: _PosterInfo(post: post, poster: post.poster!),
     );
   }
 }
@@ -40,7 +40,7 @@ class _PosterInfo extends StatelessWidget {
         start: 47.w,
         top: 20.h,
         child: Text(
-          post.date.toIso8601String(),
+          post.date!.toIso8601String(),
           style: TextStyle(
               color: AppColor.grey,
               fontSize: 10.sp,

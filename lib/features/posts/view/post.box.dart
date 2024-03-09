@@ -6,9 +6,9 @@ import 'package:front/core/Theme/fonts.dart';
 import 'package:front/core/injection/dependency.dart';
 import 'package:front/core/widgets/separate.dart';
 import 'package:front/features/posts/domain/entites/post.dart';
-import 'package:front/features/posts/logic/post/post_cubit.dart';
 import 'package:readmore/readmore.dart';
 
+import '../logic/index.dart';
 import 'widget/buttons_function.dart';
 import 'widget/poster_info.dart';
 
@@ -47,7 +47,7 @@ class PostPox extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: 355.w),
       margin: EdgeInsetsDirectional.only(start: 5.w),
       child: ReadMoreText(
-        post.post,
+        "${post.text}",
         trimLines: 3,
         style: TextStyle(
             color: AppColor.bluePost,

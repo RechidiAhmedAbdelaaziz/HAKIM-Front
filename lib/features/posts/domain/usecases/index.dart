@@ -1,4 +1,17 @@
-// ignore_for_file: unused_field
+export 'like.create.dart';
+export 'like.delete.dart';
+export 'comment.delete.dart';
+export 'comment.getall.dart';
+export 'comment.getone.dart';
+export 'comment.update.dart';
+export 'comment.create.dart';
+export 'post.create.dart';
+export 'post.delete.dart';
+export 'post.getall.dart';
+export 'post.getmypost.dart';
+export 'post.getone.dart';
+export 'post.getuserpost.dart';
+export 'post.update.dart';
 
 import 'like.create.dart';
 import 'like.delete.dart';
@@ -16,54 +29,41 @@ import 'post.getuserpost.dart';
 import 'post.update.dart';
 
 class PostUseCases {
-  PostUseCases(
-      {required CreatePostUseCase create,
-      required UpdatePostUseCase update,
-      required DeletePostUseCase delete,
-      required GetAllPostsUseCase getAll,
-      required GetMyPostsUseCase getMy,
-      required GetUserPostsUseCase getUser,
-      required GetPostUseCase getOne,
-      required LikePostUseCase like,
-      required UnLikePostUseCase unLike})
-      : _create = create,
-        _update = update,
-        _delete = delete,
-        _getAll = getAll,
-        _getMy = getMy,
-        _getUser = getUser,
-        _getOne = getOne,
-        _like = like,
-        _unLike = unLike;
+  PostUseCases({
+    required this.create,
+    required this.update,
+    required this.delete,
+    required this.getAll,
+    required this.getMy,
+    required this.getUser,
+    required this.getOne,
+    required this.like,
+    required this.unLike,
+  });
 
-  final CreatePostUseCase _create;
-  final UpdatePostUseCase _update;
-  final DeletePostUseCase _delete;
-  final GetAllPostsUseCase _getAll;
-  final GetMyPostsUseCase _getMy;
-  final GetUserPostsUseCase _getUser;
-  final GetPostUseCase _getOne;
-
-  final LikePostUseCase _like;
-  final UnLikePostUseCase _unLike;
+  final CreatePostUseCase create;
+  final UpdatePostUseCase update;
+  final DeletePostUseCase delete;
+  final GetAllPostsUseCase getAll;
+  final GetMyPostsUseCase getMy;
+  final GetUserPostsUseCase getUser;
+  final GetPostUseCase getOne;
+  final LikePostUseCase like;
+  final UnLikePostUseCase unLike;
 }
 
 class CommentUseCases {
-  CommentUseCases(
-      {required CreateCommentUseCase create,
-      required UpdateCommentUseCase update,
-      required DeleteCommentUseCase delete,
-      required GetAllCommentsUseCase getAll,
-      required GetOneCommentUseCase getOne})
-      : _create = create,
-        _update = update,
-        _delete = delete,
-        _getAll = getAll,
-        _getOne = getOne;
+  CommentUseCases({
+    required this.create,
+    required this.update,
+    required this.delete,
+    required this.getAll,
+    required this.getOne,
+  });
 
-  final CreateCommentUseCase _create;
-  final UpdateCommentUseCase _update;
-  final DeleteCommentUseCase _delete;
-  final GetAllCommentsUseCase _getAll;
-  final GetOneCommentUseCase _getOne;
+  final CreateCommentUseCase create;
+  final UpdateCommentUseCase update;
+  final DeleteCommentUseCase delete;
+  final GetAllCommentsUseCase getAll;
+  final GetOneCommentUseCase getOne;
 }

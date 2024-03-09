@@ -16,7 +16,7 @@ class SignUpParams {
       {required this.email, required this.password, required this.name});
 }
 
-class SignUpUseCase extends UseCaseWithParams<User, SignUpParams> {
+class SignUpUseCase extends UseCase<User, SignUpParams> {
   final AuthRepository _repository;
   final AuthCache _cache;
 

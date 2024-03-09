@@ -1,4 +1,3 @@
-abstract class QuestionLocalDataSource {}
+abstract class QuestionLocalSourceData {}
 
-//TODO Implemnt QuestionCache
-
+class QuestionLocalSourceDataImpl implements QuestionLocalSourceData {}

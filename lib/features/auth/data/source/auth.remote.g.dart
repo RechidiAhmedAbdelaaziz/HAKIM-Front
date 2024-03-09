@@ -12,7 +12,9 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
   _AuthRemoteDataSource(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://localhost:3000/api/v1/';
+  }
 
   final Dio _dio;
 
@@ -73,14 +75,12 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
   }
 
   @override
-  Future<AuthResponse> login({
-    required String login,
-    required String password,
-  }) async {
+  Future<AuthResponse> login(LoginParams info) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = login;
+    final _data = <String, dynamic>{};
+    _data.addAll(info.toJson());
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AuthResponse>(Options(
       method: 'POST',

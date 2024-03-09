@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:front/core/usecase/byidgetter.dart';
 import 'package:front/features/auth/domain/enitities/doctor.dart';
 import 'package:front/features/posts/data/models/post.dart';
 
@@ -20,27 +19,6 @@ class Post extends Equatable {
   final int? comments;
   final DateTime? date;
 
-  static Future<Post> fromModel(PostModel model) async {
-    final poster = await ByIdGetter(id: model.id!).user() as Doctor?;
-    return Post(
-      id: model.id,
-      text: model.text,
-      poster: poster,
-      likers: model.likers,
-      comments: model.comments,
-      date: model.date,
-    );
-  }
-
-  PostModel toModel() => PostModel(
-        id: id,
-        text: text,
-        poster: poster?.id,
-        likers: likers,
-        comments: comments,
-        date: date,
-      );
-
   Post copyWith({
     String? id,
     String? text,
@@ -58,6 +36,26 @@ class Post extends Equatable {
       date: date ?? this.date,
     );
   }
+
+  factory Post.fromModel(PostModel model) {
+    return Post(
+      id: model.id,
+      text: model.text,
+      poster: Doctor.fromModel(model.poster),
+      likers: model.likers,
+      comments: model.comments,
+      date: model.date,
+    );
+  }
+
+  PostModel toModel() => PostModel(
+        id: id,
+        text: text,
+        poster: poster?.toModel(),
+        likers: likers,
+        comments: comments,
+        date: date,
+      );
 
   @override
   List<Object?> get props => [id];

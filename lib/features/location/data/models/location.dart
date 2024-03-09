@@ -6,16 +6,18 @@ part 'location.g.dart';
 @JsonSerializable()
 class LocationModel extends Equatable {
   const LocationModel({
-    required this.id,
     required this.title,
-    required this.long,
-    required this.lat,
+    required this.longitude,
+    required this.latitude,
+    required this.id,
   });
 
-  final String id;
-  final String title;
-  final double long;
-  final double lat;
+  final String? title;
+  final double? longitude;
+  final double? latitude;
+
+  @JsonKey(name: '_id')
+  final String? id;
 
   factory LocationModel.fromJson(Map<String, dynamic> json) =>
       _$LocationModelFromJson(json);
@@ -24,7 +26,7 @@ class LocationModel extends Equatable {
 
   @override
   String toString() {
-    return "$id, $title, $long, $lat, ";
+    return "$title, $longitude, $latitude, $id, ";
   }
 
   @override

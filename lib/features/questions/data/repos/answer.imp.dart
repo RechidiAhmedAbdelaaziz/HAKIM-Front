@@ -9,23 +9,19 @@ import 'package:front/features/questions/domain/repo/answer.dart';
 
 class AnswerRepositoryImp implements AnswerRepository {
   final AnswerRemoteDataSource _remote;
-  final AnswerLocalDataSource _local;
-  final NetworkInfo _info;
 
   AnswerRepositoryImp(
       {required AnswerRemoteDataSource remote,
       required AnswerLocalDataSource local,
       required NetworkInfo info})
-      : _remote = remote,
-        _local = local,
-        _info = info;
+      : _remote = remote;
 
   @override
-  Future<ApiResult<List<Answer>>> getAnswers(String questionId) {
+  Future<ApiResult<List<Answer>>> getAnswers(String questionId, int page) {
     callback() async {
       final response = await _remote.getAllAnswers(questionId);
-      final data = response.data!.map((e) => Answer.fromModel(e)).toList();
-      return ApiResult.sucess(data);
+      final data = response.data?.map((e) => Answer.fromModel(e)).toList();
+      return ApiResult.sucess(data ?? []);
     }
 
     return TryCallApi(callback).call();
@@ -35,17 +31,20 @@ class AnswerRepositoryImp implements AnswerRepository {
   Future<ApiResult<Answer>> createAnswer(AnswerModel answer) {
     callback() async {
       final response = await _remote.createAnswer(answer.question, answer);
-      return ApiResult.sucess(Answer.fromModel(response.data!));
+      final data = Answer.fromModel(answer).copyWith(id: response.data!);
+      return ApiResult.sucess(data);
     }
 
     return TryCallApi(callback).call();
   }
 
   @override
-  Future<ApiResult<void>> deleteAnswer(AnswerModel answer) {
+  Future<ApiResult<Answer?>> deleteAnswer(AnswerModel answer) {
     callback() async {
-      await _remote.deleteAnswer(answer.id);
-      return const ApiResult.sucess(null);
+      final response = await _remote.deleteAnswer(answer.id);
+      if (!response.status!) return const ApiResult.sucess(null);
+      final data = Answer.fromModel(answer);
+      return ApiResult.sucess(data);
     }
 
     return TryCallApi(callback).call();
@@ -55,7 +54,7 @@ class AnswerRepositoryImp implements AnswerRepository {
   Future<ApiResult<Answer>> updateAnswer(AnswerModel answer) {
     callback() async {
       final response = await _remote.updateAnswer(answer.question, answer);
-      return ApiResult.sucess(Answer.fromModel(response.data!));
+      return ApiResult.sucess(Answer.fromModel(response.data));
     }
 
     return TryCallApi(callback).call();

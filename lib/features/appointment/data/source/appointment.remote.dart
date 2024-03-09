@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:front/core/networking/api.constants.dart';
+import 'package:front/core/networking/res.model.dart';
 import 'package:retrofit/http.dart';
 import '../models/appointment.dart';
 import 'appointment.res.dart';
@@ -23,7 +24,7 @@ abstract class AppointmentRemoteDataSource {
 
   //Create Appointment
   @POST(ApiConsts.appointments)
-  Future<AppointmentResponse> createAppointment(
+  Future<ElementIdResponse> createAppointment(
     @Body() AppointmentModel appointment,
   );
 

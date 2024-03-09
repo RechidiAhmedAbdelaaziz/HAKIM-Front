@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:front/features/auth/data/models/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'appointment.g.dart';
@@ -17,8 +18,8 @@ class AppointmentModel extends Equatable {
   final String? id;
   final String? type;
   final DateTime? date;
-  final String? doctor;
-  final String? patient;
+  final AuthModel? doctor;
+  final AuthModel? patient;
 
   factory AppointmentModel.fromJson(Map<String, dynamic> json) =>
       _$AppointmentModelFromJson(json);

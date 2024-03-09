@@ -11,8 +11,7 @@ class GetUserPostParams {
   GetUserPostParams({required this.page, required this.id});
 }
 
-class GetUserPostsUseCase
-    implements UseCaseWithParams<List<Post>, GetUserPostParams> {
+class GetUserPostsUseCase implements UseCase<List<Post>, GetUserPostParams> {
   final PostRepository _repository;
 
   GetUserPostsUseCase(this._repository);

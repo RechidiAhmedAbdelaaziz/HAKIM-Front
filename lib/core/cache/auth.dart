@@ -1,14 +1,15 @@
-import 'local.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthCache extends LocalStorage {
-  AuthCache(super.sharedPreferences);
+class AuthCache {
+  final SharedPreferences _sharedPreferences;
+  AuthCache(this._sharedPreferences);
 
   Future<bool> cacheToken(String token) async =>
-      await sharedPreferences.setString("TOKEN", token);
+      await _sharedPreferences.setString("TOKEN", "Bearer $token");
 
   String? getToken() {
-    return sharedPreferences.getString("TOKEN");
+    return _sharedPreferences.getString("TOKEN");
   }
 
-  Future<bool> removeToken() async => await sharedPreferences.remove("TOKEN");
+  Future<bool> removeToken() async => await _sharedPreferences.remove("TOKEN");
 }

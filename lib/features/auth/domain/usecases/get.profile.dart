@@ -6,7 +6,7 @@ import 'package:front/core/usecase/usecase.dart';
 import '../enitities/user.dart';
 import '../repo/auth.dart';
 
-class GetProfileUseCase extends UseCaseWithParams<User, String> {
+class GetProfileUseCase extends UseCase<User, String> {
   final AuthRepository _repository;
 
   GetProfileUseCase(

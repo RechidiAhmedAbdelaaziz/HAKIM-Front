@@ -9,19 +9,23 @@ class Location extends Equatable {
     required this.lat,
   });
 
-  final String id;
-  final String title;
-  final double long;
-  final double lat;
+  final String? id;
+  final String? title;
+  final double? long;
+  final double? lat;
 
   LocationModel toModel() =>
-      LocationModel(id: id, title: title, long: long, lat: lat);
+      LocationModel(id: id, title: title, longitude: long, latitude: lat);
 
-  factory Location.fromModel(LocationModel model) => Location(
-      id: model.id, title: model.title, long: model.long, lat: model.lat);
+  factory Location.fromModel(LocationModel? model) => Location(
+      id: model?.id,
+      title: model?.title,
+      long: model?.longitude,
+      lat: model?.latitude);
 
   @override
   List<Object?> get props => [id];
 }
 
-Location getLocationByID(String id) => Location(id: id, title: "", long: 32, lat: 32);
+Location getLocationByID(String id) =>
+    Location(id: id, title: "", long: 32, lat: 32);

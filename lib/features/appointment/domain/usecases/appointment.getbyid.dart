@@ -3,8 +3,7 @@ import 'package:front/core/usecase/usecase.dart';
 import 'package:front/features/appointment/domain/entities/appointment.dart';
 import 'package:front/features/appointment/domain/repo/appointment.dart';
 
-class GetOneAppointmentUseCase
-    implements UseCaseWithParams<Appointment, String> {
+class GetOneAppointmentUseCase implements UseCase<Appointment, String> {
   final AppointmentRepository _repository;
 
   GetOneAppointmentUseCase(this._repository);

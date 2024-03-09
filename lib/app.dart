@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:front/core/Theme/colors.dart';
-import 'package:front/core/routes/app.router.dart';
-import 'package:front/core/routes/routes.dart';
+import 'package:front/routes/routes.dart';
 
 class HakimApp extends StatelessWidget {
   final AppRouter router;
@@ -19,7 +18,7 @@ class HakimApp extends StatelessWidget {
             useMaterial3: true,
           ),
           onGenerateRoute: router.generateRoute,
-          initialRoute: Routes.onBoarding,
+          initialRoute: Routes.test,
         ),
       );
 }

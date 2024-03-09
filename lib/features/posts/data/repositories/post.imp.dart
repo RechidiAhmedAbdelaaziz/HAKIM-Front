@@ -1,5 +1,6 @@
 import 'package:front/core/networking/api.result.dart';
 import 'package:front/core/networking/api.try_catch.dart';
+import 'package:front/core/networking/error.handler.dart';
 import 'package:front/core/networking/info.dart';
 import 'package:front/features/posts/data/models/post.dart';
 
@@ -54,10 +55,10 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<Post>> createPost(PostRequestBody post) async {
+  Future<ApiResult<Post>> createPost(PostModel post) async {
     callback() async {
       final response = await _remote.createPost(post);
-      final data = await Post.fromModel(response.data!);
+      final data = Post.fromModel(post).copyWith(id: response.data!);
       return ApiResult.sucess(data);
     }
 
@@ -65,10 +66,10 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<Post>> updatePost(PostRequestBody post) async {
+  Future<ApiResult<Post>> updatePost(PostModel post) async {
     callback() async {
       final response = await _remote.updatePost(post.id!, post);
-      final data = await Post.fromModel(response.data!);
+      final data = Post.fromModel(response.data!);
       return ApiResult.sucess(data);
     }
 
@@ -76,9 +77,23 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<bool>> deletePost(String id) async {
+  Future<ApiResult<Post>> deletePost(PostModel post) async {
     callback() async {
-      final response = await _remote.deletePost(id);
+      final response = await _remote.deletePost(post.id);
+      final data = Post.fromModel(post);
+      if (response.status!) {
+        return ApiResult.sucess(data);
+      }
+      return ApiResult<Post>.failure(ErrorHandler.handle("error"));
+    }
+
+    return await TryCallApi(callback).call();
+  }
+
+  @override
+  Future<ApiResult<bool>> like(PostModel post) async {
+    callback() async {
+      final response = await _remote.like(post.id);
       final data = response.status == true;
       return ApiResult.sucess(data);
     }
@@ -87,20 +102,9 @@ class PostRepositoryImp implements PostRepository {
   }
 
   @override
-  Future<ApiResult<bool>> like(String id) async {
+  Future<ApiResult<bool>> unLike(PostModel post) async {
     callback() async {
-      final response = await _remote.like(id);
-      final data = response.status == true;
-      return ApiResult.sucess(data);
-    }
-
-    return await TryCallApi(callback).call();
-  }
-
-  @override
-  Future<ApiResult<bool>> unLike(String id) async {
-    callback() async {
-      final response = await _remote.unLike(id);
+      final response = await _remote.unLike(post.id);
       final data = response.status == true;
       return ApiResult.sucess(data);
     }
@@ -113,7 +117,7 @@ class PostRepositoryImp implements PostRepository {
 
     if (posts != null) {
       for (final post in posts) {
-        final post_ = await Post.fromModel(post);
+        final post_ = Post.fromModel(post);
         data.add(post_);
       }
     }
@@ -124,7 +128,7 @@ class PostRepositoryImp implements PostRepository {
   Future<ApiResult<Post>> getPost(String id) async {
     callback() async {
       final response = await _remote.getPostById(id);
-      final data = await Post.fromModel(response.data!);
+      final data = Post.fromModel(response.data!);
       return ApiResult.sucess(data);
     }
 

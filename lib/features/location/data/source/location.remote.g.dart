@@ -12,7 +12,9 @@ class _LocationRemoteDataSource implements LocationRemoteDataSource {
   _LocationRemoteDataSource(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://localhost:3000/api/v1/';
+  }
 
   final Dio _dio;
 

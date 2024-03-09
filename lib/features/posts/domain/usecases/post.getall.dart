@@ -4,7 +4,7 @@ import 'package:front/features/posts/domain/repositories/post.dart';
 
 import '../entites/post.dart';
 
-class GetAllPostsUseCase implements UseCaseWithParams<List<Post>, int> {
+class GetAllPostsUseCase implements UseCase<List<Post>, int> {
   final PostRepository _repository;
 
   GetAllPostsUseCase(this._repository);

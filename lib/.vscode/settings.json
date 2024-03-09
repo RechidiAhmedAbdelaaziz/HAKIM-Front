@@ -5,4 +5,5 @@
 		"**/*.freezed.dart": true,
 		"**/*.g.dart": true
 	},
+	"vmssoftware.project-dep.buildName": "DEBUG"
 }

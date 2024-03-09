@@ -11,8 +11,7 @@ class GetCommentsParams {
   const GetCommentsParams({required this.page, required this.postid});
 }
 
-class GetAllCommentsUseCase
-    extends UseCaseWithParams<List<Comment>, GetCommentsParams> {
+class GetAllCommentsUseCase extends UseCase<List<Comment>, GetCommentsParams> {
   final CommentRepository _repository;
 
   GetAllCommentsUseCase(this._repository);

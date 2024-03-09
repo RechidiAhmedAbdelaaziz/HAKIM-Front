@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:front/core/usecase/byidgetter.dart';
 import 'package:front/features/appointment/data/models/appointment.dart';
 import 'package:front/features/auth/domain/enitities/doctor.dart';
 import 'package:front/features/auth/domain/enitities/patient.dart';
@@ -20,11 +19,12 @@ class Appointment extends Equatable {
   final Patient? patient;
 
   Appointment copyWith({
+    String? id,
     String? type,
     DateTime? date,
   }) {
     return Appointment(
-      id: id,
+      id: id ?? this.id,
       type: type ?? this.type,
       date: date ?? this.date,
       doctor: doctor,
@@ -32,16 +32,23 @@ class Appointment extends Equatable {
     );
   }
 
-  static Future<Appointment> fromModel(AppointmentModel model) async {
-    Doctor? doc = await ByIdGetter(id: model.doctor!).user() as Doctor?;
-    Patient? patient = await ByIdGetter(id: model.patient!).user() as Patient?;
-
+  Appointment copyWithEntity(Appointment x) {
     return Appointment(
-      id: model.id,
-      type: model.type,
-      date: model.date,
-      doctor: doc,
-      patient: patient,
+      id: x.id ?? id,
+      type: x.type ?? type,
+      date: x.date ?? date,
+      doctor: x.doctor ?? doctor,
+      patient: x.patient ?? patient,
+    );
+  }
+
+  factory Appointment.fromModel(AppointmentModel? model) {
+    return Appointment(
+      id: model?.id,
+      type: model?.type,
+      date: model?.date,
+      doctor: Doctor.fromModel(model?.doctor),
+      patient: Patient.fromModel(model?.patient),
     );
   }
 
@@ -49,16 +56,10 @@ class Appointment extends Equatable {
         id: id,
         type: type,
         date: date,
-        doctor: doctor?.id,
-        patient: patient?.id,
+        doctor: doctor?.toModel(),
+        patient: patient?.toModel(),
       );
 
   @override
-  List<Object?> get props => [
-        id,
-        type,
-        date,
-        doctor,
-        patient,
-      ];
+  List<Object?> get props => [id];
 }

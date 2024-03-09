@@ -1,20 +1,20 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "HAKIM Prod",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main_prod.dart",
-      "args": ["--flavor", "Production", "--target", "lib/main_prod.dart"]
-    },
-    {
-      "name": "HAKIM Dev",
-      "request": "launch",
-      "type": "dart",
-      "program": "lib/main_dev.dart",
-      "args": ["--flavor", "Development", "--target", "lib/main_development.dart"]
-    }
-  ],
-  "compounds": []
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "HAKIM Prod",
+			"request": "launch",
+			"type": "dart",
+			"program": "lib/main_prod.dart",
+			"args": ["--flavor", "Production", "--target", "lib/main_prod.dart"]
+		},
+		{
+			"name": "HAKIM Dev",
+			"request": "launch",
+			"type": "dart",
+			"program": "lib/main_dev.dart",
+			"args": ["--flavor", "Development", "--target", "lib/main_dev.dart"]
+		}
+	],
+	"compounds": []
 }

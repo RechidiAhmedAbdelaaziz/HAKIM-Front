@@ -12,16 +12,19 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
   _AnswerRemoteDataSource(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://localhost:3000/api/v1/';
+  }
 
   final Dio _dio;
 
   String? baseUrl;
 
   @override
-  Future<AnswerListResponse> getAllAnswers(String id) async {
+  Future<AnswerListResponse> getAllAnswers(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -46,17 +49,18 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
   }
 
   @override
-  Future<AnswerResponse> createAnswer(
-    String id,
-    AnswerModel answer,
+  Future<ElementIdResponse> createAnswer(
+    String? id,
+    AnswerModel? answer,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(answer.toJson());
+    _data.addAll(answer?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<AnswerResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -72,20 +76,21 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AnswerResponse.fromJson(_result.data!);
+    final value = ElementIdResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
   Future<AnswerResponse> updateAnswer(
-    String id,
-    AnswerModel update,
+    String? id,
+    AnswerModel? update,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(update.toJson());
+    _data.addAll(update?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AnswerResponse>(Options(
       method: 'POST',
@@ -108,13 +113,14 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
   }
 
   @override
-  Future<DefaultResponse> deleteAnswer(String id) async {
+  Future<ElementIdResponse> deleteAnswer(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<DefaultResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -130,7 +136,7 @@ class _AnswerRemoteDataSource implements AnswerRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = DefaultResponse.fromJson(_result.data!);
+    final value = ElementIdResponse.fromJson(_result.data!);
     return value;
   }
 

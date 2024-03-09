@@ -16,14 +16,6 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) => AuthResponse(
       code: json['code'] as int?,
     );
 
-Map<String, dynamic> _$AuthResponseToJson(AuthResponse instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-      'token': instance.token,
-      'data': instance.data,
-      'code': instance.code,
-    };
 
 AuthListResponse _$AuthListResponseFromJson(Map<String, dynamic> json) =>
     AuthListResponse(
@@ -38,11 +30,3 @@ AuthListResponse _$AuthListResponseFromJson(Map<String, dynamic> json) =>
       code: json['code'] as int?,
     );
 
-Map<String, dynamic> _$AuthListResponseToJson(AuthListResponse instance) =>
-    <String, dynamic>{
-      'status': instance.status,
-      'message': instance.message,
-      'pagination': instance.pagination,
-      'data': instance.data,
-      'code': instance.code,
-    };

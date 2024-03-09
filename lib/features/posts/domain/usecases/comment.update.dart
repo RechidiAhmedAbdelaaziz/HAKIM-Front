@@ -4,14 +4,14 @@ import 'package:front/core/usecase/usecase.dart';
 import '../entites/comment.dart';
 import '../repositories/comment.dart';
 
-class UpdateCommentUseCase extends UseCaseWithParams<Comment, Comment> {
+class UpdateCommentUseCase extends UseCase<Comment, Comment> {
   final CommentRepository _repository;
 
   UpdateCommentUseCase(this._repository);
 
   @override
   Future<ApiResult<Comment>> call(Comment params) async {
-    final comment = CommentRequestBody(text: params.text!, id: params.id!);
+    final comment = params.toModel();
     return await _repository.updateComment(comment);
   }
 }

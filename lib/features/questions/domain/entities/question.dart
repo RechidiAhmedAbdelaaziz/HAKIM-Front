@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:front/core/usecase/byidgetter.dart';
+import 'package:front/core/usecase/get.user.dart';
 import 'package:front/features/auth/domain/enitities/user.dart';
 import 'package:front/features/questions/data/models/question.dart';
 
@@ -16,20 +16,18 @@ class Question extends Equatable {
   final User? questioner;
   final DateTime? date;
 
-  static Future<Question> fromModel(QuestionModel model) async {
-    final questioner = await ByIdGetter(id: model.id!).user();
-
+  factory Question.fromModel(QuestionModel? model) {
     return Question(
-        id: model.id,
-        text: model.text,
-        questioner: questioner,
-        date: model.date);
+        id: model?.id,
+        text: model?.text,
+        questioner: GetUserFromModel.call(model?.questioner),
+        date: model?.date);
   }
 
   QuestionModel toModel() => QuestionModel(
         id: id,
         text: text,
-        questioner: questioner?.id,
+        questioner: questioner?.toModel(),
         date: date,
       );
 

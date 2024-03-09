@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:front/features/auth/data/models/user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'post.g.dart';
@@ -17,7 +18,7 @@ class PostModel extends Equatable {
   @JsonKey(name: '_id')
   final String? id;
   final String? text;
-  final String? poster;
+  final AuthModel? poster;
   final int? likers;
   final int? comments;
   @JsonKey(name: 'createdAt')
@@ -36,4 +37,3 @@ class PostModel extends Equatable {
   @override
   List<Object?> get props => [id];
 }
-

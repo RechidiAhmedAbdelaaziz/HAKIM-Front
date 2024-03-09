@@ -9,7 +9,9 @@ part of 'post.dart';
 PostModel _$PostModelFromJson(Map<String, dynamic> json) => PostModel(
       id: json['_id'] as String?,
       text: json['text'] as String?,
-      poster: json['poster'] as String?,
+      poster: json['poster'] == null
+          ? null
+          : AuthModel.fromJson(json['poster'] as Map<String, dynamic>),
       likers: json['likers'] as int?,
       comments: json['comments'] as int?,
       date: json['createdAt'] == null

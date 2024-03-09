@@ -15,27 +15,23 @@ abstract class AnswerRemoteDataSource {
 
   //Get All
   @GET("${ApiConsts.questions}/{id}/answer")
-  Future<AnswerListResponse> getAllAnswers(
-    @Path("id") String id,
-  );
+  Future<AnswerListResponse> getAllAnswers(@Path("id") String? id);
 
   //Create Answer
   @POST("${ApiConsts.questions}/{id}/answer")
-  Future<AnswerResponse> createAnswer(
-    @Path("id") String id,
-    @Body() AnswerModel answer,
+  Future<ElementIdResponse> createAnswer(
+    @Path("id") String? id,
+    @Body() AnswerModel? answer,
   );
 
   //Update Answer
   @POST("${ApiConsts.answers}/{id}")
   Future<AnswerResponse> updateAnswer(
-    @Path("id") String id,
-    @Body() AnswerModel update,
+    @Path("id") String? id,
+    @Body() AnswerModel? update,
   );
 
   //Delete Answer
   @DELETE("${ApiConsts.answers}/{id}")
-  Future<DefaultResponse> deleteAnswer(
-    @Path("id") String id,
-  );
+  Future<ElementIdResponse> deleteAnswer(@Path("id") String? id);
 }

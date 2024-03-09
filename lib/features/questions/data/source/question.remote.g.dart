@@ -12,16 +12,19 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
   _QuestionRemoteDataSource(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://localhost:3000/api/v1/';
+  }
 
   final Dio _dio;
 
   String? baseUrl;
 
   @override
-  Future<QuestionListResponse> getAllQuestions() async {
+  Future<QuestionListResponse> getAllQuestions(int? page) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -46,14 +49,42 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
   }
 
   @override
-  Future<QuestionResponse> createQuestion(QuestionModel question) async {
+  Future<QuestionResponse> getQuestion(String id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(question.toJson());
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<QuestionResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'questions/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = QuestionResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<QuestionIdResponse> createQuestion(QuestionModel? question) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(question?.toJson() ?? <String, dynamic>{});
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<QuestionIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -69,20 +100,21 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = QuestionResponse.fromJson(_result.data!);
+    final value = QuestionIdResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
   Future<QuestionResponse> updateQuestion(
-    String id,
-    QuestionModel update,
+    String? id,
+    QuestionModel? update,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(update.toJson());
+    _data.addAll(update?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<QuestionResponse>(Options(
       method: 'POST',
@@ -105,13 +137,14 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
   }
 
   @override
-  Future<DefaultResponse> deleteQuestion(String id) async {
+  Future<ElementIdResponse> deleteQuestion(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<DefaultResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'DELETE',
       headers: _headers,
       extra: _extra,
@@ -127,7 +160,7 @@ class _QuestionRemoteDataSource implements QuestionRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = DefaultResponse.fromJson(_result.data!);
+    final value = ElementIdResponse.fromJson(_result.data!);
     return value;
   }
 

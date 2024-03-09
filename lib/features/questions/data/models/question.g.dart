@@ -10,7 +10,9 @@ QuestionModel _$QuestionModelFromJson(Map<String, dynamic> json) =>
     QuestionModel(
       id: json['_id'] as String?,
       text: json['text'] as String?,
-      questioner: json['questioner'] as String?,
+      questioner: json['questioner'] == null
+          ? null
+          : AuthModel.fromJson(json['questioner'] as Map<String, dynamic>),
       date: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),

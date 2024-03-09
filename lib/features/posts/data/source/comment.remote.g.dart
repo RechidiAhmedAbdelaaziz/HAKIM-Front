@@ -12,7 +12,9 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
   _CommentRemoteDataSource(
     this._dio, {
     this.baseUrl,
-  });
+  }) {
+    baseUrl ??= 'http://localhost:3000/api/v1/';
+  }
 
   final Dio _dio;
 
@@ -20,11 +22,12 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
 
   @override
   Future<CommentListResponse> getAllComments(
-    String id,
-    int page,
+    String? id,
+    int? page,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -49,17 +52,18 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
   }
 
   @override
-  Future<CommentResponse> createComment(
-    CommentRequestBody comment,
-    String id,
+  Future<ElementIdResponse> createComment(
+    CommentModel? comment,
+    String? id,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(comment.toJson());
+    _data.addAll(comment?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<CommentResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<ElementIdResponse>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -75,14 +79,15 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = CommentResponse.fromJson(_result.data!);
+    final value = ElementIdResponse.fromJson(_result.data!);
     return value;
   }
 
   @override
-  Future<CommentResponse> getComment(String id) async {
+  Future<CommentResponse> getComment(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
@@ -108,14 +113,15 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
 
   @override
   Future<CommentResponse> updateComment(
-    CommentRequestBody comment,
-    String id,
+    CommentModel? comment,
+    String? id,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(comment.toJson());
+    _data.addAll(comment?.toJson() ?? <String, dynamic>{});
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<CommentResponse>(Options(
       method: 'POST',
@@ -138,9 +144,10 @@ class _CommentRemoteDataSource implements CommentRemoteDataSource {
   }
 
   @override
-  Future<CommentResponse> deleteComment(String id) async {
+  Future<CommentResponse> deleteComment(String? id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
