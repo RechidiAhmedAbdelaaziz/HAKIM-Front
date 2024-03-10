@@ -4,7 +4,7 @@ import 'package:front/core/Theme/colors.dart';
 
 // ignore: must_be_immutable
 class ContinueButton extends StatelessWidget {
-  ContinueButton({
+  const ContinueButton({
     this.height = 45,
     this.width = 212,
     required this.title,
@@ -12,11 +12,11 @@ class ContinueButton extends StatelessWidget {
     super.key,
   });
 
-  double height;
-  double width;
+  final double height;
+  final double width;
 
-  String title;
-  void Function()? press;
+  final String title;
+  final void Function()? press;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ContinueButton extends StatelessWidget {
           width: width.w,
           height: height.h,
           decoration: ShapeDecoration(
-            color: AppColor.blueFancy,
+            color: AppColors.blueText,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.w),
             ),
@@ -41,10 +41,9 @@ class ContinueButton extends StatelessWidget {
               title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: const Color(0xFFE1F2F6),
+                color: AppColors.white,
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
-                height: 0.h,
               ),
             ),
           ),

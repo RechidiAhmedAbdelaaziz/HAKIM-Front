@@ -16,12 +16,12 @@ class ChangeLangButton extends StatelessWidget {
         child: Container(
           height: 35.h,
           width: 45.w,
-          color: AppColor.blueDark,
+          color: AppColors.blueDark,
           alignment: Alignment.center,
           child: Text(
             "EN",
             style: TextStyle(
-                color: AppColor.white,
+                color: AppColors.white,
                 fontSize: 18.sp,
                 fontWeight: AppFontWeight.extraBold),
           ),

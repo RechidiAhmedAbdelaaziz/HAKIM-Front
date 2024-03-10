@@ -1,58 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:front/core/Theme/colors.dart';
-import 'package:front/core/Theme/fonts.dart';
-import 'package:front/core/injection/dependency.dart';
 import 'package:front/core/widgets/separate.dart';
-import 'package:front/features/posts/domain/entites/post.dart';
-import 'package:readmore/readmore.dart';
 
-import '../logic/index.dart';
-import 'widget/buttons_function.dart';
-import 'widget/poster_info.dart';
+import '../domain/entites/post.dart';
+import 'widgets/index.dart';
 
-class PostPox extends StatelessWidget {
-  final Post post;
-  const PostPox(this.post, {super.key});
+class PostBox extends StatelessWidget {
+  const PostBox(this._post, {super.key});
+
+  final Post _post;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => locator<PostCubit>(),
-      child: Container(
-        decoration: BoxDecoration(
-            color: AppColor.white,
-            border: Border.all(color: AppColor.blueDark, width: 1)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            height(7),
-            PosterInfo(post: post),
-            height(8),
-            _post(),
-            height(2),
-            const Divider(color: AppColor.blueDark),
-            height(2),
-            FavCommentSaveButtons(save: () {}, like: () {}, comment: () {}),
-            height(7),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Container _post() {
     return Container(
-      constraints: BoxConstraints(maxWidth: 355.w),
-      margin: EdgeInsetsDirectional.only(start: 5.w),
-      child: ReadMoreText(
-        "${post.text}",
-        trimLines: 3,
-        style: TextStyle(
-            color: AppColor.bluePost,
-            fontSize: 13.sp,
-            fontWeight: AppFontWeight.medium),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(25.r),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          height(8),
+          PosterInfo(_post.poster!, _post.date!),
+          height(20),
+          PostBody(_post.text!, 'IMGurl'),
+          height(4),
+          const Divider(color: AppColors.grey, height: 1),
+          height(6),
+          LikeCommentSaveButtons(
+            like: () {},
+            comment: () {},
+            save: () {},
+          ),
+          height(12),
+        ],
       ),
     );
   }

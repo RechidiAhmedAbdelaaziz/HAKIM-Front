@@ -31,9 +31,7 @@ abstract class AuthRemoteDataSource {
   //@User - SignUp
   @POST("${ApiConsts.auth}/signup")
   Future<AuthResponse> signUp({
-    @Body() required String name,
-    @Body() required String email,
-    @Body() required String password,
+    @Body() required SignUpParams info,
   });
 
   //@DOCTOR - create

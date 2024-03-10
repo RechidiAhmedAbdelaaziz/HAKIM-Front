@@ -18,7 +18,7 @@ class BigTitle extends StatelessWidget {
       child: Text(
         title,
         style: TextStyle(
-          color: AppColor.blueText,
+          color: AppColors.blueText,
           fontSize: 20.sp,
           fontWeight: AppFontWeight.extraBold,
           height: 0,

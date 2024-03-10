@@ -103,15 +103,12 @@ class _AuthRemoteDataSource implements AuthRemoteDataSource {
   }
 
   @override
-  Future<AuthResponse> signUp({
-    required String name,
-    required String email,
-    required String password,
-  }) async {
+  Future<AuthResponse> signUp({required SignUpParams info}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = name;
+    final _data = <String, dynamic>{};
+    _data.addAll(info.toJson());
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AuthResponse>(Options(
       method: 'POST',

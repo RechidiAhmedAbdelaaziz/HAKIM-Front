@@ -10,7 +10,6 @@ class AppCubit<T> extends Cubit<AppState<T>> {
 
   void emitLoading() => emit(const AppState.loading());
   void emitLoaded(T x) => emit(AppState.loaded(x));
-  void emitDeleted(T x) => emit(AppState.deleted(x));
   void emitError(ErrorHandler x) =>
       emit(AppState.error(x.apiErrorModel.message ?? ''));
 

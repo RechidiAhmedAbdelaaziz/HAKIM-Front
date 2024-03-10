@@ -6,5 +6,13 @@
         "workspaceRoot": "/home/ahmed/Documents/Project/FRONT",
         "workspacePath": "lib/features/posts",
         "id": "Puh3SECG9qKBdD57"
+    },
+    {
+        "type": "Directory",
+        "name": "/home/ahmed/Documents/Project/FRONT/lib/features/auth",
+        "parent_id": null,
+        "workspaceRoot": "/home/ahmed/Documents/Project/FRONT",
+        "workspacePath": "lib/features/auth",
+        "id": "UzlohLR9GaBZJODc"
     }
 ]

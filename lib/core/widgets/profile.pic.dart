@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:front/core/Theme/colors.dart';
 
-// ignore: must_be_immutable
 class ProfilePic extends StatelessWidget {
-  ProfilePic({
+  const ProfilePic({
     super.key,
     required this.height,
     required this.pic,
@@ -12,7 +11,7 @@ class ProfilePic extends StatelessWidget {
   });
   final double height;
   final String pic;
-  double radius;
+  final double radius;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +19,10 @@ class ProfilePic extends StatelessWidget {
       height: height.h,
       width: height.h,
       decoration: BoxDecoration(
-          color: AppColor.grey,
+          color: AppColors.grey,
           image: DecorationImage(
               image: NetworkImage(pic),
-              onError: (exception, stackTrace) {
-                
-              },
+              onError: (exception, stackTrace) {},
               fit: BoxFit.cover,
               filterQuality: FilterQuality.high),
           borderRadius: BorderRadius.circular(radius.r)),

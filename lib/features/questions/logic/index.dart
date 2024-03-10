@@ -1,4 +1,3 @@
-import 'package:front/core/helpers/list.extenstion.dart';
 import 'package:front/core/types/app_cubit.dart';
 import 'package:front/features/questions/domain/entities/answer.dart';
 

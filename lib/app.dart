@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:front/core/Theme/colors.dart';
+import 'package:front/core/Theme/fonts.dart';
 import 'package:front/routes/routes.dart';
 
 class HakimApp extends StatelessWidget {
@@ -14,11 +15,12 @@ class HakimApp extends StatelessWidget {
         minTextAdapt: true,
         child: MaterialApp(
           theme: ThemeData(
-            primaryColor: AppColor.blueFancy,
+            primaryColor: AppColors.blue,
+            fontFamily: AppFontFamily.inter,
             useMaterial3: true,
           ),
           onGenerateRoute: router.generateRoute,
-          initialRoute: Routes.test,
+          initialRoute: Routes.login,
         ),
       );
 }

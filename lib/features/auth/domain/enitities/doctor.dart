@@ -61,7 +61,7 @@ class Doctor extends User {
 
   factory Doctor.fromModel(AuthModel? model) => Doctor(
         id: model?.id,
-        name: model?.name,
+        name: "Dr ${model?.name}",
         email: model?.email,
         info: model?.info,
         kind: model?.kind,

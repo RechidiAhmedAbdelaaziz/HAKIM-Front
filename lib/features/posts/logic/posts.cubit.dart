@@ -2,10 +2,10 @@ part of 'index.dart';
 
 class PostListCubit extends ListCubit<Post> {
   PostListCubit(this._cases);
+
   final PostUseCases _cases;
 
   final List<Post> _posts = [];
-  get posts => _posts;
 
   int _page = 0;
 
