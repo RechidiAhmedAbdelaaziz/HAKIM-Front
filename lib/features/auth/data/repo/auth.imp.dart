@@ -54,12 +54,15 @@ class AuthRepositoryImp implements AuthRepository {
 
   @override
   Future<ApiResult<User>> login(
-      {required String login, required String password}) async {
+      {required String login,
+      required String password,
+      bool rememberMe = false}) async {
     callback() async {
       final response =
           await _remote.login(LoginParams(login: login, password: password));
 
       await _local.cacheToken(response.token!);
+
       return _checkUserKind(response);
     }
 
@@ -72,8 +75,8 @@ class AuthRepositoryImp implements AuthRepository {
       required String name,
       required String password}) async {
     callback() async {
-      final response =
-          await _remote.signUp(email: email, name: name, password: password);
+      final response = await _remote.signUp(
+          info: SignUpParams(email: email, password: password, name: name));
 
       await _local.cacheToken(response.token!);
       return _checkUserKind(response);

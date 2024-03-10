@@ -4,33 +4,27 @@ import 'package:front/core/constants/icons.dart';
 
 // ignore: must_be_immutable
 class Logo extends StatelessWidget {
-  Logo({
-    this.top = 242,
-    this.left = 14.78, //try
-    this.height = 247.81,
-    this.width = 322.46,
+  const Logo({
+    required this.height,
+    required this.width,
     super.key,
   });
-  double top;
-  double width;
-  double height;
-  double left;
+
+  final double width;
+  final double height;
+
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      left: left.w,
-      top: top.h,
-      child: Container(
-        width: width.w,
-        height: height.h,
-        decoration: ShapeDecoration(
-          image: const DecorationImage(
-            image: AssetImage(AppImages.logo),
-            fit: BoxFit.cover,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(132.w),
-          ),
+    return Container(
+      width: width.w,
+      height: height.h,
+      decoration: ShapeDecoration(
+        image: const DecorationImage(
+          image: AssetImage(AppImages.logo),
+          fit: BoxFit.cover,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(132.r),
         ),
       ),
     );

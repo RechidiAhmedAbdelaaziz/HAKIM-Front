@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:front/core/injection/dependency.dart';
 import 'package:front/features/auth/logic/auth_cubit.dart';
-import 'package:front/features/onboarding/onbording.screen.dart';
+import 'package:front/features/auth/view/login.screen.dart';
+import 'package:front/features/auth/view/signup.screen.dart';
+import 'package:front/features/home/screens/feed.screen.dart';
 import 'package:front/features/posts/logic/index.dart';
-import 'package:front/test.dart';
 
 class Routes {
   static const String onBoarding = "/onBoarding";
@@ -19,24 +20,29 @@ class AppRouter {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       //OnBoarding Screen
-      case Routes.onBoarding:
+      case Routes.signup:
         return MaterialPageRoute(
-          builder: (_) => const OnBoardingScreen(),
+          builder: (_) => BlocProvider(
+            create: (context) => locator<AuthCubit>(),
+            child: const SignUpScreen(),
+          ),
         );
 
       case Routes.login:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => locator<AuthCubit>(),
-            child: const TestScreen(),
+            child: const LoginScreen(),
           ),
         );
 
-      case Routes.test:
+      case Routes.home:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => locator<PostListCubit>(),
-            child: const TestScreen(),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => locator<PostListCubit>()..getList()),
+            ],
+            child: const FeedScreen(),
           ),
         );
 

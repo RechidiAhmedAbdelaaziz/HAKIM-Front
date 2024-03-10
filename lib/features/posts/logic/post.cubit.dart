@@ -5,7 +5,7 @@ class PostCubit extends AppCubit<Post> {
   final PostUseCases _cases;
 
   late Post _post;
-  Post get post => _post;
+
   Future<void> like() async => await doThis(_cases.like, _post, _liked);
   Future<void> unLike() async => await doThis(_cases.unLike, _post, _liked);
   void _liked(bool x) {

@@ -17,24 +17,21 @@ class AppFontWeight {
   static const FontWeight extraBold = FontWeight.w800;
 }
 
-class AppFontStyle {
-  static TextStyle h1 = TextStyle(
-      fontSize: 20.sp,
-      color: AppColor.blueDark,
-      fontWeight: AppFontWeight.extraBold);
+class AppTextStyle {
+  static TextStyle title = TextStyle(
+    color: AppColors.blueDark,
+    fontWeight: AppFontWeight.bold,
+    fontSize: 15.sp,
+  );
+  static TextStyle body = TextStyle(
+    color: AppColors.blueDark,
+    fontWeight: AppFontWeight.medium,
+    fontSize: 13.sp,
+  );
 
-  static TextStyle h2 = TextStyle(
-      fontSize: 15.sp,
-      color: AppColor.blueText,
-      fontWeight: AppFontWeight.bold);
-
-  static TextStyle h3 = TextStyle(
-      fontSize: 11.sp,
-      color: AppColor.blueText,
-      fontWeight: AppFontWeight.bold);
-
-  static TextStyle normal = TextStyle(
-      fontSize: 11.sp,
-      color: AppColor.blueText,
-      fontWeight: AppFontWeight.medium);
+  static TextStyle hint = TextStyle(
+    color: AppColors.greyLight,
+    fontWeight: AppFontWeight.medium,
+    fontSize: 10.sp,
+  );
 }

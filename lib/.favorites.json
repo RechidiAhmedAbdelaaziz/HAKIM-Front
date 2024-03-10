@@ -1,18 +1,10 @@
 [
     {
         "type": "Directory",
-        "name": "/home/ahmed/Documents/Project/FRONT/lib/features/donation",
+        "name": "/home/ahmed/Documents/Project/FRONT/lib/features/auth",
         "parent_id": null,
         "workspaceRoot": "/home/ahmed/Documents/Project/FRONT/lib",
-        "workspacePath": "features/donation",
-        "id": "QMVsL9jfUIk5lc8n"
-    },
-    {
-        "type": "Directory",
-        "name": "/home/ahmed/Documents/Project/FRONT/lib/core/injection",
-        "parent_id": null,
-        "workspaceRoot": "/home/ahmed/Documents/Project/FRONT/lib",
-        "workspacePath": "core/injection",
-        "id": "NcqX7vMuBTO0EJol"
+        "workspacePath": "features/auth",
+        "id": "S0crwenJL93KIkOj"
     }
 ]

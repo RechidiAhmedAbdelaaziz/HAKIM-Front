@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:front/core/cache/auth.dart';
 import 'package:front/core/injection/dependency.dart';
 import 'package:front/core/networking/api.result.dart';
@@ -7,13 +8,17 @@ import 'package:front/core/usecase/usecase.dart';
 import '../enitities/user.dart';
 import '../repo/auth.dart';
 
+part 'signup.g.dart';
+
+@JsonSerializable()
 class SignUpParams {
-  final String email;
+  final String email; 
   final String password;
   final String name;
 
   SignUpParams(
       {required this.email, required this.password, required this.name});
+  Map<String, dynamic> toJson() => _$SignUpParamsToJson(this);
 }
 
 class SignUpUseCase extends UseCase<User, SignUpParams> {

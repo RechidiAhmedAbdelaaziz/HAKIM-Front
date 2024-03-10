@@ -16,8 +16,6 @@ class TestScreen extends StatelessWidget {
       body: BlocBuilder<PostListCubit, AppState<List<Post>>>(
         builder: (context, state) {
           return state.when(
-            deleted: (posts) => const Center(
-                child: CircularProgressIndicator(color: Colors.red)),
             initial: () => _buildpage(context),
             loading: () => const Center(
                 child: CircularProgressIndicator(color: Colors.purple)),

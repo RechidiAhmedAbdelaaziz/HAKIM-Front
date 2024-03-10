@@ -38,5 +38,6 @@ class AppIcons {
 }
 
 class AppImages {
-  static const logo = "$images/logo.png";
+  static const String logo = "$images/logo.png";
+  static const String logoHorizontal = "$images/logo.h.png";
 }

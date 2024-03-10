@@ -45,7 +45,7 @@ class _InputFromState extends State<InputFrom> {
             width: 268.w,
             height: 39.h,
             decoration: ShapeDecoration(
-              color: AppColor.white,
+              color: AppColors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(100),
               ),
@@ -64,7 +64,7 @@ class _InputFromState extends State<InputFrom> {
                           Text(
                             widget.hint,
                             style: TextStyle(
-                                color: AppColor.grey,
+                                color: AppColors.grey,
                                 fontSize: 14.sp,
                                 fontWeight: AppFontWeight.bold),
                           )

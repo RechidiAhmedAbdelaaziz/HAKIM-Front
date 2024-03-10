@@ -9,8 +9,6 @@ class CommentListCubit extends ListCubit<Comment> {
   set post(String id) => _postid = id;
 
   late List<Comment> _comments;
-  List<Comment> get comments => _comments;
-  set element(Comment x) => _comments.add(x);
 
   int _nextPage = 0;
 
@@ -22,7 +20,7 @@ class CommentListCubit extends ListCubit<Comment> {
       );
   void _geted(List<Comment> x) {
     if (x.isNotEmpty) {
-      _comments.addAll(x); //TODO remove dublicats
+      _comments.addAll(x);
       _nextPage += 1;
     }
     emitLoaded(_comments);
@@ -41,6 +39,6 @@ class CommentListCubit extends ListCubit<Comment> {
       await doThis(_useCases.delete, x, _deleted);
   void _deleted(Comment x) {
     _comments.remove(x);
-    emitDeleted(_comments);
+    emitLoaded(_comments);
   }
 }

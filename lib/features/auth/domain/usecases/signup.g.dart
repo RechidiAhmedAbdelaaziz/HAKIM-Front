@@ -1,20 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login.dart';
+part of 'signup.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-LoginParams _$LoginParamsFromJson(Map<String, dynamic> json) => LoginParams(
-      login: json['login'] as String,
+SignUpParams _$SignUpParamsFromJson(Map<String, dynamic> json) => SignUpParams(
+      email: json['email'] as String,
       password: json['password'] as String,
-      rememberMe: json['rememberMe'] as bool? ?? false,
+      name: json['name'] as String,
     );
 
-Map<String, dynamic> _$LoginParamsToJson(LoginParams instance) =>
+Map<String, dynamic> _$SignUpParamsToJson(SignUpParams instance) =>
     <String, dynamic>{
-      'login': instance.login,
+      'email': instance.email,
       'password': instance.password,
-      'rememberMe': instance.rememberMe,
+      'name': instance.name,
     };

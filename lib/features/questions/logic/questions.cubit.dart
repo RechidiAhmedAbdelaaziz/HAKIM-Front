@@ -21,7 +21,7 @@ class QuestionListCubit extends ListCubit<Question> {
     if (x != null) {
       _questions.remove(x);
     }
-    emitDeleted(_questions);
+    emitLoaded(_questions);
   }
 
   int _nexPage = 1;

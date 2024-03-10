@@ -13,8 +13,10 @@ part 'login.g.dart';
 class LoginParams {
   final String login;
   final String password;
+  final bool rememberMe;
 
-  LoginParams({required this.login, required this.password});
+  LoginParams(
+      {required this.login, required this.password, this.rememberMe = false});
   factory LoginParams.fromJson(Map<String, dynamic> json) =>
       _$LoginParamsFromJson(json);
   Map<String, dynamic> toJson() => _$LoginParamsToJson(this);
@@ -28,10 +30,13 @@ class LoginUseCase extends UseCase<User, LoginParams> {
 
   @override
   Future<ApiResult<User>> call(LoginParams params) async {
-    final result =
-        await _repository.login(login: params.login, password: params.password);
+    final result = await _repository.login(
+      login: params.login,
+      password: params.password,
+    );
 
     locator<Dio>().options.headers.addAll({"Authorization": _cache.getToken()});
+    if (!params.rememberMe) await _cache.removeToken();
 
     return result;
   }

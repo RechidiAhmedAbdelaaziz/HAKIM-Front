@@ -27,7 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
-  Future login() async {
+  Future<void> login() async {
     _loading();
 
     final result = await _useCases.login(LoginParams(
@@ -38,45 +38,52 @@ class AuthCubit extends Cubit<AuthState> {
     _handleResult(result, _loggedIn);
   }
 
-  void goToSignup(BuildContext context) {
-    name = TextEditingController();
-    isPro = false;
-    context.offNamed(Routes.signup);
-  }
+  bool rememberMe = true;
 
-  //* @SignUp
-
-  bool? isPro;
-  TextEditingController? name;
-
-  void changeAccountType() {
-    isPro = !isPro!;
+  void changeRememberMe() {
+    _loading();
+    rememberMe = !rememberMe;
     _loaded();
   }
 
-  Future signUp() async {
-    _loading();
+  void goToSignup(BuildContext context) => context.offNamed(Routes.signup);
 
+  //* @SignUp
+
+  bool isPro = false;
+  TextEditingController name = TextEditingController();
+  TextEditingController cPassword = TextEditingController();
+
+  void changeAccountType() {
+    _loading();
+    isPro = !isPro;
+    _loaded();
+  }
+
+  Future<void> signUp() async {
+    _loading();
+    if (password.text != cPassword.text) {
+      return _error(ErrorHandler.handle("Password does not match"));
+    }
     final result = await _useCases.signup(SignUpParams(
       email: email.text,
       password: password.text,
-      name: name!.text,
+      name: name.text,
     ));
 
     _handleResult(result, _signedUp);
   }
 
-  void goToLogin(BuildContext context) {
-    name = null;
-    isPro = null;
-    context.offNamed(Routes.login);
-  }
+  void goToLogin(BuildContext context) => context.offNamed(Routes.login);
 
   //* @Helpers
 
   void _loading() => emit(const AuthState.loading());
   void _loaded() => emit(const AuthState.loaded());
-  void _error(ErrorHandler error) => emit(AuthState.error(error));
+  void _error(ErrorHandler error) {
+    emit(AuthState.error(error));
+  }
+
   void _loggedIn(User user) => emit(AuthState.loggedin(user));
   void _signedUp(User user) => emit(AuthState.signedup(user, isPro: isPro));
 
