@@ -135,7 +135,7 @@ class LoginScreen extends StatelessWidget {
                 height(43),
                 _buildLoginButton(cubit),
                 height(26),
-                _dontHaveAccount(cubit, context)
+                _dontHaveAccount(cubit, context),
               ],
             ),
           ],

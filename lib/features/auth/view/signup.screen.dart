@@ -75,13 +75,7 @@ class SignUpScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               height(210),
-              AuthFromFiled('Full Name', controller: cubit.name),
-              height(15),
-              AuthFromFiled('Email adress', controller: cubit.email),
-              height(15),
-              AuthFromFiled('Password', controller: cubit.password),
-              height(15),
-              AuthFromFiled('Confirme Password', controller: cubit.cPassword),
+              _buildSignUpForm(cubit),
               height(22),
               _proAccount(cubit),
               height(67),
@@ -99,6 +93,20 @@ class SignUpScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Column _buildSignUpForm(AuthCubit cubit) {
+    return Column(
+              children: [
+                AuthFromFiled('Full Name', controller: cubit.name),
+                height(15),
+                AuthFromFiled('Email adress', controller: cubit.email),
+                height(15),
+                AuthFromFiled('Password', controller: cubit.password),
+                height(15),
+                AuthFromFiled('Confirme Password', controller: cubit.cPassword),
+              ],
+            );
   }
 
   // By signing up, you agree to our Terms and Conditions and Privacy Policy
