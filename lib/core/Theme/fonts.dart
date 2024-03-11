@@ -22,16 +22,19 @@ class AppTextStyle {
     color: AppColors.blueDark,
     fontWeight: AppFontWeight.bold,
     fontSize: 15.sp,
+    height: 1,
   );
   static TextStyle body = TextStyle(
     color: AppColors.blueDark,
     fontWeight: AppFontWeight.medium,
     fontSize: 13.sp,
+    height: 1,
   );
 
   static TextStyle hint = TextStyle(
     color: AppColors.greyLight,
     fontWeight: AppFontWeight.medium,
     fontSize: 10.sp,
+    height: 1,
   );
 }

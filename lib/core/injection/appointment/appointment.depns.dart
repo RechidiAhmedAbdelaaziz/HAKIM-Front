@@ -15,4 +15,9 @@ Future _setUpAppointment() async {
           ));
 
   await _setUpUseCases();
+
+  locator.registerFactory<AppointmentsCubit>(
+      () => AppointmentsCubit(locator<AppointmentUseCases>()));
+  locator.registerFactory<AppointmentCubit>(
+      () => AppointmentCubit(locator<AppointmentUseCases>()));
 }

@@ -14,11 +14,13 @@ class AppointmentsCubit extends Cubit<AppState<List<Appointment>>> {
   List<Appointment> get appointment => _appointment;
   set setAppointment(Appointment x) => _appointment.add(x);
 
-  int _currentPage = 1;
+  int _next = 1;
 
-  Future getAppointments() async {
+  Future getList(DateTime date) async {
     _loading();
-    final result = await _useCases.getAll(_currentPage + 1);
+    final result = await _useCases.getAll(
+      GetAppointmentsParams(page: _next, date: date),
+    );
     _handleResult(result, _geted);
   }
 
@@ -42,7 +44,7 @@ class AppointmentsCubit extends Cubit<AppState<List<Appointment>>> {
   void _geted(List<Appointment> x) {
     if (x.isNotEmpty) {
       appointment.addAll(x);
-      _currentPage += 1;
+      _next += 1;
     }
 
     emit(AppState.loaded(_appointment));
@@ -58,7 +60,8 @@ class AppointmentsCubit extends Cubit<AppState<List<Appointment>>> {
     emit(AppState.loaded(_appointment));
   }
 
-  void _error(ErrorHandler x) => emit(AppState.error(x.apiErrorModel.message ?? ''));
+  void _error(ErrorHandler x) =>
+      emit(AppState.error(x.apiErrorModel.message ?? ''));
 
   void _handleResult<T>(ApiResult<T> result, void Function(T) sucess) =>
       result.when(sucess: sucess, failure: _error);

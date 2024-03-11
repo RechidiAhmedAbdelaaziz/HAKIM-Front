@@ -21,11 +21,15 @@ class _AppointmentRemoteDataSource implements AppointmentRemoteDataSource {
   String? baseUrl;
 
   @override
-  Future<AppointmentListResponse> getAllAppointments(int page) async {
+  Future<AppointmentListResponse> getAllAppointments(
+    int page,
+    Map<String, dynamic> info,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'page': page};
     final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(info);
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AppointmentListResponse>(Options(
       method: 'GET',

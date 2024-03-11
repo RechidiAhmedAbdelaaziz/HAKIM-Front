@@ -14,7 +14,10 @@ abstract class AppointmentRemoteDataSource {
 
   //Get All
   @GET(ApiConsts.appointments)
-  Future<AppointmentListResponse> getAllAppointments(@Query('page') int page);
+  Future<AppointmentListResponse> getAllAppointments(
+    @Query('page') int page,
+    @Body() Map<String , dynamic> info,
+  );
 
   //Get One
   @GET("${ApiConsts.appointments}/{id}")
