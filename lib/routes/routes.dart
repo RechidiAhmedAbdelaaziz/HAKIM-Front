@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:front/core/injection/dependency.dart';
+import 'package:front/features/appointment/logic/appointments.cubit.dart';
 import 'package:front/features/auth/logic/auth_cubit.dart';
 import 'package:front/features/auth/view/login.screen.dart';
 import 'package:front/features/auth/view/signup.screen.dart';
@@ -41,6 +42,9 @@ class AppRouter {
           builder: (_) => MultiBlocProvider(
             providers: [
               BlocProvider(create: (_) => locator<PostListCubit>()..getList()),
+              BlocProvider(
+                  create: (_) =>
+                      locator<AppointmentsCubit>()..getList(DateTime.now())),
             ],
             child: const FeedScreen(),
           ),

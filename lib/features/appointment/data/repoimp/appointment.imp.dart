@@ -33,6 +33,7 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
   Future<ApiResult<bool>> deleteAppointment(AppointmentModel update) async {
     callback() async {
       final response = await _remote.deleteAppointment(update.id!);
+
       return ApiResult.sucess(response.status == true);
     }
 
@@ -40,9 +41,13 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
   }
 
   @override
-  Future<ApiResult<List<Appointment>>> getAllAppointment(int page) async {
+  Future<ApiResult<List<Appointment>>> getAllAppointment(
+      int page, DateTime date) async {
     callback() async {
-      final response = await _remote.getAllAppointments(page);
+      final response = await _remote.getAllAppointments(
+        page,
+        {"date": date.toIso8601String()},
+      );
 
       if (page > response.pagination!.pagesNumber!) {
         return const ApiResult.sucess(<Appointment>[]);
@@ -75,7 +80,7 @@ class AppointmentRepositoryImpl implements AppointmentRepository {
   Future<ApiResult<Appointment>> update(AppointmentModel update) async {
     callback() async {
       final response =
-          await _remote.updateAppointment(update.id!, update.date!);
+          await _remote.updateAppointment(update.id!, DateTime.now());
       final data = Appointment.fromModel(response.data);
       return ApiResult.sucess(data);
     }

@@ -1,18 +1,10 @@
 [
     {
         "type": "Directory",
-        "name": "/home/ahmed/Documents/Project/FRONT/lib/features/posts",
+        "name": "/home/ahmed/Documents/Project/FRONT/lib/features/appointment",
         "parent_id": null,
         "workspaceRoot": "/home/ahmed/Documents/Project/FRONT",
-        "workspacePath": "lib/features/posts",
-        "id": "Puh3SECG9qKBdD57"
-    },
-    {
-        "type": "Directory",
-        "name": "/home/ahmed/Documents/Project/FRONT/lib/features/auth",
-        "parent_id": null,
-        "workspaceRoot": "/home/ahmed/Documents/Project/FRONT",
-        "workspacePath": "lib/features/auth",
-        "id": "UzlohLR9GaBZJODc"
+        "workspacePath": "lib/features/appointment",
+        "id": "RSCnQhy0d4Zj9l6U"
     }
 ]
